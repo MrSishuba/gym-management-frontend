@@ -1,0 +1,112 @@
+.header-search-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 70px 0px 180px; /* Adjust the padding as needed */
+}
+
+.header-icon {
+    font-size: 3rem; /* Adjust the size as needed */
+}
+
+.header-title {
+    flex-grow: 1;
+    text-align: center;
+    padding-left: 150px;
+}
+
+.search-bar-container {
+    margin-left: auto;
+    padding-right: 150px; /* Adjust the padding as needed */
+}
+
+.search-bar {
+    width: 300px; /* Adjust the width as needed */
+}
+
+.product-list-container {
+    display: flex;
+    justify-content: center;
+    padding-left: 200px;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; /* Prevent body from scrolling */
+}
+
+.main-container {
+  height: 100%;
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding-right: 15px; /* Optional: Add padding to avoid overlap with scrollbar */
+}
+
+.card {
+    margin: 10px;
+}
+
+.card-img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px; /* Adjust this value based on your design */
+}
+
+.card-img-top {
+    width: 100px;
+    height: 100px;
+    object-fit: cover; /* Ensures the image retains its aspect ratio */
+    align-items: center;
+}
+
+.side-navbar {
+    width: 180px;
+    height: 100%;
+    position:fixed;
+    top: 0;
+    left: -250px;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 120px;
+  }
+  
+  .side-navbar.open {
+    left: 0;
+  }
+  
+  .side-navbar ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .side-navbar ul li {
+    padding: 8px 8px 8px 16px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .side-navbar ul li:hover {
+    color: #f1f1f1;
+  }
+  
+  .toggle-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 30px;
+    background-color: #111;
+    color: #818181;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    padding-top: 60px;
+  }
+  
+  .toggle-btn:hover {
+    color: #f1f1f1;
+  }

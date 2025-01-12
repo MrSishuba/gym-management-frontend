@@ -1,0 +1,58 @@
+.header-search-container {
+    display: flex;
+    align-items: center;
+    padding: 0px 0px 0px 180px; /* Adjust the padding as needed */
+}
+
+.header-icon {
+    font-size: 3rem; /* Adjust the size as needed */
+}
+
+.header-title {
+    flex-grow: 1;
+    text-align: center;
+    padding-right: 200px;
+}
+
+.product-item-container {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    margin: 5px;
+}
+
+/*left card*/
+.icon {
+    font-size: 24px; /* size */
+    transition: transform 0.3s ease; /* transition for scaling */
+  }
+  
+  /* Large size */
+  .icon-lg {
+    font-size: 36px; 
+  }
+  
+  /* Hover effect to scale icon */
+  .icon:hover {
+    transform: scale(1.2); 
+  }
+
+.card-img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px; /* Adjust this value based on your design */
+}
+
+.card-img-top {
+    width: 150px;
+    height: 150px;
+    object-fit: cover; /* Ensures the image retains its aspect ratio */
+}
+
+label{
+    font-weight: bold;
+}
+

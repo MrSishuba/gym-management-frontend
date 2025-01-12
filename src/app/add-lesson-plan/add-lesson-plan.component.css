@@ -1,0 +1,227 @@
+/* Form title */
+h2 {
+  text-align: center;
+  margin-top: 40px;
+  color: #333;
+}
+
+/* Form container styles */
+.lesson-plan-form {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form group styles */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.lesson-plan-form .buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+/* Form labels */
+.lesson-plan-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Form Input Fields */
+.lesson-plan-form input[type="text"],
+.lesson-plan-form input[type="number"],
+.lesson-plan-form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #333;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.lesson-plan-form input[type="text"]:focus,
+.lesson-plan-form input[type="number"]:focus,
+.lesson-plan-form select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Blue border when the user starts typing */
+.lesson-plan-form input[type="text"]:focus:valid,
+.lesson-plan-form input[type="number"]:focus:valid,
+.lesson-plan-form select:focus:valid {
+  border-color: blue;
+}
+
+/* If the field is required and still empty, it will show the red border */
+.lesson-plan-form input[type="text"]:focus:invalid,
+.lesson-plan-form input[type="number"]:focus:invalid,
+.lesson-plan-form select:focus:invalid {
+  border-color: red;
+}
+
+/* Buttons */
+.lesson-plan-form .buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.lesson-plan-form .buttons a {
+  text-decoration: none;
+}
+
+.lesson-plan-form button[type="submit"],
+.lesson-plan-form button[type="button"] {
+  padding: 10px 20px;
+  background-color: #5cb85c; /* Primary button color */
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.lesson-plan-form button[type="submit"]:hover {
+  background-color: #357835; /* Hover color for primary button */
+}
+
+.lesson-plan-form button[disabled] {
+  background-color: #ccc; /* Disabled button color */
+  cursor: not-allowed;
+}
+
+/* Specific styles for cancel button */
+.lesson-plan-form .cancel button {
+  background-color: red; /* Cancel button color */
+}
+
+.lesson-plan-form .cancel button:hover {
+  background-color: #852323; /* Hover color for cancel button */
+}
+
+/* Specific styles for cancel button */
+
+/* Remove button styles */
+.remove {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: red; /* Cancel button color */
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover state for remove button */
+.remove:hover {
+  background-color: #852323; /* Hover color for cancel button */
+}
+
+/* Add workout button styles */
+.add-workout {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #0275d8; /* Add button color */
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover state for add workout button */
+.add-workout:hover {
+  background-color: #103f69; /* Hover color for add button */
+}
+
+
+/* Workout dropdowns */
+.workout-dropdowns {
+  margin-bottom: 15px;
+}
+
+.dropdown {
+  margin-bottom: 10px;
+}
+
+option:disabled {
+  background-color: #f0f0f0; /* Light gray background */
+  color: #999; /* Gray text color */
+  pointer-events: none; /* Prevent interaction */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .lesson-plan-form {
+    padding: 15px;
+  }
+
+  .lesson-plan-form input[type="text"],
+  .lesson-plan-form select {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .lesson-plan-form {
+    padding: 10px;
+  }
+
+  .lesson-plan-form label {
+    font-size: 14px;
+  }
+
+  .lesson-plan-form input[type="text"],
+  .lesson-plan-form select {
+    font-size: 14px;
+  }
+
+  .btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+.text-danger {
+  color: #f44336; /* red color for error messages */
+}
+
+html {
+  overflow-y: scroll; /* Ensures the scrollbar is always visible */
+}
+
+body {
+  min-height: 100vh; /* Ensures the content always has a height */
+}
+
+::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the scrollbar thumb */
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Color on hover */
+}

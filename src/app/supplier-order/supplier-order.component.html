@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+<app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+
+<div class="gap-container"></div>
+
+<div class="supplier-order-container">
+  <div class="navigation">
+    <i class="bi bi-arrow-left-circle back-icon" (click)="goBack()"></i>
+    <h2 class="page-title">AVS Fitness Suppliers</h2>
+    <span class="help-icon-container">
+        <a class="navbar-brand help-icon" href="#" data-bs-toggle="modal" data-bs-target="#helpModal">
+            <i class="bi bi-info-circle-fill">Help</i>
+        </a>
+    </span>
+  </div>
+
+  <div class="search-container">
+    <input type="text" class="form-control mb-3" placeholder="Search Supplier" [(ngModel)]="searchTerm" (input)="filterSupplier()">
+  </div>
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Supplier Order ID</th>
+        <th>Date Ordered</th>
+        <th>Quantity</th>
+        <th>Product Name</th>
+        <th>Total Price</th>
+        <th>Order Details</th>
+        <th>Supplier  </th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of supplierOrders">
+        <td>{{ order.supplier_Order_ID }}</td>
+        <td>{{ order.date | date }}</td>
+        <td>
+          <div *ngFor="let line of order.orderLines">
+            {{ line.supplier_Quantity }}
+          </div>
+        </td>
+        <td>
+          <div *ngFor="let line of order.orderLines">
+            {{ line.product_Name }}
+          </div>
+        </td>
+        <td>{{ order.total_Price | currency: 'R ' }}</td>
+        <td>{{ order.supplier_Order_Details }}</td>
+        <td>{{ order.supplier_Name }}</td>        
+        <td>
+          <span *ngIf="order.status === 1">
+            <button class="btn btn-success" (click)="onSelectOrder(order)">Accept</button>
+            <button class="btn btn-danger" (click)="openModal(order)">Reject</button>
+          </span>
+          <span *ngIf="order.status === 2">Accepted</span>
+          <span *ngIf="order.status === 3">Rejected</span>
+        </td>
+      </tr>
+    </tbody>
+    
+
+  <!-- Back to Supplier Hub -->
+  <span style="float: centre;">
+    <button class="btn btn-info mt-3" (click)="goBack()">Back to Supplier Hub</button>
+  </span>
+  </table>
+  
+  <!-- Modal for displaying order details -->
+  <div *ngIf="showModal" class="modal fade show d-block" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Order {{ updateInventory.accepted ? 'Acceptance' : 'Rejection' }}</h5>
+        </div>
+        <div class="modal-body">
+          <p>Order ID: {{ selectedOrder?.supplier_Order_ID }}</p>
+          <p>Supplier Name: {{ selectedOrder?.supplier_Name }}</p>
+          <p>Date Ordered: {{ selectedOrder?.date | date }}</p>
+          <div *ngIf="!updateInventory.accepted">
+            <div class="form-group">
+              <label for="discrepancies">Discrepancies:</label>
+              <textarea id="discrepancies" [(ngModel)]="updateInventory.discrepancies" class="form-control" rows="3" placeholder="e.g., 'Received 10 units instead of 15 as ordered, packaging was damaged...'"></textarea>
+            </div>
+          </div>
+          <p>Are you sure you want to {{ updateInventory.accepted ? 'accept' : 'reject' }} this order?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+          <button type="button" class="btn btn-primary" (click)="handleOrder()">{{ updateInventory.accepted ? 'Accept' : 'Reject' }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- help-modal.component.html -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title mx-auto" id="helpModalLabel">Help Guide</h5>
+        <div class="search-bar-container">
+          <input type="text" class="form-control search-bar" placeholder="Search help" [(ngModel)]="searchTerm" (input)="filterHelpContent()">
+        </div>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let item of filteredContent">
+          <h5>{{ item.title }}</h5>
+          <p [innerHTML]="item.content"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</html>

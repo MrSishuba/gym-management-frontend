@@ -1,0 +1,84 @@
+/* .report-container {
+  font-family: Arial, sans-serif;
+
+} */
+
+.report-header {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centers the entire header content */
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.logo img{
+  float: left;
+}
+
+.report-details {
+  flex: 1;
+  text-align: center; /* Centers text within the report-details section */
+}
+
+.report-title {
+  margin: 0;
+  font-size: 40px;
+  text-align: center; /* Centers the title */
+}
+
+.company-name {
+  margin: 0;
+  font-size: 30px;
+  text-align: center; /* Centers the title */
+}
+.summary-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.category-section {
+  margin-top: 30px;
+}
+
+.category-section h3 {
+  margin-top: 30px;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.sales-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.sales-table th, .sales-table td {
+  border: 1px solid #ddd;
+  padding: 5px;
+  font-size: 14px;
+}
+
+.sales-table th {
+  background-color: #f4f4f4;
+  text-align: left;
+}
+
+.subtotal-row {
+  margin-top: 10px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.grand-total{
+  margin-top: 10px;
+}
+
+.month{
+  margin-top: 40px;
+}

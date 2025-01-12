@@ -1,0 +1,157 @@
+/* General Styles */
+body {
+    background-color: #111; /* Dark gray background for the entire page */
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+/* Outer Container */
+.outer-container {
+    width: 100%; /* Full width */
+    background-color: #000; /* Black background for the outer container */
+    padding: 20px 0; /* Optional padding for spacing */
+}
+
+/* Survey Container */
+.survey-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2em;
+    background-color: #222; /* Darker background for the survey container */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Header */
+h2 {
+    color: #B08F26; /* Gold color for the survey title */
+    font-size: 2.5em;
+    text-align: center;
+}
+
+h3 {
+    color: #B08F26; /* Gold color for section titles */
+    font-size: 2em;
+    margin-top: 1.5em;
+}
+
+/* Label Styles */
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #B08F26; /* Gold color for labels */
+}
+
+/* Input, Select, and Textarea Styles */
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #B08F26; /* Gold border for input fields */
+    border-radius: 5px;
+    background-color: #333; /* Darker background for inputs */
+    color: white; /* White text in input fields */
+}
+
+/* Placeholder Styles */
+input::placeholder,
+textarea::placeholder {
+    color: #ddd; /* Light gray for placeholders */
+}
+
+/* Error Message Styles */
+div {
+    color: red; /* Error messages in red */
+}
+
+/* Button Styles */
+button {
+    background-color: #B08F26; /* Gold button background */
+    color: #111; /* Dark text on button */
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 5px; /* Rounded corners for button */
+    transition: background-color 0.3s ease; /* Smooth background transition */
+}
+
+button:hover {
+    background-color: #ddd; /* Light background on hover */
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    .survey-container {
+        padding: 1em; /* Less padding on smaller screens */
+    }
+    
+    h2 {
+        font-size: 2em; /* Smaller title on mobile */
+    }
+    
+    h3 {
+        font-size: 1.5em; /* Smaller section titles on mobile */
+    }
+}
+
+/* General Styles */
+body {
+    background-color: #111;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+/* Header */
+.header {
+    background-color: #111;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.dumbbell-icon {
+    color: #B08F26;
+    font-size: 2.5em;
+    margin-right: 10px;
+}
+
+.title {
+    color: #B08F26;
+    font-size: 2.5em;
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1em;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+}
+
+.nav-link.active,
+.nav-link:hover {
+    background-color: #B08F26;
+    color: #111;
+}
+

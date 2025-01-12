@@ -1,0 +1,148 @@
+
+
+<div class="container mt-4">
+<app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+<div style="margin-top: 50px"></div> <!-- Adjusted margin for spacing -->
+  <h1>AVS Fitness Gym System Help Guide</h1>
+  <div class="search-bar my-4">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search Help Content..."
+      [(ngModel)]="searchQuery"
+      (input)="filterContent()"
+    />
+  </div>
+  <div class="help-content">
+    <!-- Home Section -->
+    <section id="home">
+      <h2>Home</h2>
+      <p>Welcome to AVS Fitness Home. This is the landing page for all employees. It provides general information focused on conveying the ethos of what it means to be an employee at AVS Fitness.</p>
+      <ul>
+        <li>Click the "Read More" buttons to expand the paragraph text information.</li>
+        <li>Click on any of the bottom cards to go to the relevant pages where you will find further information on the subject matter.</li>
+      </ul>
+    </section>
+
+    <!-- Booking Manager Section -->
+    <section id="booking-manager">
+      <h2>Booking Manager</h2>
+      <p>The Booking Manager is the primary hub for facilitating and provisioning member bookings. The main objectives include:</p>
+      <ul>
+        <li><strong>Workouts:</strong>Use the create buttons and subsequent forms to create new workouts or lesson plans. use control buttons and click on them to start creating, updating, viewing, and deleting booking information</li>
+        <li><strong>Lesson Plans:</strong>Lesson plans are comprised of workouts, so always create new workouts first.</li>
+        <li><strong>Bookings:</strong>Bookings are where lesson plans will need created booking slots for members to book. Attendance lists can be generated in PDF format.</li>
+      </ul>
+    </section>
+
+    <!-- Employee Manager Section -->
+    <section id="employee-manager">
+        <h2>Employee Manager</h2>
+        <p>The Employee Manager interface is exclusive to the owner is the platform within the AV Motion System where employees are registered. The main objectives include:</p>
+        <ul>
+            <li><strong>Employee:</strong> Click on the Employee card and a screen will appear with a sign up form. Complete the form by providing each field
+            with a valid input click the information button for further details on what is required. on completeion of the form a new employee will be created and will have the user ability "Employee",
+        this will enable them to facilitate employee controlled access rights on the system and perform employee specific actions. Note Employees will be able to login as soon as the success message of employee registration completion is shown.</li>
+        </ul>
+        </section>
+      
+
+    <!-- Equipment Manager Section -->
+    <section id="equipment-manager">
+      <h2>Equipment Manager</h2>
+      <p>This interface is primarily concerned with creating, updating, viewing, and deleting new and existing equipment items for the gym.</p>
+      <ul>
+        <li>Click into the "Equipment Manager" link and then into the "Equipment" card tab to find relevant control buttons.</li>
+        <li>Fill in the associated forms and dialogues that appear to complete, view, and interact with equipment management tasks.</li>
+        <li>Part of the AVS Fitness employee job roles includes conducting an equipment inspection.</li>
+        <li>View all equipment inspections in the "Inspections" tab, where you can view the details in a table format.</li>
+      </ul>
+    </section>
+
+    <!-- Gym Manager Section -->
+    <section id="gym-manager">
+      <h2>Gym Manager</h2>
+      <p>This interface is the primary hub for facilitating a variety of gym management tasks and responsibilities.</p>
+
+      <h3>Settings</h3>
+      <p>This section is primarily concerned with setting new business rules and enforcing them throughout the system.</p>
+      <ul>
+        <li><strong>Deletion Settings:</strong> Use the configurable timer to set when users will get deleted. Click "Update Setting" to change the length of time and unit. This affects when a user will be deleted once activated.</li>
+        <li><strong>VAT Settings:</strong> Configure and set the VAT settings and percentage.</li>
+        <li><strong>Discount Settings:</strong> Set the discount percentage used for products that members will buy.</li>
+        <li><strong>Contract Settings:</strong> Configure and set the deletion period for terminated contracts after a specified period. Click "Update Setting" to confirm the change.</li>
+      </ul>
+
+      <h3>Dashboard</h3>
+      <p>This section is where administration will be able to generate specified reports (e.g., Member, Financial, Sales, Audit Trail, and Inspections Reports).</p>
+      <ul>
+        <li>The landing page displays a graph with statistics for a specified business area. This can be filtered monthly, weekly, or daily.</li>
+        <li>Click "Generate Report," select a report type, and indicate the reporting period (1 month, 3 months, 6 months, or 12 months). A PDF will be generated.</li>
+      </ul>
+    </section>
+
+    <!-- User Manager Section -->
+    <section id="user-manager">
+      <h2>User Manager</h2>
+      <p>This interface consists of several tabs, primarily focused on user configurations, member management, and user role enforcement:</p>
+      <ul>
+        <li><strong>Configure User Types:</strong> For administration to navigate through and create, edit, delete, and view user types which facilitate user role permissions. Use the labeled control buttons to manage user types.</li>
+        <li><strong>Users:</strong> Administration can configure automated deletion for users and manage a list of all users in the system. Use manual control buttons to reactivate and deactivate users' ability to log in and use the system.</li>
+        <li><strong>Contract Manager:</strong> Create, govern, and provision contract management for members by uploading contracts, creating new contracts, approving pending memberships, and viewing contract subscription statistics.</li>
+      </ul>
+
+      <h3>Audit Trail</h3>
+      <p>This interface consists of a table log with all user actions logged and searchable:</p>
+      <ul>
+        <li>Administration can navigate through and view all types of system interactions, including the type of action, time and date, the user who performed the action, and the details of the action.</li>         
+      </ul>
+    </section>
+
+    <!-- Inventory Manager Section -->
+    <section id="inventory-manager">
+      <h2>Inventory Manager</h2>
+      <p>This interface consists of several tabs, including the "Supplier" card tab:</p>
+      <ul>
+        <li><strong>Suppliers:</strong> Add or view suppliers, place supplier orders, and manage inventory.</li>
+        <li><strong>Products:</strong> Add, create, update, and delete supplier orders. These orders become part of the inventory available for management and member purchases.</li>
+        <li><strong>Inventories:</strong> Add, create, update, and delete inventory items. Administration can also conduct an inventory inspection as part of employee responsibilities.</li>
+        <li><strong>Inspections:</strong> Created inspections can be viewed for reporting purposes.</li>
+      </ul>
+    </section>
+
+    <!-- Member Manager Section -->
+    <section id="member-manager">
+      <h2>Member Manager</h2>
+      <p>This interface is concerned with governing member-related activities:</p>
+      <ul>
+        <li><strong>Subscriptions:</strong> Manage member subscriptions, block members who have not met monthly payments, and reactivate them.</li>
+        <li><strong>Cancellations:</strong> Approve contract terminations and inspect the cancellation reason.</li>
+        <li><strong>Rewards:</strong> Configure, set, and post rewards for qualifying members.</li>
+        <li><strong>Orders:</strong> View member orders and complete the collection process.</li>
+        <li><strong>Payments:</strong> View all payments made by members and export the information as an Excel spreadsheet.</li>
+      </ul>
+    </section>
+
+    <!-- Profile Section -->
+    <section id="profile">
+      <h2>Profile</h2>
+      <p>This interface is primarily concerned with managing yourself and your details.</p>
+      <ul>
+        <li><strong>Updating Personal Details:</strong> If any of your basic user details require a change, navigate to your profile, click the edit button, change your details, and save them.</li>
+      </ul>
+    </section>
+
+    <!-- FAQs Section -->
+    <section id="faq">
+      <h2>Frequently Asked Questions (FAQs)</h2>
+      <ul>
+        <li><strong>How do I navigate the AVS Fitness system?</strong> Use the main menu to access different sections such as Home, Booking Manager, Equipment Manager, etc.</li>
+        <li><strong>What if I encounter an issue?</strong> Contact system support (DatalungeTeam43&#64;com) Software Consultant Agency</li>
+        <li><strong>How do I generate reports?</strong> Go to the Dashboard section, select the report type and reporting period, and click "Generate Report."</li>
+        <li><strong>I forgot my password:</strong> Navigate to the login screen and click "Forgot Password" fill in your current user email and click the reset button
+            an email will be sent out to the provided email address where there will be a link to navigate you to the Change Password screen. There you will be able to create a new password and use the new password to login .</li>
+      </ul>
+    </section>
+  </div>
+</div>
+

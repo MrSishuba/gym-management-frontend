@@ -1,0 +1,59 @@
+<div class="header">
+  <div class="logo-container">
+      <i class="bi bi-dumbbell dumbbell-icon"></i>
+      <h1 class="title">AV Motion</h1>
+  </div>
+  <nav class="nav">
+      <ul>
+        <li><a class="nav-link" routerLink="/landing-page" routerLinkActive="active">Home</a></li>
+          <li><a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a></li>
+          <li><a class="nav-link" routerLink="/contract" routerLinkActive="active">Getting Started</a></li>
+          <li><a class="nav-link" routerLink="/affiliations" routerLinkActive="active">Affiliations & Outreach</a></li>
+          <li><a class="nav-link" routerLink="/product-list" routerLinkActive="active">AV Merch</a></li>
+          <li><a class="nav-link" routerLink="/available-bookings" routerLinkActive="active">Book Online</a></li>
+          <li><a class="nav-link" routerLink="/survey">Community Feedback</a></li>
+      </ul>
+  </nav>
+</div>
+
+<div class="policy-container">
+  <i class="bi bi-arrow-left-circle back-icon" (click)="goBack()"></i>
+  <h1 class="policy-title">AVS Fitness Policy</h1>
+  <div class="policy-form">
+      <div *ngFor="let section of sections">
+          <h2 (click)="toggleSection(section.title)" class="section-title">{{ section.title }}</h2>
+          <div *ngIf="isSectionVisible(section.title)" class="section-content">
+              <p>{{ section.content }}</p>
+              <ul>
+                  <li *ngFor="let point of getBulletPoints(section.title)">
+                      {{ point }}
+                  </li>
+              </ul>
+          </div>
+      </div>
+      <button (click)="downloadPDF()" class="download-button">Download Policy as PDF</button>
+  </div>
+</div>
+
+<footer class="footer">
+    <div class="footer-section">
+        <h3>Contact Us<i class="bi bi-telephone"></i></h3>
+        <p>Email: audrin.vanschoor&#64;gmail.com</p>
+        <p>Phone: +078 397 5971</p>
+    </div>
+    <div class="footer-section">
+        <h3>Address<i class="bi bi-geo-alt"></i></h3>
+        <p>5 Calliiandra St,<br> Montana Park, Pretoria, 0182</p>
+    </div>
+    <div class="footer-section">
+        <h3>Technical Support <i class="bi bi-person-raised-hand"></i></h3>
+        <form>
+            <p>Email: DatalungeTeam43&#64;gmail.com<br>Phone: +012 445 5673</p>
+        </form>     
+    </div>
+  <hr>
+  <div class="legal">
+      <p>&copy; 2024 AV Motion. All rights reserved.</p>
+  </div>
+  <hr>
+</footer>

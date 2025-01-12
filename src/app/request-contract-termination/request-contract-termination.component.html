@@ -1,0 +1,80 @@
+<app-member-side-nav-bar *ngIf="userTypeID == 3"></app-member-side-nav-bar>
+<div class="container">
+  <div class="d-flex justify-content-start header">
+    <i class="bi bi-arrow-left-circle header-icon back-icon" (click)="goBack()"></i>
+    <h1 class="page-title" style="font-size:40px">Terminate My Contract</h1>
+  </div>
+  
+  <div class="row justify-content-center align-items-center">
+    <!-- Left Column: Step Instructions -->
+    <div class="col-md-6 step-instructions">
+      <h2 id="stepTitle">Step 1 of 3</h2>
+      <p id="stepInstructions">Please provide your ID number to begin the contract termination process.</p>
+    </div>
+
+    <!-- Right Column: ID Number Form and Modals -->
+    <div class="col-md-6">
+      <!-- ID Number Form -->
+      <form [formGroup]="idNumberForm" (ngSubmit)="onSubmit()" id="idNumberForm" *ngIf="!showTerminationModal && !showConfirmModal">
+        <div>
+          <label for="idNumber">Please Enter Your ID Number:</label>
+          <input
+            type="text"
+            id="idNumber"
+            formControlName="idNumber"
+            pattern="[0-9]{13}"
+          />
+          <div *ngIf="idNumberForm.get('idNumber')?.invalid && idNumberForm.get('idNumber')?.touched" class="error-message">
+            <small *ngIf="idNumberForm.get('idNumber')?.errors?.['required']">ID Number is required.</small>
+            <small *ngIf="idNumberForm.get('idNumber')?.errors?.['pattern']">ID Number must be 13 digits long.</small>
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="idNumberForm.invalid">Confirm</button>
+      </form>
+
+      <!-- Termination Reason Modal -->
+      <div class="modal" tabindex="-1" role="dialog" [ngClass]="{'show': showTerminationModal}" [ngStyle]="{'display': showTerminationModal ? 'block' : 'none'}">
+        <div class="modal-dialog modal-right" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Terminate My Contract</h5>
+            </div>
+            <div class="modal-body">
+              <form [formGroup]="terminationForm" (ngSubmit)="onContinue()">
+                <div *ngFor="let reason of terminationReasons">
+                  <input type="radio" formControlName="terminationReasonType" [value]="reason.value" (change)="onReasonChange(reason.value)">
+                  <label>{{ reason.label }}</label>
+                </div>
+                <textarea *ngIf="showCustomReason" formControlName="customReason" placeholder="Please specify your reason"></textarea>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="onCloseTerminationModal()">Close</button>
+              <button type="submit" class="btn btn-primary" [disabled]="!terminationForm.valid" (click)="onContinue()">Continue with Termination Process</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Confirm Termination Modal -->
+      <div class="modal" tabindex="-1" role="dialog" [ngClass]="{'show': showConfirmModal}" [ngStyle]="{'display': showConfirmModal ? 'block' : 'none'}">
+        <div class="modal-dialog modal-right" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Confirm Termination</h5>
+            </div>
+            <div class="modal-body">
+              <p>By clicking confirm, you hereby confirm and understand that all requests made are final and cannot be reversed or contested once submitted.</p>
+              <input type="checkbox" [(ngModel)]="confirmChecked"> I acknowledge that I want to proceed.
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="onCancelConfirmModal()">Close</button>
+              <button type="button" class="btn btn-primary" [disabled]="!confirmChecked" (click)="onConfirmTermination()">Confirm Termination</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

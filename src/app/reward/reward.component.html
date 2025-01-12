@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+<app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+
+<div class="gap-container"></div>
+
+<div class="reward-container">
+    <div class="back-button">        
+      <i class="bi bi-arrow-left-circle header-icon" (click)="goBack()"></i>
+      <span class="help-icon-container">
+          <a class="navbar-brand help-icon" href="#" data-bs-toggle="modal" data-bs-target="#helpModal">
+              <i class="bi bi-info-circle-fill">Help</i>
+          </a>
+      </span>
+    </div>
+
+    <div class="unlisted-reward-container">
+      <div class="content">
+        <div class="header">
+          <h1>Unlisted Rewards</h1>
+        </div>
+    
+        <button class="btn btn-primary mb-3" (click)="openSetRewardModal()">Set New Reward</button>
+    
+        <table mat-table [dataSource]="unlistedRewards" class="table table-hover table-centered">
+          <ng-container matColumnDef="reward_ID">
+            <th mat-header-cell *matHeaderCellDef>Reward ID</th>
+            <td mat-cell *matCellDef="let reward">{{ reward.reward_ID }}</td>
+          </ng-container>
+    
+          <ng-container matColumnDef="reward_Issue_Date">
+            <th mat-header-cell *matHeaderCellDef>Issue Date</th>
+            <td mat-cell *matCellDef="let reward">{{ reward.reward_Issue_Date | date }}</td>
+          </ng-container>
+    
+          <ng-container matColumnDef="reward_Type_Name">
+            <th mat-header-cell *matHeaderCellDef>Reward Name</th>
+            <td mat-cell *matCellDef="let reward">{{ reward.reward_Type_Name }}</td>
+          </ng-container>
+    
+          <ng-container matColumnDef="isPosted">
+            <th mat-header-cell *matHeaderCellDef>Posted</th>
+            <td mat-cell *matCellDef="let reward">{{ reward.isPosted }}</td>
+          </ng-container>
+    
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let reward">
+              <button mat-button (click)="openPostRewardModal(reward)">Post Reward</button>
+            </td>
+          </ng-container>
+    
+          <tr mat-header-row *matHeaderRowDef="['reward_ID', 'reward_Issue_Date', 'reward_Type_Name', 'isPosted', 'actions']"></tr>
+          <tr mat-row *matRowDef="let row; columns: ['reward_ID', 'reward_Issue_Date', 'reward_Type_Name', 'isPosted', 'actions'];"></tr>
+        </table>
+    
+        <mat-paginator #unlistedPaginator [pageSize]="3"></mat-paginator>
+      </div>
+    </div>
+    
+    <br/>
+    
+    <div class="listed-reward-container">
+      <div class="content">
+        <div class="header">
+          <h1>Listed Rewards</h1>
+        </div>
+    
+        <table mat-table [dataSource]="listedRewards" class="table table-hover table-centered">
+          <ng-container matColumnDef="reward_ID">
+            <th mat-header-cell *matHeaderCellDef>Reward ID</th>
+            <td mat-cell *matCellDef="let reward">{{ reward.reward_ID }}</td>
+          </ng-container>
+    
+          <ng-container matColumnDef="reward_Issue_Date">
+            <th mat-header-cell *matHeaderCellDef>Issue Date</th>
+            <td mat-cell *matCellDef="let reward">{{ reward.reward_Issue_Date | date }}</td>
+          </ng-container>
+    
+          <ng-container matColumnDef="reward_Type_Name">
+            <th mat-header-cell *matHeaderCellDef>Reward Name</th>
+            <td mat-cell *matCellDef="let reward">{{ reward.reward_Type_Name }}</td>
+          </ng-container>
+    
+          <ng-container matColumnDef="isPosted">
+            <th mat-header-cell *matHeaderCellDef>Posted</th>
+            <td mat-cell *matCellDef="let reward">{{ reward.isPosted }}</td>
+          </ng-container>
+    
+          <tr mat-header-row *matHeaderRowDef="['reward_ID', 'reward_Issue_Date', 'reward_Type_Name', 'isPosted']"></tr>
+          <tr mat-row *matRowDef="let row; columns: ['reward_ID', 'reward_Issue_Date', 'reward_Type_Name', 'isPosted'];"></tr>
+        </table>
+    
+        <mat-paginator #listedPaginator [pageSize]="3"></mat-paginator>
+      </div>
+    </div>
+    
+</div>
+
+<!-- Set Reward Modal -->
+<div class="modal fade" id="addRewardModal" tabindex="-1" aria-labelledby="addRewardModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addRewardModalLabel">Add New Reward</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="rewardForm" (ngSubmit)="createReward()">
+          <div class="mb-3">
+            <label for="rewardType" class="form-label">Reward Type</label>
+            <select id="rewardType" class="form-control" formControlName="reward_Type_ID" required>
+              <!-- Placeholder option -->
+              <option value="" disabled selected>Select a reward type</option>
+              <!-- Reward types from the list -->
+              <option *ngFor="let type of rewardTypes" [value]="type.reward_Type_ID">{{ type.reward_Type_Name }}</option>
+            </select>
+          </div>
+        </form>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" (click)="createReward()">Add Reward</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Post Reward Modal -->
+<div class="modal fade" id="postRewardModal" tabindex="-1" aria-labelledby="postRewardModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="postRewardModalLabel">Post Reward</h5>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to post the reward <strong>{{ selectedReward?.reward_Type_Name }}</strong>?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="confirmPostReward()">Post Reward</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- help-modal.component.html -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title mx-auto" id="helpModalLabel">Help Guide</h5>
+        <div class="search-bar-container">
+          <input type="text" class="form-control search-bar" placeholder="Search help" [(ngModel)]="searchTerm" (input)="filterHelpContent()">
+        </div>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let item of filteredContent">
+          <h5>{{ item.title }}</h5>
+          <p [innerHTML]="item.content"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+</html>

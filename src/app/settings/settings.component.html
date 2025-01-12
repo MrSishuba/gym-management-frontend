@@ -1,0 +1,50 @@
+<div class="container-fluid">
+  <app-master-side-nav-bar></app-master-side-nav-bar>
+  <div style="margin-top: 30px"></div> <!-- Adjusted margin for proper spacing -->
+
+  <div class="gym-manager-container">
+    <div class="header-search-container">
+      <i class="bi bi-arrow-left-circle header-icon" (click)="goBack()"></i>
+      <h1 class="header-title">Settings</h1>
+    </div>
+
+    <div class="content">
+      <div class="menu-container" style="margin-bottom: 400px;">
+        <div class="row">
+          <div class="col-6">
+            <label>
+              <span class="menu-item">
+                <i class="bi bi-trash"></i>
+                <a routerLink="/deletion-settings">Deletion Settings</a>
+              </span>
+            </label>
+          </div>
+          <div class="col-6">
+            <label>
+              <span class="menu-item">
+                <i class="bi bi-currency-exchange"></i>
+                <a routerLink="/vat">VAT Settings</a>
+              </span>
+            </label>
+          </div>
+          <div class="col-6">
+            <label>
+              <span class="menu-item">
+                <i class="bi bi-percent"></i>
+                <a routerLink="/discount">Discount Settings</a>
+              </span>
+            </label>
+          </div>
+          <div class="col-6">
+            <label>
+              <span class="menu-item">
+                <i class="bi bi-file-text"></i>
+                <a routerLink="/contract-settings" router>Contract Settings</a>
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

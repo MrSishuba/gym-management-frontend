@@ -1,0 +1,76 @@
+/* Global styles and background */
+body {
+    background-color: #ffffff;
+    font-family: Arial, sans-serif;
+    color: rgb(0, 0, 0);
+  }
+  
+  /* Back button styling */
+  .back-icon {
+    color: #000000;
+    cursor: pointer;
+  }
+  
+  .back-icon:hover {
+    color: #ddd;
+    transition: 0.3s ease;
+  }
+  
+  /* Admin Panel Container */
+  .admin-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; /* Center vertically */
+  }
+  
+  /* Admin Card Styling */
+  .admin-card {
+    background-color: #f2f2f2;
+    padding: 2em;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Admin Title */
+  .admin-title {
+    font-size: 2.5rem;
+    color: #000000;
+    margin-bottom: 1em;
+  }
+  
+  /* Admin Button */
+  .admin-button {
+    background-color: #B08F26;
+    color: #111;
+    padding: 1em 2em;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .admin-button:hover {
+    background-color: #ddd;
+    color: #111;
+    transition: 0.3s;
+  }
+  
+  /* Admin Description */
+  .admin-description {
+    margin-top: 1.5em;
+    color: #000000;
+    font-size: 1.2em;
+  }
+  
+  /* Card centering and responsive adjustments */
+  @media screen and (max-width: 768px) {
+    .admin-card {
+      width: 95%;
+    }
+  }
+  

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <div class="navigation">
+    <button routerLink="/home">Back</button>
+  </div>
+
+   <input type="text" class="form-control mb-3" placeholder="Search Lesson Plan" [(ngModel)]="searchTerm" (input)="filterlessonPlans()">
+  <div class="lesson-plan-container">
+    <div class="lesson-plan-card" *ngFor="let plan of plans">
+      <div class="lesson-plan-header">
+        <h2>{{plan.program_Name}}</h2>
+        <p>{{plan.program_Description}}</p>
+      </div>
+      <div class="lesson-plan-body">
+        <button (click)="GetLessonPlansWithWorkouts(plan.lesson_Plan_ID)"><i class="bi bi-eye-fill"></i> Details</button>
+        <button [routerLink]="['/edit-lesson-plan', plan.lesson_Plan_ID]"><i class="bi bi-pencil-square"></i></button>
+        <button (click)="deleteLessonPlan(plan.lesson_Plan_ID)"><i class="bi bi-trash-fill"></i></button>
+        <button [routerLink]="['/create-booking', plan.lesson_Plan_ID, plan.program_Name]">Book</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="blur-background" *ngIf="showModal"></div>
+  <div class="modal-container" *ngIf="showModal">
+    <h2>{{ plan.lessonPlanName }} Program</h2>
+    <h3>Program Description:</h3>
+    <p>{{ plan.program_Description }}</p>
+    <h4>Workouts:</h4>
+    <div *ngFor="let workout of plan.workouts; let i = index">
+      <p>{{ workout }}</p>
+    </div>
+    <div class="modal-buttons">
+      <button (click)="close()">Close</button>
+    </div>
+  </div>
+</html>

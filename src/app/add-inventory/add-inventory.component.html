@@ -1,0 +1,36 @@
+<div class="form-container">
+    <form #formCtrl="ngForm">
+        <div>
+            <label for="name">Inventory Item Name:</label>
+            <input type="text" id="itemName" name="itemName"  [(ngModel)]="itemName" size="35" placeholder="e.g Mens Dry-top T-shirt" required>
+        </div>
+        <div>
+            <label for="duration">Inventory Item Category:</label>
+            <input type="text" id="duration" name="category" [(ngModel)]="category" size="35" placeholder="Clothing" required>
+        </div>
+        <div>
+            <label for="duration">Inventory Quantity:</label>
+            <input type="number" id="duration" name="quantity"  [(ngModel)]="quantity" size="35" placeholder="e.g 5" required>
+        </div>
+
+        <div>
+            <label for="category">Select Supplier:</label>
+            <select id="supplier" name="supplier" [(ngModel)]="supplierID" required>
+              <option *ngFor="let supplier of suppliers" [value]="supplier.supplier_ID">{{ supplier.name }}</option>
+            </select>
+          </div>
+
+         <div>
+            <label for="photo">Upload Item Photo</label>
+            <input type="file" accept=".jpg, .jpeg, .png" name="photo" (change)="onFileSelected($event)" id="photo" [(ngModel)]="photo" required>
+         </div>
+
+
+        <div class="buttons">
+            <a class="add"><button type="submit" [disabled]="!formCtrl.form.valid" (click)="addInventory(category, quantity, photo, supplierID, itemName)" >Add</button></a>
+    
+            <a class="cancel" routerLink="/inventory"><button type="button">Cancel</button></a>
+        </div>
+        
+    </form>
+    </div>

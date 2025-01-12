@@ -1,0 +1,78 @@
+
+<app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+<app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+<div class="gap-container"></div>
+
+<div class="header-search-container">
+  <i class="bi bi-arrow-left-circle header-icon" (click)="goBack()"></i>
+  <h1 class="header-title">Deletion Settings</h1>
+  <span class="help-icon-container">
+      <a class="navbar-brand help-icon" href="#" data-bs-toggle="modal" data-bs-target="#helpModal">
+          <i class="bi bi-info-circle-fill">Help</i>
+      </a>
+  </span>
+</div>
+
+<div class="view-deletion-settings-container">
+    <p><strong>Deletion Time:</strong> {{deletionSettings?.deletionTimeValue}} {{deletionSettings?.deletionTimeUnit}}</p>
+    <button mat-raised-button color="primary" (click)="openEditModal()">Update Settings</button>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">Update Deletion Time</h5>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="deletionSettingsForm">
+            <div class="form-group">
+              <label for="deletionTime">Deletion Time:</label>
+              <input type="number" id="deletionTime" formControlName="value" class="form-control" name="deletionTime">
+              <div *ngIf="deletionSettingsForm.get('value')?.invalid && (deletionSettingsForm.get('value')?.dirty || deletionSettingsForm.get('value')?.touched)" class="text-danger">
+                <div *ngIf="deletionSettingsForm.get('value')?.errors?.['required']">Deletion Time is required.</div>
+                <div *ngIf="deletionSettingsForm.get('value')?.errors?.['min']">Deletion Time cannot be less than 0.</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="timeUnit">Time Unit:</label>
+              <select id="timeUnit" formControlName="unit" class="form-control" name="timeUnit">
+                <option value="Minutes">Minutes</option>
+                <option value="Hours">Hours</option>
+                <option value="Days">Days</option>
+                <option value="Weeks">Weeks</option>
+                <option value="Months">Months</option>
+                <option value="Years">Years</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" (click)="saveDeletionTime()">Update</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- help-modal.component.html -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title mx-auto" id="helpModalLabel">Help Guide</h5>
+        <div class="search-bar-container">
+          <input type="text" class="form-control search-bar" placeholder="Search help" [(ngModel)]="searchTerm" (input)="filterHelpContent()">
+        </div>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let item of filteredContent">
+          <h5>{{ item.title }}</h5>
+          <p [innerHTML]="item.content"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

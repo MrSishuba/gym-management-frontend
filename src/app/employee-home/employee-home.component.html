@@ -1,0 +1,100 @@
+
+<!-- Main Content -->
+ <!DOCTYPE html>
+<html lang="en">
+<app-side-nav-bar></app-side-nav-bar>
+<div class="gap-container"></div>
+<main>
+    <!-- AVS Fitness Section -->
+    <section class="hero">
+        <img src="assets/images/WallPaper.jpeg" alt="Wallpaper" class="hero-image">
+        <div class="hero-content">
+            <h1 class="title-large">AVS Fitness</h1>
+            <p class="slogan">Training Purpose and Value</p>
+        </div>
+    </section>
+
+ <!-- Responsible Employee Section -->
+<section class="responsible-employee">
+    <div class="content">
+        <div class="text">
+            <h2>How To Be A Responsible Employee</h2>
+            <p class="short-text">Our employees are the cornerstone of our community, offering exceptional service and dedication to help you achieve your fitness goals.</p>
+            <p class="more-text">Our employees undergo rigorous training to ensure they provide top-notch service. They are always ready to assist you with personalized workout plans and nutritional advice. Our team values your feedback and strives to create a supportive environment that fosters growth and success. By embodying the principles of responsibility, our staff ensures that every member receives the attention and care they deserve. We encourage open communication and continuous improvement to maintain high standards.</p>
+            <button class="toggle-btn" (click)="toggleContent($event)">Read more</button>
+        </div>
+        <img src="assets/images/owner2.jpg" alt="Responsible Employee" class="employee-img">
+    </div>
+</section>
+
+<!-- How to Serve Others Section -->
+<section class="serve-others">
+    <img src="assets/images/community1.jpg" alt="Serve Others" class="serve-img">
+    <div class="text">
+        <h2>How to Serve Others</h2>
+        <p class="short-text">We are committed to serving our members with integrity and dedication, ensuring every interaction is meaningful and impactful.</p>
+        <p class="more-text">Our approach to serving others involves active listening and understanding the unique needs of each member. We prioritize building strong relationships and providing tailored solutions to enhance their fitness journey. Our team is dedicated to fostering a welcoming and supportive atmosphere where every member feels valued. We continuously seek feedback and make necessary adjustments to ensure we meet and exceed expectations. Our goal is to empower members to achieve their personal fitness goals with confidence and support.</p>
+        <button class="toggle-btn"(click)="toggleContent($event)">Read more</button>
+    </div>
+</section>
+
+<!-- Gym Management Tips Section -->
+<section class="management-tips">
+    <div class="content">
+        <div class="text">
+            <h2>Gym Management Tips</h2>
+            <p class="short-text">Effective management is key to maintaining a successful gym. Learn the best practices to enhance operations and member satisfaction.</p>
+            <p class="more-text">Successful gym management involves strategic planning, regular staff training, and efficient operational procedures. Key practices include implementing member feedback systems, optimizing scheduling and resource allocation, and maintaining a clean and safe environment. Regularly reviewing and updating policies ensures that the gym adapts to changing needs and industry standards. Effective communication with both staff and members helps to address issues promptly and improve overall satisfaction.</p>
+            <button class="toggle-btn" (click)="toggleContent($event)">Read more</button>
+        </div>
+        <img src="assets/images/water.jpg" alt="Management Tips" class="management-img">
+    </div>
+</section>
+
+
+<!-- Information Cards Section -->
+<section class="info-cards">
+    <div class="card" (click)="navigateTo('/code-of-conduct')" style="background: url('assets/images/Gym43.jpg') no-repeat center center; background-size: cover; color: white;">
+        <h3>AVS Fitness Policy and Code of Conduct</h3>
+        <p>Details about our policies and the code of conduct expected from all members and staff.</p>
+    </div>
+    <div class="card" (click)="navigateTo('/work-ethics')" style="background: url('assets/images/mot1.jpg') no-repeat center center; background-size: cover; color: white;">
+        <h3>Work Ethics Programme</h3>
+        <p>Our commitment to ethical practices and continuous improvement in the workplace.</p>
+    </div>
+    <div class="card" (click)="navigateTo('/values-system')" style="background: url('assets/images/reward3.jpg') no-repeat center center; background-size: cover; color: white;">
+        <h3>Our Values System</h3>
+        <p>Learn about the core values that drive our mission and vision at AVS Fitness.</p>
+    </div>
+</section>
+
+
+</main>
+    <hr>
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-section" style="margin-left:150px">
+        <h3>Contact Us <i class="bi bi-telephone"></i></h3>
+        <p>Email: audrin.vanschoor&#64;gmail.com</p>
+        <p>Phone: +078 397 5971</p>
+    </div>
+    <div class="footer-section">
+        <h3>Address <i class="bi bi-geo-alt"></i></h3>
+        <p>5 Calliiandra St,<br> Montana Park, Pretoria, 0182</p>
+    </div>
+    <div class="footer-section">
+        <h3>Technical Support <i class="bi bi-person-raised-hand"></i></h3>
+        <form>
+            <p>Email: DatalungeTeam43&#64;gmail.com<br>Phone: +012 445 5673</p>
+        </form>
+    </div>
+    <hr>
+</footer>
+<hr>
+<!-- Legal Section -->
+<div class="legal">
+    <p>&copy; 2024 AV Motion. All rights reserved.</p>
+</div>
+</html>
+
+

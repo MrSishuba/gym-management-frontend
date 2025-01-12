@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+<app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+<div class="gap-container"></div>
+<div class="container">
+  <app-contract-dropdown-nav></app-contract-dropdown-nav>
+  <div class="navigation">
+    <i class="bi bi-arrow-left-circle back-icon" (click)="goBack()" style="font-size: 3rem;"></i>
+    <div class="page-title">
+      <h1>Contract Manager</h1>
+    </div>
+  </div>
+
+<!-- Modal for retrieving signed contract -->
+<div class="modal" id="retrieveContractModal" *ngIf="showRetrieveContractModal">
+  <div class="modal-content">
+    <span class="close" (click)="closeRetrieveContractModal()">&times;</span>
+    <h2>Retrieve Signed Contract</h2>
+    <form (ngSubmit)="retrieveSignedContract()">
+      <div class="form-group">
+        <label for="modalMemberId">Select Member</label>
+        <select id="modalMemberId" class="form-control" [(ngModel)]="selectedMemberId" name="modalMemberId">
+          <option *ngFor="let member of filteredMembers" [value]="member.member_ID">
+            {{ 'MemberID: ' + member.member_ID + ' FullName: ' + member.memberName + ' ' + member.memberSurname }}
+          </option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Retrieve Member Contract</button>
+    </form>
+  </div>
+</div>
+
+  <!-- Modal for help information -->
+  <div class="modal" id="helpModal" *ngIf="showHelpModal">
+    <div class="modal-content">
+      <h2>Help Information</h2>
+      <p>Here are some instructions to help you fill out the forms:</p>
+      <ul>
+        <li><strong>Creating A New Contract:</strong> Fill in all the required fields to successfully create a contract record, note on completion this process a contract for the specified member will be activated and in effect</li>
+        <li><strong>How To Create a successful Contract:</strong> Dates:  Enter a valid subscription date, this must be the current date note any other date will cause the process to fail. Select the calendar icon and choose the current date by clicking the day this will
+          populate the input field. Select the contract type dropdown and choose the displayed duration period for the contract  not this will set the expiry date automatically make sure a duration is specified or else the process will fail.
+        </li>
+        <li><strong>Required Fields:</strong> Ensure that the Subcription date filed and Contract type selction is indicated as well as selecting the member for whom the activation process is taking place on. Note until
+        all three selections must be made for the "Activate Contract" button to be enabled note this button is disabled by default</li>
+        <li><strong>Get Signed Contract:</strong> Select the button "Get Signed Contract" when the modal appears select the dropdown to view the list of members who have uplaoded contract forms i.e A sigend contract and a debit order consent form.
+          Choose the Member for who the contract is for then click the "Retrieve Member Contract" button if suucessful a message will apear to indicate this note this step is crucial to the activation of a member
+        </li>
+      </ul>
+      <button class="btn btn-secondary" (click)="closeHelpModal()">Close</button>
+    </div>
+  </div>
+  
+
+  <div class="forms-container">
+    <!-- Create Contract Form -->
+    <div class="form-section">
+      <div class="form-header">
+        <h2>Activate Member Contract <i class="bi bi-info-circle" (click)="openHelpModal()"></i></h2>
+        <button class="btn btn-primary get-signed-contract-btn" (click)="getSignedContract()"><i class="bi bi-folder"></i> Get Signed Contract</button>
+      </div>
+      <form [formGroup]="contractForm" (ngSubmit)="createContract()">
+        <div class="form-group">
+          <label>Subscription Date</label>
+          <input type="date" class="form-control calendar-input" formControlName="Subscription_Date" />
+          <div *ngIf="contractForm.get('Subscription_Date')?.errors?.['notToday'] && (contractForm.get('Subscription_Date')?.dirty || contractForm.get('Subscription_Date')?.touched)" class="text-danger">
+            Subscription Date must be today
+          </div>
+          <div *ngIf="contractForm.get('Subscription_Date')?.invalid && (contractForm.get('Subscription_Date')?.dirty || contractForm.get('Subscription_Date')?.touched)" class="text-danger">
+            Subscription Date is required
+          </div>
+        </div>
+        <div class="form-group" *ngIf="false">
+          <label>Expiry Date</label>
+          <input type="date" class="form-control" formControlName="Expiry_Date" />
+          <div *ngIf="contractForm.get('Expiry_Date')?.invalid && (contractForm.get('Expiry_Date')?.dirty || contractForm.get('Expiry_Date')?.touched)" class="text-danger">
+            Expiry Date is required
+          </div>
+        </div>
+        <div class="form-group" *ngIf="false">
+          <label>Approval Date</label>
+          <input type="date" class="form-control" formControlName="Approval_Date" />
+          <div *ngIf="contractForm.get('Approval_Date')?.errors?.['maxOneWeek'] && (contractForm.get('Approval_Date')?.dirty || contractForm.get('Approval_Date')?.touched)" class="text-danger">
+            Approval Date cannot be more than 1 week old
+          </div>
+          <div *ngIf="contractForm.get('Approval_Date')?.invalid && (contractForm.get('Approval_Date')?.dirty || contractForm.get('Approval_Date')?.touched)" class="text-danger">
+            Approval Date is required
+          </div>
+        </div>
+        <div class="form-group" *ngIf="false">
+          <label>Approval By</label>
+          <input type="text" class="form-control" placeholder="Enter Approver's Name" formControlName="Approval_By" />
+          <div *ngIf="contractForm.get('Approval_By')?.invalid && (contractForm.get('Approval_By')?.dirty || contractForm.get('Approval_By')?.touched)" class="text-danger">
+            Approver Name is required
+          </div>
+        </div>
+        <div class="form-group" *ngIf="false">
+          <label>File Path</label>
+          <input type="text" class="form-control" [value]="retrievedFilePath" disabled />
+          <small class="form-text text-muted">File field is auto-generated and cannot be changed.</small>
+          <div *ngIf="contractForm.get('Filepath')?.invalid && (contractForm.get('Filepath')?.dirty || contractForm.get('Filepath')?.touched)" class="text-danger">
+            Filepath is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Contract Type</label>
+          <select class="form-control" formControlName="Contract_Type_ID">
+            <option value="">Select Contract Type</option>
+            <option value="1">3-Month</option>
+            <option value="2">6-Month</option>
+            <option value="3">12-Month</option>
+          </select>
+          <div *ngIf="contractForm.get('Contract_Type_ID')?.invalid && (contractForm.get('Contract_Type_ID')?.dirty || contractForm.get('Contract_Type_ID')?.touched)" class="text-danger">
+            Contract Type is required
+          </div>
+        </div>
+        <div class="form-group" *ngIf="false">
+          <label>Member ID</label>
+          <input type="text" class="form-control" placeholder="Enter Member ID" formControlName="Member_ID" [disabled]="true" />
+          <small class="form-text text-muted">Member ID is auto-generated and cannot be changed.</small>
+          <div *ngIf="contractForm.get('Member_ID')?.invalid && (contractForm.get('Member_ID')?.dirty || contractForm.get('Member_ID')?.touched)" class="text-danger">
+            Member ID is required
+          </div>
+        </div>
+        <div class="form-group" *ngIf="false">
+          <label>Employee ID</label>
+          <input type="text" class="form-control" placeholder="Enter Employee ID" formControlName="Employee_ID" />
+          <div *ngIf="contractForm.get('Employee_ID')?.invalid && (contractForm.get('Employee_ID')?.dirty || contractForm.get('Employee_ID')?.touched)" class="text-danger">
+            Employee ID is required
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="hidden" formControlName="Owner_ID" />
+        </div>
+        <button type="submit" class="btn btn-secondary" [disabled]="!contractForm.valid || !selectedMemberId || !retrievedFilePath"><i class="bi bi-folder-check"></i> Activate Contract</button>
+      </form>
+    </div>
+  </div>
+</div>
+</html>

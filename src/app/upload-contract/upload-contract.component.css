@@ -1,0 +1,119 @@
+.container {
+  padding: 20px;
+  margin-top: 80px;
+}
+
+.gap-container {
+  margin-top: calc(60px - 102vh); /* Adjusts based on viewport height */
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.back-icon {
+  cursor: pointer;
+  margin-right: 20px;
+  font-size: 3em; /* Three times the current size */
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.forms-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-section {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.text-danger {
+  color: red;
+  font-size: 12px;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+  display: flex; /* Changed to flex */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+.modal-dialog {
+  width: 80%;
+  max-width: 500px; /* Adjust as needed */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 5px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-title {
+  margin: 0;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+}
+
+.btn-close:hover,
+.btn-close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.bi-info-circle {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.security-link a {
+  color: red; /* Inherit the default text color */
+  text-decoration: underline; /* Remove underline */
+  cursor: pointer;
+}
+
+.security-link a:hover {
+  color: blue; /* Change text color to blue on hover */
+}
+
+.security-link {
+  float: right; /* Float the label to the right */
+  margin-right: 10px; /* Add some space from the right margin */
+}
+
+.custom-button {
+  margin-right: 10px; /* Adjust the value to your preference */
+}

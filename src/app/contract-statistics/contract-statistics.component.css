@@ -1,0 +1,176 @@
+/* Ensure the header is visible and not covered by the navbar */
+.gym-manager-container {
+    padding-top: 30px; /* Adjust based on the height of the navbar */
+    box-sizing: border-box;
+    position: relative;
+    margin-top:-20px;
+    
+
+  }
+
+  .gap-container {
+    margin-top: calc(60px - 105vh); /* Adjusts based on viewport height */
+    padding-top:50px;
+  }
+  
+  /* Back icon styling */
+  .back-icon {
+    position: absolute;
+    top: 10px;
+    left: 30px; /* Move the icon to the left */
+    font-size: 3rem; /* 3 times the current size */
+    cursor: pointer;
+    z-index: 1000;
+  }
+  
+  /* Header styling */
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px; /* Adjust to bring the header lower */
+    position: relative;
+    text-align: center;
+  }
+  
+  .header h1 {
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .header i {
+    font-size: 2rem; /* Size of the bar-chart icon */
+    margin-left: 10px;
+  }
+  
+  .welcome-text {
+    font-size: 1rem;
+    margin-top: 5px; /* Space between the title and welcome text */
+  }
+  
+  /* Ensure the container takes the full viewport height minus the header */
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center the rows vertically */
+    align-items: center; /* Center the rows horizontally */
+    height: calc(100vh - 70px); /* Use full viewport height */
+  }
+  
+  .menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Full width to fit the content */
+    margin-top: 20px;
+  }
+  
+  .row {
+    display: flex;
+    width: 100%;
+    justify-content: center; /* Center cards horizontally */
+  }
+  
+  .col-md-4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0; /* Remove padding */
+  }
+  
+  .card {
+    width: 250px; /* Adjust width to fit within the row */
+    height: 400px; /* Fixed height */
+    background-color: var(--bs-primary); /* Same background color as menu items */
+    color: white;
+    margin: 10px; /* Add margin for spacing */
+  }
+  
+  .card-header {
+    background-color: var(--bs-dark); /* Darker shade for the header */
+  }
+  
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    background-color: var(--bs-primary); /* Same color as card */
+    color: white;
+  }
+  
+  .card-title {
+    font-size: 1.25rem; /* Adjusted for readability */
+    margin-bottom: 20px; /* Space below the title */
+    font-weight: bold; /* Make the title bold */
+  }
+  
+  .card-text {
+    font-size: 4rem; /* Size for the member count, 4 times the original size */
+    font-weight: bold; /* Make the text bold */
+    margin: 0; /* Remove any default margin */
+  }
+
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1050;
+    display: none;
+    overflow: hidden;
+    outline: 0;
+  }
+  
+  .modal.show {
+    display: block;
+  }
+  
+  .modal-dialog {
+    max-width: 500px;
+    margin: 1.75rem auto;
+  }
+  
+  .modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.3rem;
+    outline: 0;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .modal-title {
+    margin-bottom: 0;
+    line-height: 1.5;
+  }
+  
+  .modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 1rem;
+  }
+  
+  .modal-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    padding: 0.75rem;
+    border-top: 1px solid #dee2e6;
+  }
+  
+  

@@ -1,0 +1,31 @@
+.dialog-title {
+    text-align: center;
+    color: black;
+  }
+  
+  .dialog-content {
+    text-align: center;
+    background-color: #f5deb3; /* Light gold color */
+    padding: 30px 35px;
+  }
+  
+  .content{
+    padding: 20px;
+    border-radius: 50%;
+  }
+  .check-icon {
+    color: green;
+    font-size: 36px;
+    display: block;
+    margin: 0 auto 10px;
+  }
+  
+  .dialog-content p {
+    color: black;
+  }
+  
+  .dialog-actions {
+    justify-content: center;
+    padding: 10px 0;
+  }
+  

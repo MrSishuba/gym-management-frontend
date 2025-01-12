@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<a class="navbar-brand" href="#" data-bs-toggle="modal" data-bs-target="#helpModal">
+  <i class="bi bi-info-circle-fill"> Help</i>
+</a>
+<h2>Edit Lesson Plan</h2>
+<div class="form-container">
+    <form #formCtrl="ngForm" [formGroup]="createLessonPlanFormGroup">
+      <div>
+        <label for="name">Program Name:</label>
+        <input type="text" id="name" name="name" required [(ngModel)]="lessonPlan.lessonPlanName" size="35" maxlength="20" formControlName="name">
+
+        <div *ngIf="createLessonPlanFormGroup.controls['name'].invalid && (createLessonPlanFormGroup.controls['name'].dirty || createLessonPlanFormGroup.controls['name'].touched)" class="text-danger">
+          <div *ngIf="createLessonPlanFormGroup.controls['name'].errors?.['required']">Program Name is required.</div>
+          <div *ngIf="createLessonPlanFormGroup.controls['name'].errors?.['minlength']">Program Name must be at least 2 characters long.</div>
+          <div *ngIf="createLessonPlanFormGroup.controls['name'].errors?.['maxlength']">Program Name must be at most 20 characters long.</div>
+      </div>
+
+      </div>
+
+      <div class="workout-dropdowns">
+      <div>
+        <label for="duration">Lesson Plan Description:</label>
+        <input type="text" id="description" name="description" required [(ngModel)]="lessonPlan.program_Description" size="35" maxlength="100" formControlName="description">
+
+        <div *ngIf="createLessonPlanFormGroup.controls['description'].invalid && (createLessonPlanFormGroup.controls['description'].dirty || createLessonPlanFormGroup.controls['description'].touched)" class="text-danger">
+          <div *ngIf="createLessonPlanFormGroup.controls['description'].errors?.['required']">Description is required.</div>
+          <div *ngIf="createLessonPlanFormGroup.controls['description'].errors?.['minlength']">Description must be at least 10 characters long.</div>
+          <div *ngIf="createLessonPlanFormGroup.controls['description'].errors?.['maxlength']">Description must be at most 100 characters long.</div>
+  
+      </div>
+
+      </div>
+      </div>
+      <div> 
+        <!-- Preselected workouts -->
+         <div formArrayName="workoutDropdowns">
+        <div class="dropdown" *ngFor="let dropdown of workoutDropdowns.controls; let i = index" [formGroupName]="i">
+          
+          <label>Workout {{ i + 1 }}:</label>
+          <select
+          [(ngModel)]="selectedWorkouts[i]" 
+          
+          (ngModelChange)="onWorkoutChange(i, $event)"  
+           name="workout{{i}}"  
+           [ngModelOptions]="{standalone: true}" 
+           required >
+
+            <option  *ngFor="let workout of workouts" 
+             
+            [value]="workout.workout_ID" 
+            [disabled]="isWorkoutDisabled(workout.workout_ID, i)" >
+            {{ workout.workout_Name }}
+            </option>
+          
+          </select>
+          <div *ngIf="dropdown.get('workout')?.invalid && (dropdown.get('workout')?.dirty || dropdown.get('workout')?.touched)" class="text-danger">
+            <div *ngIf="dropdown.get('workout')?.errors?.['required']">Workout is required.</div>
+          </div>
+        
+       
+          <button class="remove" (click)="removeDropdown(i)" *ngIf="workoutDropdowns.length > 1">Remove</button>
+        </div>
+
+        <button type="button" class="add"  (click)="addDropdown()" *ngIf="workoutDropdowns.length < workouts.length">Add Workout</button>
+        </div>
+  
+       <!-- Button to add new dropdown -->
+        
+      </div> 
+      <div class="buttons">
+        <button type="button" class="save" [disabled]="!formCtrl.form.valid" (click)="updateLessonPlan()">Save</button>
+   
+          <button class="cancel" routerLink="/lesson-plan" type="button">Cancel</button>
+     
+      </div>
+    </form>
+    
+  </div>
+
+  
+<!-- help-modal.component.html -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title mx-auto" id="helpModalLabel">Help Guide</h5>
+        <div class="search-bar-container">
+          <input type="text" class="form-control search-bar" placeholder="Search help" [(ngModel)]="searchTerm" (input)="filterHelpContent()">
+        </div>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let item of filteredContent">
+          <h5>{{ item.title }}</h5>
+          <p [innerHTML]="item.content"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</html>

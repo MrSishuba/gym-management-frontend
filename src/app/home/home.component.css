@@ -1,0 +1,279 @@
+/* Basic reset for margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Body and main styles */
+  body {
+    font-family: Arial Black, sans-serif;
+    background-color: black;
+    color: white;
+  }
+  
+  /* Hero section styles */
+  .hero {
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+  }
+  
+  .hero h1 {
+    font-size: 3em;
+  }
+  
+  .hero p {
+    font-size: 1.5em;
+  }
+  
+  /* Showcase section styles */
+  .showcase {
+    margin: 40px 0;
+    text-align: center;
+  }
+  
+  .showcase-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .showcase-images .row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .showcase-images img {
+    width: 200px;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .details {
+    margin-top: 20px;
+  }
+  
+  .details h3 {
+    margin-bottom: 10px;
+  }
+  
+  .details p {
+    margin-bottom: 10px;
+  }
+  
+  #read-more-rewards, #read-more-discounts, #read-more-challenges, #read-more-tips {
+    background-color: #B08F26;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #read-more-rewards:hover, #read-more-discounts:hover, #read-more-challenges:hover, #read-more-tips:hover {
+    background-color: #a07b2f;
+  }
+  
+  /* Health Tips section styles */
+  .health-tips {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Motivation section styles */
+  .motivation {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Footer styles */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    background-color: #000;
+    color: white;
+    flex-wrap: wrap;
+  }
+  
+  .footer-section {
+    flex: 1;
+    margin: 10px;
+  }
+  
+  .footer-section h3 {
+    margin-bottom: 10px;
+  }
+  
+  .footer-section p {
+    margin-bottom: 10px;
+  }
+  
+  .legal {
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .legal p {
+    margin: 10px 0;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  form input {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+  }
+  
+  form button {
+    background-color: #B08F26;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  form button:hover {
+    background-color: #a07b2f;
+  }
+  
+  html {
+    overflow-y: scroll; /* Ensures the scrollbar is always visible */
+  }
+  
+  body {
+    min-height: 100vh; /* Ensures the content always has a height */
+  }
+  
+  ::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color of the scrollbar thumb */
+    border-radius: 6px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Color on hover */
+  }
+
+  /* Add to your CSS file */
+.showcase-images img {
+  width: 260px;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+}
+
+.showcase-images img:hover {
+  transform: scale(1.1);
+}
+
+/* Basic reset for margins and paddings */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial Black, sans-serif;
+  background-color: black;
+  color: white;
+}
+
+/* Showcase section styles */
+.showcase {
+  margin: 40px 0;
+  text-align: center;
+}
+
+.showcase-images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.showcase-images .row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.showcase-images img {
+  width: 200px;
+  height: auto;
+  object-fit: cover;
+}
+
+.details {
+  margin-top: 20px;
+}
+
+.details h3 {
+  margin-bottom: 10px;
+}
+
+.details p {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.details img {
+  width: 400px;
+  height: 400px;
+  display: block;
+  margin: 10px auto 0 auto;
+}
+
+#read-more-rewards, #read-more-discounts, #read-more-challenges, #read-more-tips {
+  display: block;
+  margin: 10px auto;
+}
+
+
+#read-more-rewards, #read-more-discounts, #read-more-challenges, #read-more-tips {
+  background-color: #B08F26;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+
+}
+
+#read-more-rewards:hover, #read-more-discounts:hover, #read-more-challenges:hover, #read-more-tips:hover {
+  background-color: #a07b2f;
+}
+
+.showcase-images img {
+  width: 260px;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+}
+
+.showcase-images img:hover {
+  transform: scale(1.1);
+}
+
+
+
+  

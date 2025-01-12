@@ -1,0 +1,80 @@
+<app-navbar></app-navbar>
+<br>
+<br>
+<br>
+<div class="header-search-container">
+    <i class="bi bi-arrow-left-circle header-icon" routerLink="/product-list"></i>
+    <h2 class="header-title" routerLink="/product-list">AV MERCH</h2>
+</div>
+
+
+
+<div class="product-item-container" *ngIf="product">
+    <br>
+    <div class="row">
+      <div class="col-6">
+        <div class="card" style="width: 25rem; height:25rem;">
+          <div class="card-img-container">
+            <img [src]="getImageSrc(product.product_Img)" class="card-img-top" alt="Product Image">
+          </div>
+          <div class="card-body">
+            <p class="card-text" style="text-align: center; font-weight: bold;">{{product.product_Name}}</p>
+          </div>
+          <div class="card-footer">
+            <div class="buttons-container">
+              <div class="row">
+                <div class="col-6 text-start">
+                  <i
+                    class="bi icon"
+                    [ngClass]="{'bi-heart': !isProductInWishlist, 'bi-heart-fill': isProductInWishlist}"
+                    (click)="addToWishlist()">
+                  </i>
+                </div>
+                <div class="col-6 text-end">
+                  <button class="btn btn-primary" (click)="addToCart()">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-6">
+        <div class="card" style="width: 25rem; height:25rem;">
+          <div class="card-body">
+            <div class="form-group" style="padding-bottom: 30px;">
+              <label for="sizeSelect">Select Size:</label>
+              <select id="sizeSelect" style="text-align: center;" class="form-control" [(ngModel)]="selectedSize">
+                <option *ngFor="let size of availableSizes" [value]="size">{{size}}</option>
+              </select>
+            </div>
+            <div class="form-group" style="padding-bottom: 30px;">
+              <label for="quantity">Select Quantity:</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <button class="btn btn-outline-secondary" type="button" (click)="decreaseQuantity()">-</button>
+                </div>
+                <input type="text" style="text-align: center;" class="form-control" id="quantity" [(ngModel)]="selectedQuantity" readonly>
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button" (click)="increaseQuantity()">+</button>
+                </div>
+              </div>
+            </div>
+            <div class="form-group" style="padding-bottom: 30px;">
+              <label for="Price">Price: </label>
+                <span style="float:right">
+                  <p style="text-align: center; font-size:large;">{{product.unit_Price | currency: 'R ' }}</p>
+                </span> 
+            </div>     
+            <div class="form-group">
+              <label for="Description">Description: </label>
+              <br>
+              <br>
+                <p>{{product.product_Description}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,142 @@
+h2 {
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* Booking form container */
+.booking-form {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form group styling */
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* Form labels */
+.booking-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Input and select styles */
+.booking-form input[type="datetime-local"],
+.booking-form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #333;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+/* Focus effect */
+.booking-form input[type="datetime-local"]:focus,
+.booking-form select:focus {
+  border-color: blue;
+  outline: none;
+}
+
+/* Button styling */
+.buttons{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.booking-form button {
+  padding: 10px 20px;
+  background-color: #5cb85c;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.booking-form .submit:hover {
+  background-color: #3b813b;
+}
+
+.booking-form .btn[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Cancel button styling */
+.booking-form .cancel{
+  background-color: red;
+}
+
+.booking-form .cancel:hover {
+  background-color: #852323;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .booking-form {
+      padding: 15px;
+  }
+
+  .booking-form .btn {
+      width: 100%;
+      margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .booking-form {
+      padding: 10px;
+  }
+
+  .booking-form label {
+      font-size: 14px;
+  }
+
+  .booking-form input[type="datetime-local"],
+  .booking-form select {
+      font-size: 14px;
+      padding: 8px;
+  }
+
+  .booking-form .btn {
+      font-size: 14px;
+      padding: 10px;
+  }
+}
+
+html {
+  overflow-y: scroll; /* Ensures the scrollbar is always visible */
+}
+
+body {
+  min-height: 100vh; /* Ensures the content always has a height */
+}
+
+::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the scrollbar thumb */
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Color on hover */
+  cursor: pointer;
+}
+
+.text-danger {
+  color: #f44336; /* red color for error messages */
+}

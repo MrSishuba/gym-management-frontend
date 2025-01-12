@@ -1,0 +1,103 @@
+<div class="header">
+  <div class="logo-container">
+      <i class="bi bi-dumbbell dumbbell-icon"></i>
+      <h1 class="title">AV Motion</h1>
+  </div>
+  <nav class="nav">
+      <ul>
+        <li><a class="nav-link" routerLink="/landing-page" routerLinkActive="active">Home</a></li>
+          <li><a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a></li>
+          <li><a class="nav-link" routerLink="/contract" routerLinkActive="active">Getting Started</a></li>
+          <li><a class="nav-link" routerLink="/affiliations" routerLinkActive="active">Affiliations & Outreach</a></li>
+          <li><a class="nav-link" routerLink="/product-list" routerLinkActive="active">AV Merch</a></li>
+          <li><a class="nav-link" routerLink="/available-bookings" routerLinkActive="active">Book Online</a></li>
+          <li><a class="nav-link" routerLink="/survey">Community Feedback</a></li>
+      </ul>
+  </nav>
+</div>
+<div class="contract-container">
+    <div class="left-side" style="background-image: url('assets/images/empBG3.jpg');">
+      <i class="bi bi-arrow-left-circle back-icon" (click)="goBack()" style="font-size:3rem;"></i>
+      <a  [routerLink]="['/policy']" [ngClass]="{'policy-link': true, 'policy-link-hover': isHovered}">
+      </a>
+      <div class="content">
+        <div class="title-container">
+          <h1 class="title">Get Your Subscription Today!</h1>
+        </div>
+        <div class="form-container">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            [(ngModel)]="email"
+            #emailField="ngModel"
+            [ngClass]="{
+              'is-invalid': emailField.invalid && (emailField.dirty || emailField.touched),
+              'is-valid': emailField.valid
+            }"
+            (ngModelChange)="validateEmail()"
+            placeholder="Enter your email"
+            
+          />
+          <label for="contract">Select Contract:</label>
+          <select id="contract" [(ngModel)]="selectedContract">
+            <option value="3-month">3-Month Contract</option>
+            <option value="6-month">6-Month Contract</option>
+            <option value="12-month">12-Month Contract</option>
+          </select>
+          <button (click)="sendContract()">Send Contract</button>
+        </div>
+      </div>
+    </div>
+    <div class="right-side">
+      <div class="policy-icon">
+        <i class="bi bi-book-half"></i>
+        <a [routerLink]="['/policy']" [ngClass]="{'policy-link': true, 'policy-link-hover': isHovered}">
+          <span>Our Policy</span>
+        </a> 
+      </div>
+      <div class="avs-fitness-container">
+        <h1 class="avs-fitness-title">AVS Fitness</h1><br><br>
+      </div>
+      <div class="picture-container"><br><br><br><br>
+        <br><br><br><br>
+        <img [src]="getContractImage()" alt="Contract Image" class="contract-image">
+        <p class="small-text">
+          <b>Discover our tailored plans and get the best out of your fitness journey.</b>
+          <br><b>Enjoy personalized training sessions.</b>
+          <br><b>Access to state-of-the-art equipment.</b>
+          <br><b>Join a community of fitness enthusiasts.</b>
+          <br><b>Flexible membership plans available.</b>
+        </p>
+        <!-- <button class="read-more-button">Read More</button> -->
+      </div>
+    </div>
+  </div>
+  
+  <footer class="footer">
+    <div class="footer-section" >
+      <h3>Contact Us <i class="bi bi-telephone"></i></h3>
+      <p>Email: audrin.vanschoor&#64;gmail.com</p>
+      <p>Phone: +078 397 5971</p>
+  </div>
+  <div class="footer-section">
+      <h3>Address<i class="bi bi-geo-alt"></i></h3>
+      <p>5 Calliiandra St,<br> Montana Park, Pretoria, 0182</p>
+  </div>
+  <div class="footer-section">
+    <h3 routerLink="/weekly-news">Weekly News <i class="bi bi-newspaper"></i></h3>
+    <p>Read about AVSFitness<br> latest challenges, updates and more</p>
+</div>
+  <div class="footer-section">
+    <h3>Technical Support <i class="bi bi-person-raised-hand"></i></h3>
+    <form>
+        <p>Email: DatalungeTeam43&#64;gmail.com<br>Phone: +012 445 5673</p>
+    </form>  
+  </div>
+    <hr>
+    <div class="legal">
+      <p>&copy; 2024 AV Motion. All rights reserved.</p>
+    </div>
+    <hr>
+  </footer>
+  

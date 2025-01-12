@@ -1,0 +1,89 @@
+<div class="container mt-4">
+    <app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+    <app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+    
+    <div style="margin-top: 90px"></div>
+  
+    <!-- Back arrow icon -->
+    <i class="bi bi-arrow-left-circle" style="font-size: 3rem; cursor: pointer;" (click)="navigateBack()"></i>
+  
+    <!-- Title with info icon -->
+    <h2 class="text-center mb-4">
+      Activate Free Trial
+      <i class="bi bi-info-circle" style="font-size: 2rem; cursor: pointer;" (click)="toggleTrialModal()"></i>
+    </h2>
+    
+    <!-- Modal for form instructions -->
+    <div *ngIf="showTrialModal" class="modal-overlay">
+      <div class="modal-content" >
+        <h4>How to activate a guest to start their free trial</h4>
+        <p><strong>Whats required</strong> Fill in a guest's first name, last name, email address, ID number, and the trial code provided to you by the guest.</p><br>
+        <p><strong>Something went wrong?</strong> Ensure all fields are completed , that a valid 13 digit ID umber is provided.</p><br>
+        <p>Sometimes there are people who try to cheat attempting to reuse old codes or creditials luckily the system is provisied against dishonest people</p>
+        <button class="btn btn-secondary" (click)="toggleTrialModal()">Close</button>
+      </div>
+    </div>
+  
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+  
+    <div *ngIf="successMessage" class="alert alert-success">
+      {{ successMessage }}
+    </div>
+  
+    <!-- Form -->
+    <form [formGroup]="freeTrialForm" (ngSubmit)="onSubmit()" class="p-4 border rounded bg-light">
+      <div class="form-group mb-3">
+        <label for="name">First Name</label>
+        <input type="text" id="name" class="form-control" formControlName="name" placeholder="Enter your first name">
+        <div *ngIf="freeTrialForm.controls['name'].invalid && freeTrialForm.controls['name'].touched" class="text-danger">
+          First name is required.
+        </div>
+      </div>
+  
+      <div class="form-group mb-3">
+        <label for="surname">Last Name</label>
+        <input type="text" id="surname" class="form-control" formControlName="surname" placeholder="Enter your last name">
+        <div *ngIf="freeTrialForm.controls['surname'].invalid && freeTrialForm.controls['surname'].touched" class="text-danger">
+          Last name is required.
+        </div>
+      </div>
+  
+      <div class="form-group mb-3">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" class="form-control" formControlName="email" placeholder="Enter your email">
+        <div *ngIf="freeTrialForm.controls['email'].invalid && freeTrialForm.controls['email'].touched" class="text-danger">
+          A valid email is required.
+        </div>
+      </div>
+  
+      <div class="form-group mb-3">
+        <label for="iD_Number">ID Number</label>
+        <input type="text" id="iD_Number" class="form-control" formControlName="iD_Number" placeholder="Enter your ID number">
+        <div *ngIf="freeTrialForm.controls['iD_Number'].invalid && freeTrialForm.controls['iD_Number'].touched" class="text-danger">
+          A valid 13-digit ID number is required.
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="trialCode">Trial Code</label>
+        <input type="text" id="trialCode" class="form-control" formControlName="trialCode" placeholder="Enter your trial code">
+        <div *ngIf="freeTrialForm.controls['trialCode'].invalid && freeTrialForm.controls['trialCode'].touched" class="text-danger">
+          <div *ngIf="freeTrialForm.controls['trialCode'].errors?.['required']">
+            Trial code is required.
+          </div>
+          <div *ngIf="freeTrialForm.controls['trialCode'].errors?.['minlength'] || freeTrialForm.controls['trialCode'].errors?.['maxlength']">
+            Trial code must be exactly 12 characters long.
+          </div>
+        </div>
+      </div>
+      
+      
+  
+      <button type="submit" class="btn btn-primary" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Submitting...' : 'Activate Free Trial' }}
+      </button>
+    </form>
+  </div>
+  

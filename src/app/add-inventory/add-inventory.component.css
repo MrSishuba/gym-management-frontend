@@ -1,0 +1,58 @@
+/* Style for the container of the "add-workout-category" component */
+.form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Style for labels */
+  .form-container label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  /* Style for input fields */
+  .form-container input,
+  .form-container select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+  }
+  
+  /* Style for buttons */
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .buttons .add button {
+    background-color: #007bff; /* Blue color for the "Add" button */
+    color: white;
+  }
+  
+  .buttons .cancel button {
+    background-color: #dc3545; /* Red color for the "Cancel" button */
+    color: white;
+  }
+
+.buttons .add button:disabled{
+    background-color: gray;
+  }
+  
+  button:disabled:hover {
+    
+    cursor: not-allowed;
+  }
+  

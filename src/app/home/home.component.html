@@ -1,0 +1,100 @@
+<!-- Member Home Page -->
+<app-member-side-nav-bar></app-member-side-nav-bar>
+
+<!-- Hero Section -->
+<section class="hero" style="background-image: url('assets/images/community2.jpg'); background-size: cover; background-position: center; height: 500px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white;">
+    <h1 style="font-size: 5em; text-align: center; font-family: Arial Black;">AVS Fitness</h1>
+    <p style="font-size: 1.5em; text-align: center;">Achieve Your Best Self</p>
+</section>
+
+<section class="looking-out" style="background-color: #111; color: white; text-align: center; padding: 20px;">
+    <h2>Looking Out for Our Members</h2><br>
+    <div class="showcase-images" style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+        <div class="row" style="display: flex; gap: 10px; justify-content: center;">
+            <img src="assets/images/merch1.jpg" alt="Reward" style="width: 260px; height: auto; object-fit: cover;">
+            <img src="assets/images/promo5.jpg" alt="Discount" style="width: 260px; height: auto; object-fit: cover;">
+            <img src="assets/images/challenge2.jpg" alt="Challenge" style="width: 260px; height: auto; object-fit: cover;">
+        </div>
+    </div><br>
+    <div class="details" style="margin-top: 20px;">
+        <!-- Rewards Section -->
+        <div>
+            <h3>Rewards <i class="bi bi-trophy-fill"></i></h3>
+            <p>
+                Earn points with every workout session. Stay motivated and achieve your goals while getting rewarded.
+            </p>
+            <p id="rewards-text" style="display: none;">
+                Our reward system is designed to keep you engaged and moving forward, offering a variety of incentives that cater to different goals.
+            </p>
+            <img id="rewards-image" src="assets/images/reward2.jpg" alt="Rewards Image" style="display: none; width: auto; height: 300px; margin-top: 10px;">
+            <button id="read-more-rewards" (click)="toggleDetails('rewards')" style="background-color: #B08F26; border: none; color: white; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Read More</button>
+        </div><br>
+        <!-- Discounts Section -->
+        <div>
+            <h3>Exclusive Discounts <i class="bi bi-tags-fill"></i></h3>
+            <p>
+                Enjoy exclusive discounts on gym memberships and more. Save while staying fit.
+            </p>
+            <p id="discounts-text" style="display: none;">
+                These discounts are our way of saying thank you for being part of our community.
+            </p>
+            <img id="discounts-image" src="assets/images/promo6.jpg" alt="Discounts Image" style="display: none; width: 300px; height: 300px; margin-top: 10px;">
+            <button id="read-more-discounts" (click)="toggleDetails('discounts')" style="background-color: #B08F26; border: none; color: white; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Read More</button>
+        </div><br>
+        <!-- Challenges Section -->
+        <div>
+            <h3>Join Our Challenges <i class="bi bi-award-fill"></i></h3>
+            <p>
+                Participate in fitness challenges and win exciting prizes.
+            </p>
+            <p id="challenges-text" style="display: none;">
+                Our challenges are tailored to different fitness levels, ensuring everyone can find something to motivate them.
+            </p>
+            <img id="challenges-image" src="assets/images/challenge.jpg" alt="Challenges Image" style="display: none; width: 300px; height: 300px; margin-top: 10px;">
+            <button id="read-more-challenges" (click)="toggleDetails('challenges')" style="background-color: #B08F26; border: none; color: white; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Read More</button>
+        </div><br>
+        <!-- Health Tips Section -->
+        <div class="health-tips">
+            <h3>Health Tips <i class="bi bi-award-fill"></i></h3>
+            <p>
+                Eat healthy, hydrate, and stay disciplined.
+            </p>
+            <p id="tips-text" style="display: none;">
+                Discover valuable tips on nutrition, hydration, and maintaining a disciplined lifestyle to support your fitness journey.
+            </p>
+            <img id="tips-image" src="assets/images/diet.jpg" alt="Health Tips Image" style="display: none; width: auto; height: 300px; margin-top: 10px;">
+            <button id="read-more-tips" (click)="toggleDetails('tips')" style="background-color: #B08F26; border: none; color: white; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Read More</button>       
+        </div><br>
+    </div>  
+</section>
+
+
+
+<!-- Motivation Section -->
+<section class="motivation" style="background-color: #111; color: white; padding: 20px; text-align: center;">
+    <h2>Hard Work Is the Single Greatest Discipline</h2><br>
+    <p>But Don't Compare Yourself To Others. The Opponent You Are Fighting Will Always Be Yourself. What's Important Is To Become Stronger Than You Were Yesterday.</p>
+</section>
+<hr>
+<!-- Footer -->
+<footer class="footer" style="background-color: #111; color: white; padding: 20px;">
+    <div class="footer-section">
+        <h3>Contact Us <i class="bi bi-telephone"></i></h3>
+        <p>Email: audrin.vanschoor&#64;gmail.com</p>
+        <p>Phone: +078 397 5971</p>
+    </div>
+    <div class="footer-section">
+        <h3>Address <i class="bi bi-geo-alt"></i></h3>
+        <p>5 Calliiandra St, Montana Park, Pretoria, 0182</p>
+    </div>
+    <div class="footer-section">
+        <h3>Technical Support <i class="bi bi-person-raised-hand"></i></h3>
+        <form>
+            <p>Email: DatalungeTeam43&#64;gmail.com</p>
+            <p>Phone: +012 445 5673</p>
+        </form>
+    </div>
+    <div class="legal" style="text-align: center; width: 100%; margin-top: 20px;">
+        <p>&copy; 2024 AV Motion. All rights reserved.</p>
+    </div>
+</footer>

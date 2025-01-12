@@ -1,0 +1,65 @@
+<div class="container">
+    <app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+    <app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+    
+    <div class="navigation">
+      <i class="bi bi-arrow-left-circle back-icon" (click)="goBack()"></i>
+      <div class="page-title">
+        <h1>Issued Free Trials
+          <i class="bi bi-info-circle" (click)="openHelpModal()"></i>
+        </h1>
+      </div>
+    </div>
+  
+    <input
+      type="text"
+      class="search-bar"
+      placeholder="Search by full name or email..."
+      [(ngModel)]="searchTerm"
+      (input)="filterFreeTrials()"
+    />
+  
+    <table class="table table-hover table-centered">
+      <thead>
+        <tr>
+          <th>Guest ID</th>
+          <th>Full Name</th>
+          <th>Email</th>
+          <th>ID Number</th>
+          <th>Activation Date</th>
+          <th>Expiry Date</th>
+          <th>Code</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let trial of filteredFreeTrials">
+          <td>{{ trial.guest_ID }}</td>
+          <td>{{ trial.name }} {{ trial.surname }}</td>
+          <td>{{ trial.email }}</td>
+          <td>{{ trial.iD_Number }}</td>
+          <td>{{ trial.dateActivated | date: 'd MMMM yyyy' }}</td>
+          <td>{{ trial.dateExpired | date: 'd MMMM yyyy' }}</td>
+          <td>{{ trial.freeTrialCode }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- Help Information Modal -->
+  <div *ngIf="showHelpModal" class="modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">Help Information</h2>
+          <button class="btn-close" (click)="closeHelpModal()">×</button>
+        </div>
+        <div class="modal-body">
+          <p>This page lists all the free trial sign-ups. You can search by full name or email to find specific entries.</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" (click)="closeHelpModal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

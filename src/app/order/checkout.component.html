@@ -1,0 +1,64 @@
+<app-navbar></app-navbar>
+<br>
+<br>
+<br>
+<div class="header-search-container">
+    <i class="bi bi-arrow-left-circle header-icon" (click)="goBack()"></i>
+    <h2 class="header-title" routerLink="/product-list">AV MERCH</h2>
+</div>
+<br>
+<br>
+<div class="checkout-container d-flex justify-content-center align-items-center">
+    <br>
+    <div class="row">
+        <div class="col-12">
+            <div class="card" style="width: 25rem;">
+                <div class="card-header">
+                    <h3>Order Summary</h3>
+                </div>
+                <div class="card-body">
+                    <div *ngFor="let item of cartItems">
+                        <div>
+                            {{ item.product_Name }} 
+                            <span style="float: right">{{ item.unit_Price | currency: 'R ' }} x {{ item.quantity }}</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div>
+                        Subtotal: <span style="float: right">{{ subtotal | currency: 'R ' }}</span>
+                    </div>
+                    <div>
+                        VAT ({{ vatPercentage }}%): <span style="float: right">{{ vatAmount | currency: 'R ' }}</span>
+                    </div>
+                    <br>
+                    <div>
+                        Total Price: <span style="float: right">{{ totalAmount | currency: 'R ' }}</span>
+                    </div>
+                    <br>
+                    <div>
+                      Discount Code:<br>
+                      <input type="text" [(ngModel)]="discountCode" placeholder="Enter Discount Code" (keyup.enter)="applyDiscount()">
+                      <span style="float: right"><button (click)="applyDiscount()">Apply</button></span>
+                    </div>
+                    <div>
+                        Discount Applied: <span style="float: right">{{ discountPercentage }}%</span>
+                    </div>
+                    <br>
+                    <div>
+                        Final Amount: <span style="float: right">{{ finalAmount | currency: 'R ' }}</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="buttom-container">
+                        <span style="float: left">
+                            <button (click)="cancel()" routerLink="/cart" class="btn btn-secondary">Cancel</button>
+                        </span>
+                        <span style="float: right">
+                            <app-payfast></app-payfast>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

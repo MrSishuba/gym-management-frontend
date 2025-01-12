@@ -1,0 +1,24 @@
+<app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+<app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+<div style="margin-top: -600px"></div> <!-- Adjusted margin for spacing -->
+<i class="bi bi-arrow-left-circle back-icon" (click)="goBack()" style="font-size:3rem; margin-left:30px"></i>
+<div class="survey-container">
+    <h2>Survey Responses</h2>
+    <div *ngIf="currentResponse">
+        <p><strong>Name:</strong> {{currentResponse.name}}</p>
+        <p><strong>Email:</strong> {{currentResponse.email}}</p>
+        <p><strong>Membership Status:</strong> {{currentResponse.membershipStatus}}</p>
+        <p><strong>Age Group:</strong> {{currentResponse.ageGroup}}</p>
+        <p><strong>Booking Satisfaction:</strong> {{currentResponse.bookingSatisfaction}}</p>
+        <p><strong>Product Satisfaction:</strong> {{currentResponse.productSatisfaction}}</p>
+        <p><strong>Recommendation:</strong> {{currentResponse.recommendGym}}/10</p>
+    </div>
+
+    <div class="navigation-buttons">
+        <button (click)="prevResponse()" [disabled]="currentIndex === 0">Previous</button>
+        <button (click)="nextResponse()" [disabled]="currentIndex === responses.length - 1">Next</button>
+    </div>
+
+    <button class="export-button" (click)="exportToExcel()">Export to Excel</button>
+</div>
+

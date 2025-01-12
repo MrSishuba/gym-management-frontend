@@ -1,0 +1,57 @@
+<div class="content">
+    <h1 mat-dialog-title>Error</h1>
+    <div mat-dialog-content>
+      <p>{{ data.message }}</p>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onClose()">Okay</button>
+    </div>
+    </div>
+    
+    <style>
+      h1 {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
+        color: red;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+      .content{
+        padding: 20px;
+      }
+    
+    
+      div[mat-dialog-content] {
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        color: #333;
+        text-align: center;
+        margin-bottom: 20px;
+       
+      }
+    
+      div[mat-dialog-actions] {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+      }
+    
+      button {
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        padding: 8px 16px;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+      }
+    
+      button[mat-button] {
+        border: 1px solid #ccc;
+        background-color: #f5f5f5;
+      }
+    
+      button[mat-button]:hover {
+        background-color: #e0e0e0;
+      }
+    
+    </style>
+    

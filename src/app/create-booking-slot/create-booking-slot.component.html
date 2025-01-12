@@ -1,0 +1,68 @@
+<a class="navbar-brand" href="#" data-bs-toggle="modal" data-bs-target="#helpModal">
+    <i class="bi bi-info-circle-fill"> Help</i>
+  </a>
+<h2>Create Slot</h2>
+<div class="form-container">
+    <form #bookingSlotForm="ngForm"  [formGroup]="createLessonPlanFormGroup" class="booking-form">
+        <div>
+            <label for="timepicker" class="timepicker-label" >Select Date and Time</label>
+            <input type="datetime-local" id="timepicker" name="selectedTime" [(ngModel)]="selectedDate" required class="timepicker-input" formControlName="date" [min]="minDate">
+
+            <div *ngIf="createLessonPlanFormGroup.controls['date'].invalid && (createLessonPlanFormGroup.controls['date'].dirty || createLessonPlanFormGroup.controls['date'].touched)" class="text-danger">
+                <div *ngIf="createLessonPlanFormGroup.controls['date'].errors?.['required']">Date is required.</div>
+                </div>
+        </div>
+
+        <div class="form-group">
+            <label for="lessonPlanDropdown">Select Lesson Plan</label>
+            <select id="lessonPlanDropdown" class="form-control" name="lesson_Plan" [(ngModel)]="lesson_Plan_ID" required formControlName="program">
+                <option *ngFor="let plan of plans" [value]="plan.lesson_Plan_ID">{{plan.program_Name}}</option>
+            </select>
+
+            <div *ngIf="createLessonPlanFormGroup.controls['program'].invalid && (createLessonPlanFormGroup.controls['program'].dirty || createLessonPlanFormGroup.controls['program'].touched)" class="text-danger">
+                <div *ngIf="createLessonPlanFormGroup.controls['program'].errors?.['required']">Program is required.</div>
+                </div>
+
+        </div>
+
+        <div class="form-group">
+            <label for="trainerDropdown">Assign Trainer</label>
+            <select id="trainerDropdown" class="form-control" name="employee" [(ngModel)]="employee_ID" required formControlName="trainer">
+                <option *ngFor="let employee of employees" [value]="employee.employee_ID">{{employee.employee_name}}</option>
+            </select>
+
+            <div *ngIf="createLessonPlanFormGroup.controls['trainer'].invalid && (createLessonPlanFormGroup.controls['trainer'].dirty || createLessonPlanFormGroup.controls['trainer'].touched)" class="text-danger">
+                <div *ngIf="createLessonPlanFormGroup.controls['trainer'].errors?.['required']">Trainer is required.</div>
+                </div>
+
+        </div>
+
+        <div class="buttons">
+            <button type="submit" class="btn btn-primary" [disabled]="!bookingSlotForm.form.valid" (click)="CreateBookingSlot(selectedDate,selectedTime!, true, employee_ID,lesson_Plan_ID)">Add</button>
+            <button class="backbutton" routerLink="/booking-slot">Cancel</button>
+        </div>
+    </form>
+</div>
+
+
+
+<!-- help-modal.component.html -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h5 class="modal-title mx-auto" id="helpModalLabel">Help Guide</h5>
+          <div class="search-bar-container">
+            <input type="text" class="form-control search-bar" placeholder="Search help" [(ngModel)]="searchTerm" (input)="filterHelpContent()">
+          </div>
+        </div>
+        <div class="modal-body">
+          <div *ngFor="let item of filteredContent">
+            <h5>{{ item.title }}</h5>
+            <p [innerHTML]="item.content"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

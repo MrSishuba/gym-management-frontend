@@ -1,0 +1,141 @@
+.header-search-container {
+  display: flex;
+  align-items: center;
+  margin-top: 60px;
+  padding: 0px 50px 0px 220px; /* Adjust the padding as needed */
+}
+
+.gap-container {
+  margin-top: calc(60px - 102vh); /* Adjusts based on viewport height */
+}
+
+.header-icon {
+  font-size: 3rem; /* Adjust the size as needed */
+}
+
+.help-icon {
+  font-size: 1.5rem; /* Reduced font size */
+  align-self: center;
+}
+
+.help-icon-container {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.header-title {
+  flex-grow: 1;
+  text-align: center;
+  padding-right: 200px;
+}
+
+.users-container {
+    padding: 50px;
+  }
+   
+  .content {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 0px; /* Adjusted to move the content up */
+    text-align: center; /* Center the heading */
+  }
+   
+  .table-centered thead th, 
+  .table-centered tbody td {
+    text-align: center;
+  }
+   
+  .table-hover tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+   
+  .modal-dialog {
+    max-width: 400px;
+    margin: 1.75rem auto;
+  }
+   
+  .modal-content {
+    padding: 20px;
+  }
+   
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+   
+  .modal-body p {
+    margin-bottom: 10px;
+  }
+
+  html {
+    overflow-y: scroll; /* Ensures the scrollbar is always visible */
+  }
+  
+  body {
+    min-height: 100vh; /* Ensures the content always has a height */
+  }
+  
+  ::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color of the scrollbar thumb */
+    border-radius: 6px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Color on hover */
+    cursor: pointer;
+  }
+  
+  /* help-modal.component.css  */
+  .modal-dialog {
+    max-width: 50%; /* Adjust the percentage as needed */
+  }
+  
+  .modal-dialog-scrollable {
+    max-height: calc(100vh - 100px);
+  }
+  
+  
+  .modal-content {
+    overflow-y: auto;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .modal-title {
+    flex-grow: 1;
+    text-align: center;
+  }
+  
+  .btn-close {
+    margin-right: auto;
+  }
+  
+  .search-bar-container {
+    margin-left: auto;
+  }
+  
+  .modal-body hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .modal-body h5 {
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  
+  .modal-body ul, .modal-body ol {
+    margin-bottom: 20px;
+    padding-left: 20px;
+  }

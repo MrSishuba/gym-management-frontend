@@ -1,0 +1,126 @@
+
+<div class="header-search-container">
+<app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+<app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+<div style="margin-top: 10px"></div> <!-- Adjusted margin for spacing -->
+    <i class="bi bi-arrow-left-circle header-icon" (click)="goBack()"></i>
+  </div>
+<div class="container">
+    <h2>Member Subscriptions
+      <i class="bi bi-info-circle" (click)="showModal = true"></i>
+    </h2>
+    
+
+     <!-- Filter Buttons and Search Bar -->
+  <div class="filter-container">
+    <div class="filter-buttons">
+      <button (click)="filterByStatus('all')" class="btn btn-secondary">
+        <i class="bi bi-filter"></i>
+        Show All</button>
+      <button (click)="filterByStatus('Subscribed')" class="btn btn-success">
+        <i class="bi bi-check-circle"></i>
+        Show Subscribed</button>
+      <button (click)="filterByStatus('Blocked')" class="btn btn-danger">
+        <i class="bi bi-ban"></i>
+        Show Blocked</button>
+    </div>
+    <input
+      type="text"
+      class="form-control search-bar"
+      placeholder="Search by Member Name or Surname..."
+      [(ngModel)]="searchQuery"
+      (input)="filterTable()"
+    />
+  </div>
+
+  
+    <table class="table table" *ngIf="!loading">
+      <thead>
+        <tr>
+          <th>Member ID</th>
+          <th>Name</th>
+          <th>Membership Status</th>
+          <th>Monthly Fee Due</th>
+          <th>Outstanding Payment</th>
+          <th>Has Paid</th>
+          <th>Total Sum Paid</th>
+          <th>Next Expected Payment</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let subscription of filteredSubscriptions">
+          <td>{{ subscription.member_ID }}</td>
+          <td>{{ subscription.name }} {{ subscription.surname }}</td>
+          <td>{{ subscription.membership_Status_Description }}</td>
+          <td>{{ subscription.monthly_Fee_Due | currency: 'ZAR' }}</td>
+          <td>{{ subscription.outstanding_Payment | currency: 'ZAR' }}</td>
+          <td>{{ subscription.has_Paid ? 'Yes' : 'No' }}</td>
+          <td>{{ subscription.total_Sum_Paid | currency: 'ZAR' }}</td>
+          <td>{{ subscription.next_Expected_Payment_Date | date: 'd MMMM yyyy' }}</td>
+          <td>
+            <div class="flex-buttons">
+                <button class="btn btn-danger btn-sm" (click)="openBlockModal(subscription.member_ID)">
+                  <i class="bi bi-person-fill-slash"></i>
+                  Block</button>
+                <button class="btn btn-success btn-sm" (click)="openReactivateModal(subscription.member_ID)">
+                  <i class="bi bi-person-check-fill"></i>
+                  Reactivate</button>
+            </div>
+        </td>
+        </tr>
+      </tbody>
+    </table>
+    <p *ngIf="loading">Loading...</p>
+  
+   <!-- Block Member Modal -->
+<div class="modal" *ngIf="showBlockModal">
+    <div class="modal-content">
+      <span class="close" (click)="closeBlockModal()">&times;</span>
+      <h3>Confirm Block</h3>
+      <p>Are you sure you want to block this member?</p>
+      <div class="modal-buttons">
+        <button class="btn btn-danger" (click)="confirmBlock()">Block</button>
+        <button class="btn btn-secondary" (click)="closeBlockModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Reactivate Member Modal -->
+  <div class="modal" *ngIf="showReactivateModal">
+    <div class="modal-content">
+      <span class="close" (click)="closeReactivateModal()">&times;</span>
+      <h3>Confirm Reactivation</h3>
+      <p>Are you sure you want to reactivate this member?</p>
+      <div class="modal-buttons">
+        <button class="btn btn-success" (click)="confirmReactivate()">Reactivate</button>
+        <button class="btn btn-secondary" (click)="closeReactivateModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+<div *ngIf="showModal" class="modal-backdrop">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Membership Management System</h5>
+        <button type="button" class="btn-close" (click)="showModal = false"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Searchable Section -->
+        <input type="text" class="form-control mb-3" placeholder="Search..." [(ngModel)]="searchTerm">
+
+        <div *ngFor="let section of filteredSections">
+          <h6>{{ section.title }}</h6>
+          <ul>
+            <li *ngFor="let point of section.points">{{ point }}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="showModal = false">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

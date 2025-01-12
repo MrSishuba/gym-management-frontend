@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<app-master-side-nav-bar></app-master-side-nav-bar>
+<div class="gap-container"></div>
+<div class="gif-background">
+    <div class="hero-content">
+        <h2 class="title-large">AVS Fitness</h2>
+        <p class="slogan">Achieve Your Best Self</p>
+    </div>
+</div>
+
+<main class="main-content">
+    <section class="info-blocks">
+        <!-- Leadership Block -->
+        <div class="info-block">
+            <h3>How to Be a Better Leader</h3>
+            <img src="assets/images/comm3.jpg" alt="Leadership">
+            <p>Leadership is not just about giving orders; it's about inspiring and motivating your team to achieve their best.</p>
+          
+            <div *ngIf="showMore1">
+                <p>Great leaders focus on nurturing the talent within their team. They strive to build strong, trusting relationships and provide clear guidance.</p>
+                <p>It's also essential to lead by example, demonstrating the qualities you expect from your team members. Transparency and effective communication are key.</p>
+                <p>Moreover, recognizing and rewarding effort creates an environment where individuals feel valued and motivated to contribute their best.</p>
+                <p>Leadership is not about power, but responsibility. It's about empowering others and sharing your vision for collective success.</p>
+                <p>Finally, a true leader remains humble and open to feedback, always seeking ways to improve both themselves and the team.</p>
+            </div>
+            <a  class="read-more" (click)="toggleText1()">{{ showMore1 ? 'Show Less' : 'Read More' }}</a>
+        </div>
+
+        <!-- Strength Block -->
+        <div class="info-block">
+            <h3>The True Meaning of Strength</h3>
+            <img src="assets/images/Gym43.jpg" alt="Strength">
+            <p>Strength isn't just physical. True strength comes from mental and emotional resilience.</p>
+            <div *ngIf="showMore2">
+                <p>Physical strength is just one aspect of overall fitness. Mental resilience is what helps you push through tough challenges.</p> 
+                <p>Strength also comes from emotional stability, being able to remain grounded even in difficult times.</p> 
+                <p>True fitness is a balance of the mind, body, and soul, where mental clarity and emotional health are just as important as physical endurance.</p> 
+                <p>At AVS Fitness, we believe in nurturing all aspects of your well-being, empowering you to face every obstacle with confidence and inner strength.</p>
+            </div>
+            <a  class="read-more" (click)="toggleText2()">{{ showMore2 ? 'Show Less' : 'Read More' }}</a>
+        </div>
+
+        <!-- Fitness Guide Block -->
+        <div class="info-block">
+            <h3>The Latest Fitness Guide</h3>
+            <img src="assets/images/empBG2.jpeg" alt="Fitness Guide">
+            <p>Stay up to date with the latest fitness trends and guides to keep your routine fresh and effective.</p>
+            <div *ngIf="showMore3">            
+            <p>From workout routines to diet plans, we provide the latest research and trends to help you maximize your fitness goals.</p> 
+            <p>Consistency is key, but adding variety to your workout can keep you motivated and engaged.</p> 
+            <p>Our expert guidance ensures that your fitness journey is both effective and enjoyable, offering a personalized approach that fits your unique needs.</p> 
+            <p>Whether you're just starting out or looking to take your training to the next level, AVS Fitness is here to support you every step of the way.</p>
+            </div>
+            <a  class="read-more" (click)="toggleText3()">{{ showMore3 ? 'Show Less' : 'Read More' }}</a>
+        </div>
+
+        <!-- Community Block -->
+        <div class="info-block">
+            <h3>The Value of Community</h3>
+            <img src="assets/images/empBG.jpg" alt="Community">
+            <p>Being part of a community can greatly enhance your fitness journey, providing support and motivation.</p>
+            <div *ngIf="showMore4">          
+                <p>Exercising with a group can give you the extra push you need to achieve your goals.</p> 
+                <p>Communities provide accountability, motivation, and shared goals, making your fitness journey more enjoyable.</p> 
+                <p>Surrounding yourself with like-minded individuals helps create a positive environment where everyone encourages each other to succeed.</p> 
+                <p>With the right support system, you'll find it easier to stay consistent, celebrate progress, and overcome challenges together.</p>
+            </div>
+            <a class="read-more" (click)="toggleText4()">{{ showMore4 ? 'Show Less' : 'Read More' }}</a>
+        </div>
+    </section>
+</main>
+
+<hr>
+
+<!-- Footer Section -->
+<footer class="footer">
+    <div class="footer-section" style="margin-left:150px">
+        <h3>Contact Us <i class="bi bi-telephone"></i></h3>
+        <p>Email: audrin.vanschoor&#64;gmail.com</p>
+        <p>Phone: +078 397 5971</p>
+    </div>
+    <div class="footer-section">
+        <h3>Address <i class="bi bi-geo-alt"></i></h3>
+        <p>5 Calliiandra St,<br>Montana Park, Pretoria, 0182</p>
+    </div>
+    <div class="footer-section">
+        <h3>Technical Support <i class="bi bi-person-raised-hand"></i></h3>
+        <form>
+            <p>Email: DatalungeTeam43&#64;gmail.com<br>Phone: +012 445 5673</p>
+        </form>
+    </div>
+    <hr>
+    <div class="legal">
+        <p>&copy; 2024 AV Motion. All rights reserved.</p>
+    </div>
+</footer>
+
+</html>

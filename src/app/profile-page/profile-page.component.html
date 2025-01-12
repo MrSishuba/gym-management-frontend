@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+<app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+<app-member-side-nav-bar *ngIf="userTypeID == 3"></app-member-side-nav-bar>
+
+<div class="gap-container" *ngIf="userTypeID === 1 || userTypeID === 2"></div>
+
+<div class="container-fluid">
+
+  <div class="row justify-content-start">
+    <!-- Back Button -->
+    <div class="col-6">
+      <i class="bi bi-arrow-left-circle header-icon" (click)="goBack()"></i>
+    </div>
+
+    <!-- My Profile Heading -->
+    <div class="col-6">
+      <h2 class="text-left">My Profile</h2>
+      <span style="float: right;">
+        <a class="navbar-brand" href="#" data-bs-toggle="modal" data-bs-target="#helpModal">
+            <i class="bi bi-info-circle-fill">Help</i>
+          </a>
+      </span>
+    </div>
+
+    <!-- Left Side Menu -->
+    <div class="col-md-3">
+      <h5 class="small-heading">
+        
+        <label routerLink="/member-subscription-manager" 
+        *ngIf="userTypeID === 3"><i class="bi bi-file-text">
+        </i>Membership Manager
+      </label>
+      </h5>
+      <p></p>
+      <div routerLink="/orders" *ngIf="userTypeID === 3">
+        <h5 class="small-heading">
+          <i class="bi bi-cart4"></i>
+          Orders
+        </h5>
+      </div>  
+      <br>
+      <h5 class="small-heading">
+        <i class="bi bi-bell-fill"></i>
+        Notifications
+      </h5>
+      <!-- Notification placeholder -->
+      <div class="card mt-3">
+        <div class="card-body">
+          <div *ngIf="unredeemedRewards.length === 0" class="notification-item">
+            <span>No Notifications</span>
+          </div>
+          <div *ngFor="let reward of unredeemedRewards" class="notification-item">
+            <span style="float:left">{{ reward.rewardTypeName }}</span>
+            <span style="float: right"><button class="btn btn-sm btn-primary" (click)="openRedeemModal(reward)">Redeem</button></span><br><br>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <!-- Vertical Line Separator -->
+    <div class="col-md-1">
+      <div class="vertical-line"></div>
+    </div>
+
+    <!-- Right Side Form -->
+    <div class="col-md-6">
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <h5 class="small-heading">
+          <i class="bi bi-house-gear-fill"></i>
+          Personal Details
+        </h5>
+        <div class="text-center mb-3">
+          <div class="profile-photo-wrapper">
+            <img [src]="userProfileImage" alt="Profile Photo" class="img-fluid rounded-circle profile-photo" *ngIf="userProfileImage">
+            <div class="edit-photo-wrapper">
+              <a href="#" (click)="enableEditMode($event)" class="edit-link">Edit</a>
+              <label [class.disabled-icon]="!isEditMode" for="photoUpload" class="photo-upload-icon">
+                <i class="bi bi-camera"></i>
+              </label>
+            </div>
+            <input type="file" id="photoUpload" formControlName="photo" class="d-none" (change)="onPhotoChange($event)" [readonly]="!isEditMode" >
+          </div>
+        </div>
+        
+
+        <br>
+
+      
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <div class="form-group">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" formControlName="name" [readonly]="!isEditMode" [ngClass]="{'disabled-input': !isEditMode}">
+              <div *ngIf="profileForm.controls['name'].invalid && (profileForm.controls['name'].dirty || profileForm.controls['name'].touched)" class="alert">
+                <div *ngIf="profileForm.controls['name'].errors?.['required']">Name is required.</div>
+                <div *ngIf="profileForm.controls['name'].errors?.['minlength']">Name must be at least 2 characters long.</div>
+                <div *ngIf="profileForm.controls['name'].errors?.['maxlength']">Name must be at most 20 characters long.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <div class="form-group">            
+              <label for="surname" class="form-label">Surname</label>
+              <input type="text" class="form-control" id="surname" formControlName="surname" [readonly]="!isEditMode" [ngClass]="{'disabled-input': !isEditMode}">
+              <div *ngIf="profileForm.controls['surname'].invalid && (profileForm.controls['surname'].dirty || profileForm.controls['surname'].touched)" class="alert">
+                <div *ngIf="profileForm.controls['surname'].errors?.['required']">Surname is required.</div>
+                <div *ngIf="profileForm.controls['surname'].errors?.['minlength']">Surname must be at least 2 characters long.</div>
+                <div *ngIf="profileForm.controls['surname'].errors?.['maxlength']">Surname must be at most 20 characters long.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <div class="form-group">
+              <label for="email" class="form-label">Email Address</label>
+              <input type="email" class="form-control" id="email" formControlName="email" [readonly]="!isEditMode" [ngClass]="{'disabled-input': !isEditMode}">
+              <div *ngIf="profileForm.controls['email'].invalid && (profileForm.controls['email'].dirty || profileForm.controls['email'].touched)" class="alert">
+                <div *ngIf="profileForm.controls['email'].errors?.['required']">Email is required.</div>
+                <div *ngIf="profileForm.controls['email'].errors?.['email']">Email is invalid.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <div class="form-group">
+              <label for="phoneNumber" class="form-label">Phone Number</label>
+              <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber" [readonly]="!isEditMode" [ngClass]="{'disabled-input': !isEditMode}">
+              <div *ngIf="profileForm.controls['phoneNumber'].invalid && (profileForm.controls['phoneNumber'].dirty || profileForm.controls['phoneNumber'].touched)" class="alert">
+                <div *ngIf="profileForm.controls['phoneNumber'].errors?.['required']">Phone Number is required.</div>
+                <div *ngIf="profileForm.controls['phoneNumber'].errors?.['pattern']">Phone Number must be a valid South African number and start with 07, 08, or 06 and be 10 digits long.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <div class="form-group">
+              <label for="physical_Address" class="form-label">Physical Address</label>
+              <input type="text" class="form-control" id="physical_Address" formControlName="physical_Address" [readonly]="!isEditMode" [ngClass]="{'disabled-input': !isEditMode}">
+              <div *ngIf="profileForm.controls['physical_Address'].invalid && (profileForm.controls['physical_Address'].dirty || profileForm.controls['physical_Address'].touched)" class="alert">
+                <div *ngIf="profileForm.controls['physical_Address'].errors?.['required']">Physical address is required.</div>
+                <div *ngIf="profileForm.controls['physical_Address'].errors?.['minlength']">Physical Address must be at least 7 characters long.</div>
+                <div *ngIf="profileForm.controls['physical_Address'].errors?.['maxlength']">Physical Address must be at most 100 characters long.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-end">
+          <button type="button" class="btn btn-primary me-2" (click)="openSaveModal()" [disabled]="!isEditMode">Save</button>
+          <button type="button" class="btn btn-info" (click)="changePassword()" [disabled]="!isEditMode">Change Password</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Save Confirmation Modal -->
+<div class="modal fade" id="saveConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="saveConfirmationModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="saveConfirmationModalTitle">Save Changes</h5>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to update your profile details?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="dismissModal()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="confirmSave()">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Error Modal -->
+<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="errorModalTitle">Error</h5>
+      </div>
+      <div class="modal-body">
+        Please enter a valid input for the following fields:
+        <ul id="errorList"></ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="dismissErrorModal()">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Redeem Reward Modal -->
+<div class="modal fade" id="redeemRewardModal" tabindex="-1" role="dialog" aria-labelledby="redeemRewardModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="redeemRewardModalTitle">Redeem Reward</h5>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to redeem the reward <strong>{{ selectedReward?.rewardTypeName }}</strong>?
+        <br>
+        <p>The reward criteria met: <strong>{{ selectedReward?.rewardCriteria }}</strong></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="dismissRedeemModal()">No</button>
+        <button type="button" class="btn btn-primary" (click)="confirmRedeem()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <strong><h5 class="modal-title" id="successModalTitle">Congratulations</h5></strong>
+      </div>
+      <div class="modal-body">
+        <strong>Congratulations!</strong> You've successfully redeemed this reward <strong>{{ selectedReward?.rewardTypeName }}</strong> because you have met this criteria <strong>{{ selectedReward?.rewardCriteria }}</strong>.<br>
+        Use this discount code <strong>{{ discountCode || 'N/A' }}</strong> at checkout when making your next order.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="dismissSuccessModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- help-modal.component.html -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title mx-auto" id="helpModalLabel">Help Guide</h5>
+        <div class="search-bar-container">
+          <input type="text" class="form-control search-bar" placeholder="Search help" [(ngModel)]="searchTerm" (input)="filterHelpContent()">
+        </div>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let item of filteredContent">
+          <h5>{{ item.title }}</h5>
+          <p [innerHTML]="item.content"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>  
+</html>

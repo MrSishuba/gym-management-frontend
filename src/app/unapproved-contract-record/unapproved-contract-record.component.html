@@ -1,0 +1,77 @@
+<!-- HTML Template -->
+<div class="container">
+<app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+<app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+
+    <div class="navigation">
+      <i class="bi bi-arrow-left-circle back-icon" (click)="goBack()"></i>
+      <div class="page-title">
+        <h1>Unapproved Contracts
+          <i class="bi bi-info-circle" (click)="openHelpModal()"></i>
+        </h1>
+      </div>
+      <app-contract-dropdown-nav></app-contract-dropdown-nav>
+    </div>
+  
+    <input
+      type="text"
+      class="search-bar"
+      placeholder="Search by name or surname..."
+      [(ngModel)]="searchTerm"
+      (input)="filterContracts()"
+    />
+  
+    <table class="table table">
+      <thead>
+        <tr>
+          <th>Contract ID</th>
+          <th>Member ID</th>
+          <th>Member Name</th>
+          <th>Member Surname</th>
+          <th>Username</th>
+          <th>ID Number</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contract of filteredContracts">
+          <td>{{ contract.contract_ID }}</td>
+          <td>{{ contract.member_ID }}</td>
+          <td>{{ contract.memberName }}</td>
+          <td>{{ contract.memberSurname }}</td>
+          <td>{{ contract.username }}</td>
+          <td>{{ contract.idNumber }}</td>
+          <td>
+            <button class="btn btn-danger" (click)="showModal(contract)"><i class="bi bi-trash"></i>Discard</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- Discard Confirmation Modal -->
+  <div *ngIf="showModalFlag" class="modal">
+    <div class="modal-content">
+      <h2>Are you sure you want to discard this contract?</h2>
+      <p>
+        You will have to create a new contract from the beginning if you proceed with this action.
+      </p>
+      <div class="btn-container">
+        <button class="btn btn-danger" (click)="discardContract()">Confirm</button>
+        <button class="btn btn-warning" (click)="closeModal()">Cancel</button>
+      </div><p></p>
+    </div>
+  </div>
+
+    <!-- Help Information Modal -->
+    <div *ngIf="showHelpModal" class="modal">
+      <div class="modal-content">
+        <h2>Help Information</h2>
+        <p>This interface displays all members who have an uploaded and created contract but still need approval.</p>
+        <div class="btn-container">
+          <button class="btn btn-secondary" (click)="closeHelpModal()">Close</button>
+        </div><p></p>
+      </div>
+    </div>
+ 
+  

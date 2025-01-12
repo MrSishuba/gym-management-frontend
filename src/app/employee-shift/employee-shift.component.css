@@ -1,0 +1,57 @@
+.shifts-timetable table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.shifts-timetable th, .shifts-timetable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.shifts-timetable th {
+  background-color: #f2f2f2;
+}
+
+.shift-control {
+  margin-top: 20px;
+  text-align: center;
+}
+
+
+/* .container {
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .card {
+    margin-bottom: 20px;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .list-group-item {
+    font-family: monospace;
+  }
+  
+  .btn {
+    width: 100%;
+  }
+  
+  .btn-primary,
+  .btn-success,
+  .btn-secondary {
+    margin-top: 15px;
+  }
+  
+  input[type="file"] {
+    margin-top: 10px;
+  }
+   */

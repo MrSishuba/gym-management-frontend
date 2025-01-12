@@ -1,0 +1,52 @@
+<div class="container-fluid">
+  <app-master-side-nav-bar></app-master-side-nav-bar>
+  <div style="margin-top: 90px"></div> <!-- Adjusted margin for spacing -->
+
+  <div class="gym-manager-container">
+    <div class="header-search-container">
+      <i class="bi bi-arrow-left-circle header-icon" (click)="goBack()"></i>
+      <h1 class="header-title">GYM Manager</h1>
+    </div>
+
+    <div class="content">
+      <div class="menu-container">
+        <div class="row">
+          <div class="col-6">
+            <label>
+              <span class="menu-item" routerLink="/dashboard">
+                <i class="bi bi-clipboard2-data"></i>
+                <a>Dashboard</a>
+              </span>
+            </label>
+          </div>
+          <div class="col-6">
+            <label>
+              <span class="menu-item" routerLink="/user-manager" routerLinkActive="active">
+                <i class="bi bi-diagram-3"></i>
+                <a class="nav-link">User Manager</a>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <label>
+              <span class="menu-item" routerLink="/settings" routerLinkActive="active">
+                <i class="bi bi-gear-fill"></i>
+                <a>Settings</a>
+              </span>
+            </label>
+          </div>
+          <div class="col-6">
+            <label>
+              <span class="menu-item">
+                <i class="bi bi-bar-chart-steps"></i>
+                <a routerLink="/audit-trail">Audit Trail</a>
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

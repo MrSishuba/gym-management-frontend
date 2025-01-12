@@ -1,0 +1,26 @@
+  <br>
+
+  <div class="header-search-container">
+    <i class="bi bi-arrow-left-circle header-icon" (click)="goBack()"></i>
+    <h2 class="header-title">Employee Manager</h2>
+  </div>
+  <br>
+  
+  <div class="member-manager-container">
+    <div class="content">
+      <div class="menu-container" style="margin-bottom: 400px;">
+        <div class="row">
+          <div class="col-6" *ngIf="userTypeID == 1">
+            <label>
+              <span class="menu-item" routerLink="/register-employee">
+                <i class="bi bi-people"></i>
+                <a >Register Employees</a>
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+<app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>

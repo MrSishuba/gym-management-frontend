@@ -1,0 +1,49 @@
+<div class="container-fluid">
+  <app-master-side-nav-bar></app-master-side-nav-bar>
+  <div style="margin-top: 10px"></div> <!-- Adjusted margin for proper spacing -->
+  <div class="gym-manager-container">
+    <div class="header-search-container">
+      <i class="bi bi-arrow-left-circle header-icon" (click)="goBack()"></i>
+      <h1 class="header-title">User Manager</h1>
+    </div>
+
+    <div class="content">
+      <div class="menu-container" style="margin-bottom: 400px;">
+        <div class="row">
+          <div class="col-6">
+            <label>
+              <span class="menu-item">
+                <i class="bi bi-gear"></i>
+                <a routerLink="/ConfigureUserTypes">Configure User Types</a>
+              </span>
+            </label>
+          </div>
+          <div class="col-6">
+            <label>
+              <span class="menu-item">
+                <i class="bi bi-people"></i>
+                <a routerLink="/users">Users</a>
+              </span>
+            </label>
+          </div>
+          <div class="col-6">
+            <label>
+              <span class="menu-item">
+                <i class="bi bi-files"></i>
+                <a routerLink="/all-signed-contracts">Contract Manager</a>
+              </span>
+            </label>
+          </div>
+          <div class="col-6">
+            <label>
+              <span class="menu-item">
+                <i class="bi bi-person-lines-fill"></i>
+                <a routerLink="/guest-manager">Guests</a>
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

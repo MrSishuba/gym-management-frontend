@@ -1,0 +1,133 @@
+<div class="header">
+    <div class="logo-container">
+        <i class="bi bi-dumbbell dumbbell-icon"></i>
+        <h1 class="title">AV Motion</h1>
+    </div>
+    <nav class="nav">
+        <ul>
+            <li><a class="nav-link" routerLink="/landing-page">Home</a></li>
+            <li><a class="nav-link" routerLink="/login">Login</a></li>
+            <li><a class="nav-link" routerLink="/affiliations">Affiliations & Outreach</a></li>
+            <li><a class="nav-link" routerLink="/product-list">AV Merch</a></li>
+            <li><a class="nav-link" routerLink="/available-bookings">Book Online</a></li>
+            <li><a class="nav-link active" routerLink="/survey">Community Feedback</a></li>
+        </ul>
+    </nav>
+</div>
+<div class="outer-container">
+    <div class="survey-container">
+        <form [formGroup]="surveyForm" (ngSubmit)="onSubmit()">
+            <h2>Gym Member/Guest Survey</h2>
+            <!-- User Identification -->
+            <label for="name">Name:</label>
+            <input id="name" formControlName="name" type="text" placeholder="Enter your name">
+            <div *ngIf="surveyForm.get('name')?.invalid && surveyForm.get('name')?.touched">
+                Name is required.
+            </div>
+            
+            <label for="email">Email:</label>
+            <input id="email" formControlName="email" type="email" placeholder="Enter your email">
+            <div *ngIf="surveyForm.get('email')?.invalid && surveyForm.get('email')?.touched">
+                Valid email is required.
+            </div>
+            
+            <!-- Membership Status -->
+            <label for="membershipStatus">Membership Status:</label>
+            <select id="membershipStatus" formControlName="membershipStatus">
+                <option value="">Select</option>
+                <option value="Member">Member</option>
+                <option value="Guest">Guest</option>
+                <option value="Former Member">Former Member</option>
+            </select>
+            
+            <!-- Age Group -->
+            <label for="ageGroup">Age Group:</label>
+            <select id="ageGroup" formControlName="ageGroup">
+                <option value="">Select</option>
+                <option value="18-24">18-24</option>
+                <option value="25-34">25-34</option>
+                <option value="35-44">35-44</option>
+                <option value="45-54">45-54</option>
+                <option value="55+">55+</option>
+            </select>
+            
+            <!-- Membership and Booking Experience -->
+            <h3>Membership and Booking Experience</h3>
+            
+            <label for="bookingSatisfaction">How satisfied are you with the booking system?</label>
+            <select id="bookingSatisfaction" formControlName="bookingSatisfaction">
+                <option value="">Select</option>
+                <option value="Very Satisfied">Very Satisfied</option>
+                <option value="Satisfied">Satisfied</option>
+                <option value="Neutral">Neutral</option>
+                <option value="Dissatisfied">Dissatisfied</option>
+                <option value="Very Dissatisfied">Very Dissatisfied</option>
+            </select>
+            
+            <!-- Booking Issues -->
+            <label for="bookingIssues">Have you faced any difficulties when making bookings?</label>
+            <select id="bookingIssues" formControlName="bookingIssues">
+                <option value="">Select</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            
+            <div *ngIf="surveyForm.get('bookingIssues')?.value === 'Yes'">
+                <label for="bookingIssueDetails">Please describe the issue:</label>
+                <textarea id="bookingIssueDetails" formControlName="bookingIssueDetails" placeholder="Describe your issue"></textarea>
+            </div>
+            
+            <!-- Purchasing Products -->
+            <h3>Purchasing Products from the Gym Store</h3>
+            
+            <label for="purchaseFrequency">How often do you purchase items from the gym store?</label>
+            <select id="purchaseFrequency" formControlName="purchaseFrequency">
+                <option value="">Select</option>
+                <option value="Once a week or more">Once a week or more</option>
+                <option value="Once a month">Once a month</option>
+                <option value="Rarely">Rarely</option>
+                <option value="Never">Never</option>
+            </select>
+            
+            <label for="productSatisfaction">Are you satisfied with the range of products offered in the gym store?</label>
+            <select id="productSatisfaction" formControlName="productSatisfaction">
+                <option value="">Select</option>
+                <option value="Very Satisfied">Very Satisfied</option>
+                <option value="Satisfied">Satisfied</option>
+                <option value="Neutral">Neutral</option>
+                <option value="Dissatisfied">Dissatisfied</option>
+                <option value="Very Dissatisfied">Very Dissatisfied</option>
+            </select>
+            
+            <!-- New Product Interest -->
+            <label for="newProductInterest">Would you be interested in seeing new products or services in the gym store?</label>
+            <select id="newProductInterest" formControlName="newProductInterest">
+                <option value="">Select</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            
+            <div *ngIf="surveyForm.get('newProductInterest')?.value === 'Yes'">
+                <label for="newProductDetails">If "Yes", please specify:</label>
+                <textarea id="newProductDetails" formControlName="newProductDetails" placeholder="Specify new products/services"></textarea>
+            </div>
+            
+            <!-- General Feedback -->
+            <h3>General Feedback</h3>
+            
+            <label for="recommendGym">How likely are you to recommend our gym to a friend or colleague? (1-10)</label>
+            <input id="recommendGym" formControlName="recommendGym" type="number" min="1" max="10" placeholder="Rate from 1 to 10">
+            
+            <label for="suggestions">What could we improve to enhance your experience?</label>
+            <textarea id="suggestions" formControlName="suggestions" placeholder="Your suggestions"></textarea>
+            
+            <!-- Contact Consent -->
+            <label for="contactConsent">Would you like to receive updates on new offers and events?</label>
+            <input id="contactConsent" formControlName="contactConsent" type="checkbox">
+            
+            <!-- Submit Button -->
+            <button type="submit" [disabled]="surveyForm.invalid">Submit Survey</button>
+        </form>
+    </div>
+</div>
+ 

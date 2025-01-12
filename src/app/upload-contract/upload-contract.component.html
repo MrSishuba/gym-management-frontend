@@ -1,0 +1,71 @@
+<app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+<app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+<div class="gap-container"></div>
+<div class="container">
+  <app-contract-dropdown-nav></app-contract-dropdown-nav>
+  <label class="security-link">
+    <a routerLink="/delete-contract-file">Uploaded Incorrect PDF file?</a>
+  </label>
+  <div class="navigation">
+    <i class="bi bi-arrow-left-circle back-icon" (click)="goBack()"></i>
+    <div class="page-title">
+      <h1>Contract Manager  <i class="bi bi-info-circle" (click)="showHelpModal = true"></i></h1>
+    </div>
+  </div>
+
+  <!-- Modal for help information -->
+  <div class="modal" *ngIf="showHelpModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Help Information</h5>
+          <button type="button" class="btn-close" (click)="showHelpModal = false"></button>
+        </div>
+        <div class="modal-body">
+          <p>Here are some instructions to help you fill out the forms:</p>
+          <ul>
+            <li>Upload Signed Contract: Enter the member's name (e.g., John Doe). Make sure it is in the exact format as the example or this will fail. Select the signed contract file to upload, making sure it is a PDF document.</li>
+            <li>Upload Consent Form: Select the consent form file to upload, making sure it is also a PDF document.</li>
+          </ul>
+          <button class="btn btn-secondary" (click)="showHelpModal = false">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="forms-container">
+    <!-- Upload Signed Contract Form -->
+    <div class="form-section">
+      <h2>Upload Member Contract Forms</h2>
+      <form [formGroup]="uploadForm" (ngSubmit)="uploadContract()">
+        <div class="form-group">
+          <label>Member Name</label>
+          <input type="text" class="form-control" placeholder="Enter Member Name (e.g., John Doe)" formControlName="memberName" />
+          <div *ngIf="uploadForm.get('memberName')?.invalid && (uploadForm.get('memberName')?.dirty || uploadForm.get('memberName')?.touched)" class="text-danger">
+            Member Name is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Signed Contract</label>
+          <input type="file" class="form-control" (change)="onSignedContractSelected($event)" />
+          <div *ngIf="uploadForm.get('signedContract')?.invalid && (uploadForm.get('signedContract')?.dirty || uploadForm.get('signedContract')?.touched)" class="text-danger">
+            Signed Contract is required and must be a PDF document.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Consent Form</label>
+          <input type="file" class="form-control" (change)="onConsentFormSelected($event)" />
+          <div *ngIf="uploadForm.get('consentForm')?.invalid && (uploadForm.get('consentForm')?.dirty || uploadForm.get('consentForm')?.touched)" class="text-danger">
+            Consent Form is required and must be a PDF document.
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-secondary" [disabled]="uploadForm.invalid">
+          <i class="bi bi-upload"></i>
+          Upload Contract Forms</button>
+      </form>
+    </div>
+  </div>
+</div>

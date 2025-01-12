@@ -1,0 +1,125 @@
+.container {
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+}
+
+.header-search-container {
+  margin-left: 3rem;
+  margin-top: 10px;
+  font-size: 3rem;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+  background-color: #ffffff; /* Ensures that all cells have a white background */
+}
+
+.table-header-white {
+  background-color: #ffffff;
+  font-weight: bold;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.table tbody tr {
+  background-color: #ffffff; /* Sets all rows to have a white background */
+}
+
+.table tbody tr:hover {
+  background-color: #e9ecef; /* Light gray color for hover effect */
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.btn-info {
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.btn-info:hover {
+  background-color: #138496;
+  border-color: #117a8b;
+}
+
+/* Modal Styling */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1040;
+}
+
+.modal-dialog {
+  width: 80%;
+  max-width: 900px;
+  height: auto;
+  max-height: 70%;
+  margin: 0 auto;
+  overflow: auto;
+}
+
+.modal-content {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.modal-header {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.modal-title {
+  font-weight: 600;
+}
+
+.modal-footer {
+  border-top: 1px solid #dee2e6;
+}
+
+.modal-footer .btn {
+  border-radius: 5px;
+}
+
+.modal-footer .btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.modal-footer .btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: #000;
+  opacity: 0.6;
+}
+
+.btn-close:hover {
+  opacity: 1;
+  color: #000;
+}
+
+.me-2 {
+  margin-right: 0.5rem;
+}

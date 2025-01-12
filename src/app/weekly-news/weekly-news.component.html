@@ -1,0 +1,91 @@
+<div class="container-fluid bg-black text-white">
+    <!-- Header -->
+    <div class="header">
+      <div class="logo-container">
+          <i class="bi bi-dumbbell dumbbell-icon"></i>
+          <h1 class="title">AV Motion</h1>
+      </div>
+      <nav class="nav">
+          <ul>
+              <li><a class="nav-link" routerLink="/landing-page">Home</a></li>
+              <li><a class="nav-link" routerLink="/login">Login</a></li>
+              <li><a class="nav-link" routerLink="/affiliations">Affiliations & Outreach</a></li>
+              <li><a class="nav-link" routerLink="/product-list">AV Merch</a></li>
+              <li><a class="nav-link" routerLink="/available-bookings">Book Online</a></li>
+              <li><a class="nav-link" routerLink="/survey">Community Feedback</a></li>
+          </ul>
+      </nav>
+  </div>
+
+  <!-- Weekly News Section -->
+  <div class="weekly-news" style="text-align:center">
+    <!-- News Header Section -->
+    <div class="news-header">
+      <h1>{{ title }}</h1>
+      <p class="news-subtitle">Stay Updated with AVS Fitness</p>
+    </div>
+
+    <!-- Image Section -->
+    <div class="news-image-container">
+      <img [src]="imageUrl" alt="Weekly News" *ngIf="imageUrl">
+    </div>
+
+    <!-- Content Section -->
+    <div class="news-content">
+      <p class="news-description">
+        Catch the latest updates, tips, and announcements from the AVS Fitness team.
+      </p>
+      <div class="highlight">
+        <h2>Highlights of the Week</h2>
+        <ul>
+          <li>New gym equipment arrivals <i class="bi bi-trophy-fill"></i></li>
+          <li>Exclusive fitness tips from our trainers <i class="bi bi-person-fill"></i></li>
+          <li>Upcoming events and challenges <i class="bi bi-calendar-event-fill"></i></li>
+        </ul>
+      </div>
+      <div class="latest-news">
+        <h3>Latest News</h3>
+        <p>
+          Don't miss out on the special discounts and promotions available this week!
+        </p>
+      </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="cta-news">
+      <p>Join our community and never miss out on the latest updates.</p>
+      <!-- Subscribe Button Triggering Modal -->
+      <button data-bs-toggle="modal" data-bs-target="#subscribeModal">
+        Subscribe to Newsletter
+      </button>
+    </div>
+
+    <!-- Subscribe Modal -->
+    <div class="modal fade" id="subscribeModal" tabindex="-1" aria-labelledby="subscribeModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content bg-black text-white">
+          <div class="modal-header">
+            <h5 class="modal-title" id="subscribeModalLabel">Subscribe to AVS Fitness Newsletter</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="emailInput" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
+              </div>
+              <div class="mb-3">
+                <label for="nameInput" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="nameInput" placeholder="John Doe">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-gold">Subscribe</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

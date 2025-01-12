@@ -1,0 +1,126 @@
+/* General Styles */
+.login-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+  }
+  
+  .left-side {
+    flex: 1;
+    background-color: #B08F26; /* B08F26 color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    color: white;
+  }
+  
+  .right-side {
+    flex: 1;
+    background-color: #000; /* Black color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .left-side .content { 
+    text-align: center;
+  }
+  
+  .title {
+    font-family: Arial Black, sans-serif;
+    font-size: 48px;
+    margin: 0;
+  }
+  
+  .slogan {
+    font-size: 24px;
+    margin-top: 10px;
+  }
+  
+  .placeholder-image {
+    width: 70%;
+    height: auto;
+    margin-top: 20px;
+  }
+  
+  .login-card {
+    background: rgba(0, 0, 0, 0.5); /* Transparent background for the card */
+    color: white; /* White text color */
+    width: 80%;
+    max-width: 400px;
+  }
+  
+  .login-card mat-card-header {
+    text-align: center;
+    color: white;
+  }
+  
+  .login-card mat-card-title {
+    font-size: 24px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .full-width, .btn-block {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    margin-bottom: 20px;
+  }
+  
+  .mat-form-field .mat-form-field-infix {
+    background: transparent;
+  }
+  
+  .mat-form-field .mat-form-field-label {
+    color: white;
+  }
+  
+  .mat-form-field .mat-form-field-infix input {
+    color: white;
+    background: black; /* Black background for the input */
+  }
+  
+  .mat-form-field .mat-form-field-underline {
+    background: white; /* White underline for input fields */
+  }
+  
+  .forgot-password {
+    text-align: right; /* Align "Forgot password?" to the right */
+    margin-right: 10px; /* Slightly push to the right */
+  }
+  
+  .forgot-password a, .sign-up a {
+    color: #B08F26; /* Color for the links */
+    text-decoration: none;
+  }
+  
+  .forgot-password a:hover, .sign-up a:hover {
+    color: #3f86b5; /* Blue color on hover */
+    text-decoration: underline;
+  }
+  
+  .login-button {
+    background-color: #B08F26; /* Button color */
+    color: white; /* Button text color */
+    width: 50%; /* Smaller button width */
+    margin: 20px auto 0 auto; /* Center the button horizontally */
+  }
+  
+  .login-button:hover {
+    background-color: #9A7B1C; /* Darker shade on hover */
+  }
+  
+  .mat-progress-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  

@@ -1,0 +1,224 @@
+.container {
+  margin: 20px;
+  margin-top:80px;
+  margin-left:50px;
+  padding-top: 0px
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.back-icon {
+  cursor: pointer;
+  font-size: 3rem;
+  
+}
+
+.page-title h1 {
+  margin: 0;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-select {
+  background-color: #6c757d; /* Button background color */
+  color: white; /* Text color */
+  border: none; /* No border */
+  cursor: pointer; /* Pointer cursor on hover */
+  padding: 10px 20px; /* Padding */
+  font-size: 16px; /* Font size */
+  border-radius: 5px; /* Rounded corners */
+  text-align: center; /* Center text */
+  width: 100%; /* Full width */
+  appearance: none; /* Remove default styling */
+  -webkit-appearance: none; /* Remove default styling in WebKit browsers */
+  -moz-appearance: none; /* Remove default styling in Mozilla browsers */
+}
+
+.dropdown-select:focus {
+  outline: none; /* Remove default outline on focus */
+  box-shadow: 0 0 0 2px rgba(38, 143, 255, 0.5); /* Add focus shadow */
+}
+
+.dropdown-select option {
+  padding: 10px 15px; /* Padding for options */
+  font-size: 16px; /* Font size for options */
+  color: #333; /* Text color for options */
+}
+
+.dropdown-select option:hover {
+  background-color: #ffffff; /* Hover background color for options */
+  color: #000; /* Hover text color for options */
+}
+
+.category-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.category-table th, .category-table td {
+  border: 1px solid #ffffff;
+  padding: 8px;
+  text-align: left;
+}
+
+.category-table th {
+  background-color: #f2f2f2;
+}
+
+.btn-container {
+  display: flex;
+  gap: 10px;
+}
+
+.modal {
+  display: block;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+}
+
+.modal-dialog {
+  margin: 1.75rem auto;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  outline: 0;
+  width: 100%;
+  max-width: 500px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.modal-title {
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+}
+
+.modal-body {
+  position: relative;
+  padding: 1rem;
+}
+
+.modal-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.75rem;
+  border-top: 1px solid #dee2e6;
+}
+
+.form-group {
+  width: 200px; /* Adjust width as needed */
+}
+
+.styled-select {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;base64,...'); /* Add arrow icon */
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+.styled-select:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.styled-select option {
+  color: #333;
+  background-color: white;
+  padding: 10px 15px;
+}
+
+.styled-select option:hover {
+  background-color: #f2f2f2;
+}
+
+.category-table td button {
+  margin-right: 5px; /* Add spacing between buttons */
+}
+
+.category-table td {
+  white-space: nowrap; /* Prevent text wrapping inside cells */
+}
+
+
+
+.modal-body {
+  position: relative;
+  padding: 1rem;
+}
+
+.form-group {
+  width: 100%; /* Make the form group take full width */
+  margin-bottom: 1rem; /* Add spacing between form groups */
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+#terminationReasonType, 
+#terminationReason {
+  width: calc(100% - 20px); /* Adjust to give space around */
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#terminationReason {
+  height: 100px; /* Set the height for the textarea */
+  resize: none; /* Prevent resizing */
+}
+

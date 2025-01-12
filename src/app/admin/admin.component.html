@@ -1,0 +1,14 @@
+<app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+<div style="margin-top: -600px"></div> <!-- Adjusted margin for spacing -->
+<!-- Back button -->
+<i class="bi bi-arrow-left-circle back-icon" (click)="goBack()" style="font-size:3rem; margin-left:30px; color: black"></i>
+
+<!-- Admin Panel Container -->
+<div class="admin-container">
+  <div class="admin-card">
+    <h2 class="admin-title">Admin Panel</h2>
+   
+    <p class="admin-description">Update the image in the Photos app, and it will reflect in the Weekly News section.</p>
+    <button class="admin-button" (click)="openPhotosApp()">Open Photos App</button>
+  </div>
+</div>

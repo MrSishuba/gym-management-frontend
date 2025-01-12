@@ -1,0 +1,104 @@
+<div class="container mt-4">
+  <app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+  <app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+  <div style="margin-top: 40px"></div> <!-- Adjusted margin for spacing -->
+
+  <!-- Navigation -->
+  <div class="header-search-container">
+      <i class="bi bi-arrow-left-circle header-icon" (click)="goBack()"></i>
+  </div>
+
+  <h2 class="text-center mb-4">Contract Termination Requests
+    <i class="bi bi-info-circle header-icon" (click)="showHelpModal = true"></i> <!-- Info Icon -->
+  </h2>
+
+  <div class="table-responsive">
+    <table class="table table-hover table-borderless">
+      <thead class="table-header-white">
+        <tr>
+          <th>Contract ID</th>
+          <th>Member ID</th>
+          <th>Contract Type</th>
+          <th>Member Name</th>
+          <th>Termination Reason</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let request of terminationRequests">
+          <td>{{ request.contract_ID }}</td>
+          <td>{{ request.member_ID }}</td>
+          <td>{{ request.contractTypeDescription }}</td>
+          <td>{{ request.memberName }}</td>
+          <td>{{ request.requestedTerminationReasonType }}</td>
+          <td>
+            <button class="btn btn-primary btn-sm me-2" (click)="approveRequest(request)">
+              <i class="bi bi-check2-square"></i> Approve
+            </button>
+            <button class="btn btn-info btn-sm" (click)="viewDetails(request)">
+              <i class="bi bi-eye-fill"></i> View Details
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- View Details Modal with Backdrop -->
+<div *ngIf="showModal">
+  <div class="modal-backdrop"></div>
+  <div class="modal fade show" tabindex="-1" style="display: block;">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Requested Termination Reason</h5>
+          <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body">
+          <p>Due to: {{ selectedCustomReason }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Help Modal -->
+<div *ngIf="showHelpModal">
+  <div class="modal-backdrop"></div>
+  <div class="modal fade show" tabindex="-1" style="display: block;">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Help Information</h5>
+          <button type="button" class="btn-close" aria-label="Close" (click)="showHelpModal = false"></button>
+        </div>
+        <div class="modal-body">
+          <h5>Welcome to Member Requested Cancellations</h5>
+          <p>At AVS Fitness, we understand that as we grow and learn, we may fall short of expectations. We respect the wish of members who wish to cancel their contracts. We learn and grow from this feedback.</p>
+          <h5>How to Use:</h5>
+          <ul>
+            <li>View the information to understand why members requested cancellation.</li>
+            <li>Click the Approve button and confirm to terminate the contract.</li>
+          </ul>
+          <h5>Employee Protection:</h5>
+          <p>Employees and AVS Fitness are protected under the Official AVS Fitness Employee Rules, Regulations, and Guide Protection Policy (Page 215, Section 7, Subsection D, Clause 14, Paragraph 3, Annex B-2):</p>
+          <ul>
+            <li>All requested terminations cannot be reversed and will be processed as intentional.</li>
+            <li>Employees have the full right to complete the approval actions for member terminations.</li>
+          </ul>
+          <h5>Important:</h5>
+          <ul>
+            <li>It is the member's responsibility to resolve all outstanding payments as per their contractual agreement.</li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="showHelpModal = false">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

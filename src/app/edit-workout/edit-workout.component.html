@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<a class="navbar-brand" href="#" data-bs-toggle="modal" data-bs-target="#helpModal">
+  <i class="bi bi-info-circle-fill"> Help</i>
+</a>
+<h2>Edit Workout</h2>
+<div class="form-container">
+    <form #formCtrl="ngForm" [formGroup]="registerFormGroup">
+      <div>
+        
+        <label for="name">Workout Name:</label>
+        <input type="text" id="name" name="name" required [(ngModel)]="workout.workout_Name" size="35" maxlength="20" formControlName="name">
+
+        <div *ngIf="registerFormGroup.controls['name'].invalid && (registerFormGroup.controls['name'].dirty || registerFormGroup.controls['name'].touched)" class="text-danger">
+          <div *ngIf="registerFormGroup.controls['name'].errors?.['required']">Workout Name is required.</div>
+          <div *ngIf="registerFormGroup.controls['name'].errors?.['minlength']">Workout Name must be at least 2 characters long.</div>
+          <div *ngIf="registerFormGroup.controls['name'].errors?.['maxlength']">Workout Name must be at most 20 characters long.</div>
+        </div>
+
+      </div>
+      <div>
+        <label for="duration">Workout Description:</label>
+        <input type="text" id="description" name="description" required [(ngModel)]="workout.workout_Description" maxlength="100" size="35" formControlName="description">
+
+        <div *ngIf="registerFormGroup.controls['description'].invalid && (registerFormGroup.controls['description'].dirty || registerFormGroup.controls['description'].touched)" class="text-danger">
+          <div *ngIf="registerFormGroup.controls['description'].errors?.['required']">Description is required.</div>
+          <div *ngIf="registerFormGroup.controls['description'].errors?.['minlength']">Description must be at least 10 characters long.</div>
+          <div *ngIf="registerFormGroup.controls['description'].errors?.['maxlength']">Description must be at most 100 characters long.</div>
+  
+      </div>
+
+      </div>
+      <div>
+        <label for="duration">Sets:</label>
+        <input type="number" id="sets" name="sets" required [(ngModel)]="workout.sets" size="35" formControlName="sets">
+
+        <div *ngIf="registerFormGroup.controls['sets'].invalid && (registerFormGroup.controls['sets'].dirty || registerFormGroup.controls['sets'].touched)" class="text-danger">
+          <div *ngIf="registerFormGroup.controls['sets'].errors?.['required']">Sets are required.</div>
+          </div>
+
+      </div>
+      <div>
+        <label for="duration">Reps:</label>
+        <input type="number" id="reps" name="reps" required [(ngModel)]="workout.reps" size="35" formControlName="reps">
+
+        <div *ngIf="registerFormGroup.controls['reps'].invalid && (registerFormGroup.controls['reps'].dirty || registerFormGroup.controls['reps'].touched)" class="text-danger">
+          <div *ngIf="registerFormGroup.controls['reps'].errors?.['required']">Reps are required.</div>
+          </div>
+
+
+      </div>
+      <div>
+        <label for="category">Select Category:</label>
+        <select id="category" name="category" [(ngModel)]="workout.workout_Category_ID" required formControlName="category">
+          <option *ngFor="let category of categories" [value]="category.workout_Category_ID">{{ category.workout_Category_Name }}</option>
+        </select>
+
+        <div *ngIf="registerFormGroup.controls['category'].invalid && (registerFormGroup.controls['category'].dirty || registerFormGroup.controls['category'].touched)" class="text-danger">
+          <div *ngIf="registerFormGroup.controls['category'].errors?.['required']">Category is required.</div>
+          </div>
+
+      </div>
+      <div class="buttons">
+        <button type="button" [disabled]="!formCtrl.form.valid" (click)="updateWorkout()">Save</button>
+          <button class="cancel" routerLink="/workout" type="button">Cancel</button>
+      </div>
+    </form>
+    
+  </div>
+
+  
+<!-- help-modal.component.html -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title mx-auto" id="helpModalLabel">Help Guide</h5>
+        <div class="search-bar-container">
+          <input type="text" class="form-control search-bar" placeholder="Search help" [(ngModel)]="searchTerm" (input)="filterHelpContent()">
+        </div>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let item of filteredContent">
+          <h5>{{ item.title }}</h5>
+          <p [innerHTML]="item.content"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</html>

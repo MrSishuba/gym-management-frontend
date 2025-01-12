@@ -1,0 +1,53 @@
+<div class="header-search-container">
+  <app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+  <app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+
+  <i class="bi bi-arrow-left-circle header-icon" (click)="goBack()"></i>
+  <h2 class="header-title">Member Manager</h2>
+</div>
+<br>
+
+<div class="member-manager-container">
+  <div class="content">
+    <div class="menu-container" style="margin-bottom: 400px;">
+      <div class="row">
+        <div class="col-6">
+          <label>
+            <span class="menu-item" routerLink="/member-manager-navigation">
+              <i class="bi bi-people"></i>
+              <a >Members</a>
+            </span>
+          </label>
+        </div>
+        <div class="col-6">
+          <label>
+            <span class="menu-item" routerLink="/rewards">
+              <i class="bi bi-trophy"></i>
+              <a >Rewards</a>
+            </span>
+          </label>
+        </div>
+        <div class="col-6">
+          <label>
+            <span class="menu-item" routerLink="/payment">
+              <i class="bi bi-currency-dollar"></i>
+              <a >Payments</a>
+            </span>
+          </label>
+        </div>
+        
+        <div class="col-6">
+          <label>
+            <span class="menu-item" routerLink="/order-manager">
+              <i class="bi bi-cart3"></i>
+              <a >Orders</a>
+            </span>
+          </label>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+

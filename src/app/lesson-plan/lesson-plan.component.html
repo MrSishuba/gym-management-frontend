@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+<app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+
+<div class="gap-container"></div>
+<div class="header-search-container">
+  <i class="bi bi-arrow-left-circle header-icon" routerLink="/booking-manager"></i>
+  <h1 class="header-title">Lesson Plans</h1>
+  <a class="navbar-brand" href="#" data-bs-toggle="modal" data-bs-target="#helpModal">
+    <i class="bi bi-info-circle-fill"> Help</i>
+  </a>
+</div>
+
+<div class="lesson-plan-container">
+  <div class="content">
+    <input type="text" class="form-control mb-3" placeholder="Search Lesson Plan" [(ngModel)]="searchTerm" (input)="filterlessonPlans()">
+
+    <button class="btn btn-primary mb-3" routerLink="/add-lesson-plan">Create Lesson Plan</button>
+
+    <table class="table table-hover table-centered">
+      <thead>
+        <tr>
+          <th>Program Name</th>
+          <th>Program Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let plan of filteredlessonPlans">
+          <td>{{ plan.program_Name }}</td>
+          <td>{{ plan.program_Description }}</td>
+          <td class="actions">
+            <button class="btn btn-info btn-sm" style="margin: 5px;" (click)="GetLessonPlansWithWorkouts(plan.lesson_Plan_ID)">
+              <i class="bi bi-eye-fill"></i> View
+            </button>
+            <button class="btn btn-warning btn-sm" style="margin: 5px;" [routerLink]="['/edit-lesson-plan', plan.lesson_Plan_ID]">
+              <i class="bi bi-pencil-square"></i> Edit
+            </button>
+            <button class="btn btn-danger btn-sm" style="margin: 5px;" (click)="deleteLessonPlan(plan.lesson_Plan_ID)">
+              <i class="bi bi-trash-fill"></i> Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+  
+
+  <div class="blur-background" *ngIf="showModal"></div>
+  <div class="lessplan-modal-container" *ngIf="showModal">
+    <h2>{{ plan.lessonPlanName }} Program</h2>
+    <h3>Program Description:</h3> <p>{{ plan.program_Description }}</p>
+    <h4>Workouts:</h4>
+    <div *ngFor="let workout of plan.workouts; let i = index">
+     
+      <p>{{ plan.workouts[i] }}</p>
+    </div>
+    <div class="lessplan-modal-buttons">
+      <button (click)="close()">Close</button>
+    </div>
+  </div>
+
+  
+  
+<!-- help-modal.component.html -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title mx-auto" id="helpModalLabel">Help Guide</h5>
+        <div class="search-bar-container">
+          <input type="text" class="form-control search-bar" placeholder="Search help" [(ngModel)]="searchTerm" (input)="filterHelpContent()">
+        </div>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let item of filteredContent">
+          <h5>{{ item.title }}</h5>
+          <p [innerHTML]="item.content"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</html>
+

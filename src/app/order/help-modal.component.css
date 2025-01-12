@@ -1,0 +1,63 @@
+/* help-modal.component.css */
+.modal-dialog {
+    max-width: 75%; /* Adjust the percentage as needed */
+  }
+
+.modal-dialog-scrollable {
+    max-height: calc(100vh - 100px);
+  }
+  
+  
+  .modal-content {
+    overflow-y: auto;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .modal-title {
+    flex-grow: 1;
+    text-align: center;
+  }
+  
+  .btn-close {
+    margin-right: auto;
+  }
+
+  .search-bar-container {
+    margin-left: auto;
+  }
+  
+  .search-bar {
+    width: 250px;
+  }
+
+  .modal-body hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .modal-body h5 {
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  
+  .modal-body ul, .modal-body ol {
+    margin-bottom: 20px;
+    padding-left: 20px;
+  }
+  
+  .pagination {
+    margin: 0;
+  }
+  
+  .pagination .page-item.disabled .page-link {
+    pointer-events:visible;
+    color: #6c757d;
+    background-color: #fff;
+    border-color: #dee2e6;
+  }
+  

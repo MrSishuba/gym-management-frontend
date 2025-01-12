@@ -1,0 +1,44 @@
+<div class="page-container">
+    <app-side-nav-bar></app-side-nav-bar>
+    <div style="margin-top: 40px"></div> <!-- Adjusted margin for spacing -->
+  <section class="hero-section">
+    <img src="assets/images/FitStudio.jpg" alt="Gym Code of Conduct" class="hero-image">
+    <div class="hero-content" style="color: #B08F26">
+      <h1>AVS Fitness Code of Conduct</h1>
+      <p>Learn about our policies and expectations from both members and staff to maintain a safe and respectful environment.</p>
+    </div>
+  </section>
+
+  <section class="code-content">
+    <h2>
+        <i class="bi bi-arrow-left-circle" (click)="goBackToEmployeeHome()"></i>    
+        Our Policy and Code of Conduct</h2>
+    <p>
+      At AVS Fitness, we are committed to creating a safe and welcoming space for everyone. Our code of conduct outlines the behavior expected from our members and staff.
+    </p>
+    <ul>
+      <li>Respect for others and gym property</li>
+      <li>Proper gym attire at all times</li>
+      <li>Safe use of gym equipment</li>
+      <li>Prohibited behaviors: harassment, discrimination, and damage to property</li>
+      <li>Clean up after yourself and use provided sanitizing materials</li>
+      <li>Observe gym hours and closing times</li>
+    </ul>
+
+    <h3>Penalties for Violations</h3>
+    <p>Violating the code of conduct may result in warnings, membership suspension, or permanent bans depending on the severity of the offense.</p>
+
+    <button class="open-modal-btn" (click)="openModal()">Learn More</button>
+  </section>
+
+  <!-- Modal -->
+  <div *ngIf="showModal" class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <h2>More Details</h2>
+      <p>For more detailed information regarding the penalties, you can refer to our full code of conduct document.</p>
+      <button class="download-btn" (click)="downloadPDF()">Download Code of Conduct PDF</button>
+    </div>
+  </div>
+</div>
+

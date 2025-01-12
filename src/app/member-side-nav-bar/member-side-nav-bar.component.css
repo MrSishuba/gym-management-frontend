@@ -1,0 +1,141 @@
+/* Horizontal Nav Strip Styling */
+.navbar {
+    background-color: #000000 !important;
+    color: white !important;
+    height: 70px; /* Adjust height as needed */
+}
+
+.navbar-brand {
+    color: white !important;
+    font-family: 'Arial Black', Arial, sans-serif;
+    text-align: center;
+    width: 100%;
+    font-size: 1.1em; /* Increased by 10% */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.navbar-toggler {
+    background-color: #000000 !important;
+    border: none;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Offcanvas Styling */
+.offcanvas {
+    background-color: #B08F26 !important;
+    color: #000000 !important;
+    padding-top: 1rem; /* Adjust padding as needed */
+    padding-left: 0.5rem; /* Move items closer to the left */
+}
+
+.offcanvas-header {
+    padding: 1rem; /* Adjust padding as needed */
+}
+
+.offcanvas-title {
+    color: #000000 !important;
+    font-family: 'Arial Black', Arial, sans-serif;
+}
+
+/* Top Navigation Items */
+.offcanvas-body .nav-link {
+    color: #000000 !important;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    transition: transform 0.2s;
+    margin-bottom: 0.3rem; /* Reduced margin between items */
+    padding-left: 0.5rem; /* Move items closer to the left */
+}
+
+.offcanvas-body .nav-link i {
+    margin-right: 8px;
+    font-weight: bold; /* Make icons bold */
+}
+
+.offcanvas-body .nav-link:hover,
+.offcanvas-body .nav-link.active {
+    color: #FFFFFF !important;
+    background-color: transparent !important;
+    transform: scale(1.05); /* Zoom in effect */
+}
+
+/* Specific Adjustment for Home Item */
+.offcanvas-body .nav-item:first-child .nav-link {
+    padding-left: 0.6rem; /* Adjust padding for Home item */
+}
+
+/* Bottom Navigation Items */
+.nav-footer {
+    padding-left: 0.5rem; /* Move items closer to the left */
+}
+
+.nav-footer .nav-link {
+    color: #000000 !important;
+    font-weight: bold;
+    transition: transform 0.2s;
+    margin-bottom: 0.3rem; /* Reduced margin between items */
+    padding-left: 0.5rem; /* Move items closer to the left */
+}
+
+.nav-footer .nav-link:hover,
+.nav-footer .nav-link.active {
+    color: #FFFFFF !important;
+    background-color: transparent !important;
+    transform: scale(1.05); /* Zoom in effect */
+}
+
+/* Common Styling for All Nav Items */
+.nav-item {
+    margin-bottom: 0.3rem; /* Reduced margin between items */
+}
+
+/* Ensure Padding and Alignment */
+.navbar-nav {
+    padding-left: 0.5rem; /* Move items closer to the left */
+}
+
+.navbar-nav.mt-auto {
+    padding-left: 0.5rem; /* Move items closer to the left */
+}
+
+.btn-close-white {
+    filter: invert(1);
+}
+
+.offcanvas-body .nav-link,
+.offcanvas-body .nav-link.active {
+    font-weight: bold;
+    color: #000000 !important;
+}
+
+.offcanvas-body .nav-link:hover,
+.offcanvas-body .nav-link.active:hover {
+    color: white !important;
+}
+
+.navbar {
+    height: 70px; /* Ensure adequate height for the horizontal nav strip */
+}
+
+.navbar-toggler {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Custom HR Styling */
+.custom-hr {
+    border: 2px solid #000; /* Make the line thicker */
+    width: 90%; /* Adjust width as needed */
+    margin: 0 auto; /* Center the line */
+}
+
+
+    

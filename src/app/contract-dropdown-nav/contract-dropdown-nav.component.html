@@ -1,0 +1,18 @@
+<div class="dropdown">
+    <select id="contractHubDropdown" class="dropdown-select" (change)="navigate($event)">
+      <option value="/all-signed-contracts" >Contract Hub</option>
+      <option value="/all-signed-contracts" >Active Contracts</option>
+      <!-- Conditionally show these options based on userTypeID -->
+    <ng-container *ngIf="userTypeID === 2">
+      <option value="/upload-contract">Upload New Contract</option>
+      <option value="/create-contract">Activate New Member Contract</option>
+    </ng-container>
+      <option value="/signed-contracts">Contract Locator</option>
+      <option value="/contract-statistics">Statistics</option>
+      <option value="/contract-history">Contract Archive History</option>
+      <option value="/unapproved-uploaded-contract">Members Awaiting Contract Activation</option>
+      <ng-container *ngIf="userTypeID === 1">
+        <option value="/contract-security">Contract Security</option>
+      </ng-container>
+    </select>
+  </div>

@@ -1,0 +1,65 @@
+<app-member-side-nav-bar *ngIf="userTypeID == 3"></app-member-side-nav-bar>
+
+<div class="styled-container">
+    <!-- Back Icon -->
+    <div class="d-flex justify-content-start">
+        <i class="bi bi-arrow-left-circle header-icon back-icon" (click)="goBack()"></i>
+    </div>
+
+    <!-- Title -->
+    <div class="text-center my-4">
+        <h1>Membership Manager
+         <i class="bi bi-info-circle help-icon" data-bs-toggle="modal" data-bs-target="#helpModal"></i>
+        </h1>
+       
+    </div>
+
+    <!-- Cards Row -->
+    <div class="row justify-content-center">
+        <div class="col-md-5 mx-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Download Your Contract</h5>
+                    <button class="btn btn-info mt-3" (click)="downloadContract()">
+                        
+                        <i class="bi bi-download"></i>Download Contract</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 mx-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Terminate Your Contract</h5>
+                    <button class="btn btn-warning mt-3" routerLink="/request-contract-termination">
+                        
+                        <i class="bi bi-file-earmark-excel"></i>Terminate My Contract</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Horizontal Line with Centered Small Text -->
+    <div class="my-4 text-center">
+        <hr class="custom-hr">
+        <small class="text-muted small-text">AVS FITNESS</small>
+    </div>
+
+        <!-- Help Modal -->
+    <div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="helpModalLabel">Help Information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Download My Contract:</strong> Click the Download button to receive a copy of your signed contract.</p>
+                    <p><strong>Terminate My Contract:</strong> Click the Terminate button to complete your termination process for the contract. If you wish to cancel your contract, click the button and follow the procedure to submit a cancellation request.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

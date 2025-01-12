@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<app-master-side-nav-bar></app-master-side-nav-bar>
+<div class="gap-container"></div>
+<div class="header-search-container">
+  <i class="bi bi-arrow-left-circle header-icon" (click)="goBack()"></i>
+  <h1 class="header-title">Users</h1>
+  <span class="help-icon-container">
+      <a class="navbar-brand help-icon" href="#" data-bs-toggle="modal" data-bs-target="#helpModal">
+          <i class="bi bi-info-circle-fill">Help</i>
+      </a>
+  </span>
+</div>
+
+<div class="users-container">
+    <div class="content">  
+      <input type="text" class="form-control mb-3" placeholder="Search Users" [(ngModel)]="searchCriteria" (ngModelChange)="filterUsers()">
+    
+      <button class="btn btn-primary mb-3" routerLink="/deletion-settings">Update Deletion Settings</button>
+  
+      <div class="table-responsive">
+        <table class="table table-hover table-centered">
+          <thead class="thead-light">
+            <tr>
+              <th>User ID</th>
+              <th>Name</th>
+              <th>Surname</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of filteredUsers">
+              <td>{{ user.id }}</td>
+              <td>{{ user.name }}</td>
+              <td>{{ user.surname }}</td>
+              <td>
+                  <ng-container [ngSwitch]="user.user_Status_ID">
+                      <span *ngSwitchCase="1">Active</span>
+                      <span *ngSwitchCase="2">Deactivated</span>
+                  </ng-container>
+              </td>
+              <td>
+                <button class="btn btn-info btn-sm" style="margin: 5px;" (click)="openModal(user)">
+                  <i class="fa fa-eye"></i> View
+                </button>
+              </td>
+              <td *ngIf="user.user_Status_ID === 1">
+                <button class="btn btn-primary" *ngIf="user.user_Type_ID === 2 || user.user_Type_ID === 3" (click)="deactivateUser(user.id)">Deactivate</button>
+              </td>
+              <td *ngIf="user.user_Status_ID === 2">
+                <button class="btn btn-secondary" *ngIf="user.user_Type_ID === 2 || user.user_Type_ID === 3" (click)="reactivateUser(user.id)">Reactivate</button>
+              </td>
+
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="text-align: center;">
+          <div class="modal-header">
+            <h5 class="modal-title" id="userModalLabel"><strong>User Details</strong></h5>
+          </div>
+          <div class="modal-body">
+            <p><strong>User ID:</strong> {{ selectedUser?.id }}</p>
+            <p><strong>Name:</strong> {{ selectedUser?.name }}</p>
+            <p><strong>Surname:</strong> {{ selectedUser?.surname }}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- help-modal.component.html -->
+  <div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h5 class="modal-title mx-auto" id="helpModalLabel">Help Guide</h5>
+          <div class="search-bar-container">
+            <input type="text" class="form-control search-bar" placeholder="Search help" [(ngModel)]="searchTerm" (input)="filterHelpContent()">
+          </div>
+        </div>
+        <div class="modal-body">
+          <div *ngFor="let item of filteredContent">
+            <h5>{{ item.title }}</h5>
+            <p [innerHTML]="item.content"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</html>

@@ -1,0 +1,142 @@
+.header-search-container {
+  display: flex;
+  align-items: center;
+  padding: 0px 50px 0px 220px; /* Adjust the padding as needed */
+  margin-top: 60px;
+}
+
+.header-icon {
+  font-size: 3rem; /* Adjust the size as needed */
+  cursor: pointer;
+}
+
+.header-title {
+  flex-grow: 1;
+  text-align: center;
+  padding-right: 200px;
+}
+
+.equipment-manager-container {
+  padding-top: 0px; /* Adjust based on the height of the navbar */
+  box-sizing: border-box;
+  position: relative;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 420px; /* Adjust based on desired width */
+}
+
+.row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.col-6 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px; /* Add padding to create space between tiles */
+}
+
+label {
+  cursor: pointer;
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bs-primary);
+  color: white;
+  width: 200px; /* Enlarge the tiles */
+  height: 200px;
+  transition: transform 0.3s ease;
+  border-radius: 10px; /* Add rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+}
+
+.menu-item:hover {
+  transform: scale(1.1);
+  z-index: 1; /* Ensure the hovered item is on top */
+}
+
+.menu-item i {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.menu-item a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.2rem;
+}
+
+/* Responsive Design */
+
+@media (max-width: 450px) {
+  .header-search-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-title {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+
+  .equipment-manager-container {
+    padding: 10px;
+  }
+
+  .menu-item {
+    font-size: 16px;
+  }
+
+  .menu-item i {
+    font-size: 20px;
+  }
+
+  .col-6 {
+    width: 100%;
+    padding-bottom: 10px;
+  }
+
+  .menu-item a {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 420px) {
+  .header-title {
+    font-size: 18px;
+  }
+
+  .header-icon {
+    font-size: 20px;
+  }
+
+  .menu-item {
+    font-size: 14px;
+  }
+
+  .menu-item i {
+    font-size: 18px;
+  }
+
+  .menu-item a {
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,86 @@
+<div class="container">
+<app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+<app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+<div style="margin-top: 40px"></div> <!-- Adjusted margin for spacing -->
+  <app-contract-dropdown-nav></app-contract-dropdown-nav>
+  <div class="navigation">
+    <i class="bi bi-arrow-left-circle back-icon" (click)="goBack()"></i>
+    <div class="page-title">
+      <h1>Contract Archives
+        <i class="bi bi-info-circle" (click)="openHelpModal()"></i>
+      </h1>
+    </div>
+  </div><p></p>
+  
+  <table class="table table">
+    <thead>
+      <tr>
+        <th>Contract ID</th>
+        <th>Member ID</th>
+        <th>Subscription Date</th>
+        <th>Expiry Date</th>
+        <th>Contract Type</th>
+        <th>Termination Reason Type</th>
+        <th>Termination Date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contract of filteredContracts">
+        <td>{{ contract.contract_ID }}</td>
+        <td>{{ contract.member_ID }}</td>
+        <td>{{ formatDate(contract.subscription_Date) }}</td>
+        <td>{{ formatDate(contract.expiry_Date) }}</td>
+        <td>{{ getContractTypeName(contract.contract_Type_ID) }}</td> <!-- Updated -->
+        <td>{{ contract.termination_Reason_Type }}</td>
+        <td>{{ formatDate(contract.termination_Date) }}</td>
+        <td class="btn-container">
+          <button class="btn btn-info" (click)="downloadContract(contract.contract_ID)">
+         
+            Download</button>
+          <button class="btn btn-secondary" (click)="viewReason(contract)">
+            
+            View Reason</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal -->
+  <div *ngIf="showModal" class="modal show d-block" tabindex="-1" aria-labelledby="viewReasonModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="viewReasonModalLabel">The Following Member's Contract Has Been Terminated Due To:</h5>
+          <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Termination Title:</strong> {{ terminationReasonType }}</p>
+          <p><strong>Details:</strong> {{ terminationReasonDescription }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Help Information Modal -->
+<div *ngIf="ShowHistoryModal" class="modal show d-block" tabindex="-1" aria-labelledby="helpInfoModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="helpInfoModalLabel">Help Information</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="toggleHelpModal()"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Terminated Contracts:</strong> Terminated contracts will appear here. Members whose contracts have been terminated are still downloadable via the "Download" button. Details of termination can be found via the "View Reason" button, which will display relevant information in a pop-up.</p>
+        <p>Note: Terminated contracts will be deleted according to the Contract Deletion Setting found in the Settings. Not all information regarding this contract will be deleted permanently after the specified time has elapsed. This includes payments and contract information.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="toggleHelpModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

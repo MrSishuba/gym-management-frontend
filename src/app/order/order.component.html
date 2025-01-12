@@ -1,0 +1,102 @@
+<app-navbar></app-navbar>
+<br>
+<br>
+<br>
+<div class="header-search-container">
+    <i class="bi bi-arrow-left-circle header-icon" (click)="goBack()"></i>
+    <h2 class="header-title" routerLink="/product-list">AV MERCH</h2>
+    <div class="search-bar-container">
+        <input type="text" class="form-control search-bar" placeholder="Search Orders" [(ngModel)]="searchTerm" (input)="applyFilter()">
+    </div>
+</div>
+<br>
+<br>
+<div class="container">
+    <h2>Your Orders</h2>
+    <div *ngIf="orders.length === 0">
+        <p>You have no orders.</p>
+    </div>
+    <div *ngIf="orders.length > 0" class="row">
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+                    <th>Order ID</th>
+                    <th>Order Details</th>
+                    <th>Order Date</th>
+                    <th>Total Price</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody class="table-body">
+                <tr *ngFor="let order of pagedOrders">
+                    <td>{{ order.order_ID }}</td>
+                    <td>
+                        <div *ngFor="let line of order.orderLines">
+                            <p>{{ line.product_Name }} ({{ line.quantity }} x {{ line.unit_Price | currency: 'R ' }})</p>
+                        </div>
+                    </td>
+                    <td>{{ order.order_Date | date }}</td>
+                    <td>{{ order.total_Price | currency: 'R ' }}</td>
+                    <td>
+                        <ng-container [ngSwitch]="order.order_Status_ID">
+                            <span *ngSwitchCase="1">Ready for Collection</span>
+                            <span *ngSwitchCase="2">Overdue for Collection</span>
+                            <span *ngSwitchCase="3">Collected</span>
+                            <span *ngSwitchCase="4">Late Collection</span>
+                            <span *ngSwitchDefault>Unknown</span>
+                        </ng-container>
+                    </td>
+                    <td>
+                      <button class="btn btn-info btn-sm" style="margin: 5px;" (click)="openOrderModal(order)">
+                        <i class="fa fa-eye"></i> View
+                      </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Bootstrap Pagination -->
+        <nav aria-label="Order pagination">
+            <ul class="pagination">
+            <li class="page-item" [class.disabled]="page === 1">
+                <a class="page-link" href="#" (click)="onPageChange($event, page - 1)">Previous</a>
+            </li>
+            <li *ngFor="let p of pages" class="page-item" [class.active]="page === p">
+                <a class="page-link" href="#" (click)="onPageChange($event, p)">{{ p }}</a>
+            </li>
+            <li class="page-item" [class.disabled]="page === totalPages">
+                <a class="page-link" href="#" (click)="onPageChange($event, page + 1)">Next</a>
+            </li>
+            </ul>
+        </nav>
+  
+    </div>
+</div>
+
+<!-- Order Modal -->
+<div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" style="text-align: center;">
+        <div class="modal-header">
+          <h5 class="modal-title" id="orderModalLabel"><strong>Order Details</strong></h5>
+        </div>
+        <div class="modal-body">
+          <p><strong>Order ID:</strong> {{ selectedOrder?.order_ID }}</p>
+          <p><strong>Order Date:</strong> {{ selectedOrder?.order_Date | date:'short'}}</p>
+          <p><strong>Total Price:</strong> {{ selectedOrder?.total_Price | currency: 'R ' }}</p>
+          <div *ngIf="selectedOrder">
+            <strong>Order Items:</strong>
+            <ul>
+              <li *ngFor="let line of selectedOrder.orderLines">
+                {{ line.product_Name }} - {{ line.quantity }} x {{ line.unit_Price | currency: 'R ' }}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeOrderModal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

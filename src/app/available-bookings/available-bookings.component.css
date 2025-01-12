@@ -1,0 +1,74 @@
+body {
+  font-family: 'Arial', sans-serif;
+}
+
+.gap-container {
+  height: 60px; /* Adjust as needed */
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  margin: 20px 0;
+}
+
+.back-icon {
+  font-size: 2rem;
+  cursor: pointer;
+  margin-left: 20px;
+  margin-right: 20px;
+ 
+}
+.navigation .top-buttons {
+  display: flex;
+  justify-content: space-between; /* Aligns the items to the ends of the flex container */
+  align-items: center; /* Vertically centers the items */
+  padding: 10px; /* Optional: adds some padding around the buttons */
+}
+
+.navbar-brand {
+  margin-left: auto; /* Pushes the help button to the right */
+  margin-right: 20px;
+}
+
+.lesson-plan-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px; /* Space between cards */
+  margin-top: 15px;
+}
+
+.lesson-plan-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px; /* Fixed width for cards */
+  padding: 20px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.lesson-plan-card:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+.lesson-plan-header {
+  margin-bottom: 20px;
+  min-height: 80px; /* Fixed height for the header section */
+}
+
+.lesson-plan-header h3 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.card-footer {
+  text-align: right; /* Align button to the right */
+}
+
+.card-footer button {
+  width: 100%; /* Full width button */
+}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVS Fitness Dashboard</title>
+
+</head>
+<body>
+  
+    <div class="dashboard-container"> 
+        <i class="bi bi-arrow-left-circle header-icon" routerLink="/gym-manager"></i>
+        <div  class="header-search-container">
+     
+      <h1 class="header-title">AVS Fitness</h1>  
+      <a class="navbar-brand" href="#" data-bs-toggle="modal" data-bs-target="#helpModal">
+        <i class="bi bi-info-circle-fill"> Help</i>
+      </a>
+      
+      
+        </div>
+        <button class="report-button" (click)="open()">Generate Report</button>
+        
+        <div class="dashboard-links">
+            <a id="weekLink" 
+               (click)="filterData('week')" 
+               [ngClass]="{'active-link': currentFilter === 'week'}">Week</a>
+            <a id="dayLink" 
+               (click)="filterData('day')" 
+               [ngClass]="{'active-link': currentFilter === 'day'}">Day</a>
+            <a id="monthLink" 
+               (click)="filterData('month')" 
+               [ngClass]="{'active-link': currentFilter === 'month'}">Month</a>
+          </div>
+      
+        <div class="dashboard-sections">
+          <div class="dashboard-section">
+              <mat-card>
+                  <mat-card-header>
+                      <mat-card-title>Number of Sales</mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content>
+                      <div >
+                          <div id="numberOfSales">{{ salesCount }} 
+                              <!-- <span [ngClass]="{
+                                  'percentage-black': data.percentageChange === 0,
+                                  'percentage-green': data.percentageChange > 10,
+                                  'percentage-orange': data.percentageChange >= 1 && data.percentageChange <= 9,
+                                  'percentage-red': data.percentageChange < 0
+                              }">
+                                  ({{ data.percentageChange }}%) 
+                              </span> -->
+                          </div>
+                      </div>
+                  </mat-card-content>
+              </mat-card>
+          </div>
+          
+          <div class="dashboard-section">
+              <mat-card>
+                  <mat-card-header>
+                      <mat-card-title>No. of New Subscriptions</mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content>
+                      <div >
+                          <div id="numberOfSubscriptions">{{ subscriptionsCount }} 
+                              <!-- <span [ngClass]="{
+                                  'percentage-black': data.percentageChange === 0,
+                                  'percentage-green': data.percentageChange > 10,
+                                  'percentage-orange': data.percentageChange >= 1 && data.percentageChange <= 9,
+                                  'percentage-red': data.percentageChange < 0
+                              }">
+                                  ({{ data.percentageChange }}%) 
+                              </span> -->
+                          </div>
+                      </div>
+                  </mat-card-content>
+              </mat-card>
+          </div>
+      
+          <div class="dashboard-section">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Top Five Members</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div *ngFor="let member of topMembers">
+                        <p>{{ member.name }} {{ member.surname }} - {{ member.bookingsCount }} bookings</p>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+      
+    </div>
+  </div>
+  <div class="dashboard-section">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Top Five Products</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <canvas id="popularProductsChart"></canvas>
+        </mat-card-content>
+    </mat-card>
+</div>
+        
+        
+
+    <div class="blur-background" *ngIf="showModal || showModal2"></div>
+
+    <div class="dash-modal-container" *ngIf="showModal">
+        <h2>Report Type:</h2>
+        <select [(ngModel)]="reportFilter"  (change)="onReportFilterChange()"required>
+            <option>Member</option>
+            <option>Financial</option>
+            <option>Booking</option>
+            <option>Sales</option>
+            <option>Inspection</option>
+            <option>Inventory</option>
+            <option>Audit Trail</option>
+        </select>
+
+        <div class="dash-modal-buttons">
+            <button *ngIf="needFilter" id="generate"  [disabled]="!reportFilter"  (click)="continueToSecondModal()">Continue</button>
+            <button *ngIf="!needFilter" id="generate"  [disabled]="!reportFilter"  (click)="generateReport(' ')">Generate Report</button>
+            <button id="close" (click)="close()">Close</button>
+        </div>
+    </div>
+
+    <div class="dash-modal-container" *ngIf="showModal2">
+        <h2>{{reportFilter}} Report Period:</h2>
+        <select [(ngModel)]="graphFilter" required>
+            <option>One Month</option>
+            <option>Three Months</option>
+            <option>Six Months</option>
+            <option>Year</option>
+        </select>
+
+        <div class="dash-modal-buttons">
+            <button id="generate" [disabled]="!graphFilter" (click)="generateReport(graphFilter)">Generate Report</button>
+            <button id="close" (click)="close()">Close</button>
+        </div>
+    </div>
+
+ 
+  
+  
+<!-- help-modal.component.html -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h5 class="modal-title mx-auto" id="helpModalLabel">Help Guide</h5>
+          <div class="search-bar-container">
+            <input type="text" class="form-control search-bar" placeholder="Search help" [(ngModel)]="searchTerm" (input)="filterHelpContent()">
+          </div>
+        </div>
+        <div class="modal-body">
+          <div *ngFor="let item of filteredContent">
+            <h5>{{ item.title }}</h5>
+            <p [innerHTML]="item.content"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

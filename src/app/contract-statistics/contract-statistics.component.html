@@ -1,0 +1,54 @@
+<app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+<app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+<div class="gap-container"></div>
+<div class="gym-manager-container">
+  <app-contract-dropdown-nav></app-contract-dropdown-nav>
+    <div class="content" style="margin-left:300px">  
+      <i class="bi bi-arrow-left-circle back-icon" (click)="goBack()"></i>  
+      <div class="header">
+        
+        <h1>Membership Statistics <i class="bi bi-info-circle" (click)="toggleInfoModal()"></i>
+          
+          </h1>
+        <div class="welcome-text">Welcome Back</div>
+      </div>
+      <div class="menu-container">
+        <div class="row">
+          <div class="col-12 text-center">
+            <button class="btn btn-primary" (click)="toggleStatistics()">View Statistics</button><p></p> 
+            <button class="btn btn-secondary" (click)="exportMembers()">Export Members to JSON</button>
+          </div>
+        </div>
+        <div *ngIf="showStatistics" class="row statistics-cards">
+          <div class="col-md-4" *ngFor="let stat of statistics">
+            <div class="card text-center">
+              <div class="card-header">Active Memberships</div>
+              <div class="card-body">
+                <h5 class="card-title">{{ getContractTypeName(stat.contractTypeId) }} Plan</h5>
+                <p class="card-text display-4">{{ stat.memberCount }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ <!-- Modal -->
+<div class="modal" tabindex="-1" [ngClass]="{'show': showStatsModal}" [ngStyle]="{'display': showStatsModal ? 'block' : 'none'}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Help - Information</h5>
+      </div>
+      <div class="modal-body">
+        <p>Contract statistics is a hub where you can view the number of members subscribed per contract type. Click "View Statistics" to toggle the display for the statistics to show.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="toggleInfoModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  

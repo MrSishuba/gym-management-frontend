@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="header" style="background-color: #111; color: white;">
+    <div class="logo-container">
+        <i class="bi bi-dumbbell dumbbell-icon" style="color: #B08F26; font-size: 2.5em;"></i> <!-- Bootstrap icon for Dumbbell -->
+        <h1 class="title" style="color: #B08F26; font-size: 2.5em; font-family: 'Arial Black', Arial, sans-serif;">AV Motion</h1>
+    </div>
+    <nav class="nav">
+        <ul>
+            <li><a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a></li>
+            <li><a class="nav-link" routerLink="/contract" routerLinkActive="active">Getting Started</a></li>
+            <li><a class="nav-link" routerLink="/affiliations" routerLinkActive="active">Affiliations & Outreach</a></li>
+            <li><a class="nav-link" routerLink="/product-list" routerLinkActive="active">AV Merch</a></li>
+            <li><a class="nav-link" routerLink="/available-bookings" routerLinkActive="active">Book Online</a></li>
+            <li><a class="nav-link" routerLink="/survey">Community Feedback</a></li>
+        </ul>
+    </nav>
+</div>
+
+<main style="background-color: #111; color: white;">
+    <section class="hero" style="background-color: #111; color: white;">
+        <div class="hero-content">
+            <h2 class="title-large" style="color: #B08F26; font-size: 3em;">AVS Fitness</h2>
+            <p class="slogan" style="color: #B08F26; font-size: 1.5em;">Achieve Your Best Self</p>
+        </div>
+        <img src="assets/images/promo1.jpg" alt="Promo" class="promo-img">
+        <img src="assets/images/Aman.jpg" alt="Aman" class="aman-img">
+        <img src="assets/gifs/strongjohn.gif" alt="Gym Gif" class="gif-left">
+    </section>
+
+    <section class="showcase" style="background-color: #111; color: white;">
+        <h2>Equipment & Clothing Showcase</h2><br>
+        <div class="showcase-images">
+            <div class="row">
+                <img src="assets/images/clothing1.jpeg" alt="Equipment 1">
+                <img src="assets/images/clothing2.jpeg" alt="Equipment 2">
+                <img src="assets/images/clothing4.jpeg" alt="Equipment 3">
+            </div><br>
+            <div class="row" *ngIf="showMore">
+                <img src="assets/images/clothing3.jpeg" alt="Equipment 4">
+                <img src="assets/images/clothing6.jpeg" alt="Equipment 5">
+                <img src="assets/images/clothing7.jpeg" alt="Equipment 6">
+            </div> <br>
+            <div class="row" *ngIf="showMore">
+                <img src="assets/images/gear2.jpg" alt="Equipment 7">
+                <img src="assets/images/gear1.jpg" alt="Equipment 8">
+                <img src="assets/images/gear 5.jpg" alt="Equipment 9">
+            </div>
+            <button (click)="toggleShowMore()" id="show-more">{{ showMore ? 'Show Less' : 'Show More' }}</button>
+        </div>
+    </section>
+
+   <!-- About Us Modal -->
+<div *ngIf="isAboutUsModalVisible" class="modal" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+        <span class="close" (click)="closeModal()">&times;</span>
+        <h2>About AVS Fitness Gym</h2>
+        <p>AVS is dedicated to providing top-notch fitness services and fostering a strong community of fitness enthusiasts.
+            AVS Fitness Gym, founded in 2017 by Audrin Van Schoor, is more than just a gym—it's a beacon of resilience, dedication, and community. Nestled in the heart of Montana Park, Pretoria, AVS Fitness began as a modest venture, driven by Audrin’s lifelong passion for fitness and his desire to create a space where people could achieve their health and wellness goals.
+
+                Early Beginnings (2017-2019)
+                When Audrin Van Schoor opened the doors of AVS Fitness in 2017, his vision was clear: to provide top-notch fitness services that catered to both novices and seasoned athletes. The gym started small, focusing on personalized training sessions and a limited array of fitness classes. Word of mouth quickly spread, and AVS Fitness became known for its welcoming atmosphere, professional staff, and the genuine care Audrin showed for each member's fitness journey.
+                <br> <br> <br>
+                The Pandemic Pivot (2020)
+                The year 2020 marked a turning point for AVS Fitness, as it did for many businesses worldwide. With the onset of the COVID-19 pandemic, traditional ways of operating a gym were challenged. As lockdowns were enforced and public health became a priority, many fitness enthusiasts found themselves cut off from their regular exercise routines. Recognizing the critical importance of maintaining physical and mental health during these trying times, Audrin saw an opportunity to adapt and innovate.
+                In response to the pandemic, AVS Fitness transitioned into a hybrid model, offering both in-person sessions with strict health protocols and a robust online platform. This pivot allowed the gym to not only survive the economic challenges brought by the pandemic but to thrive as a community hub where members could stay connected and motivated, even from their own homes. Audrin’s leadership during this period solidified AVS Fitness’s reputation as a forward-thinking and resilient fitness establishment.
+                <br> <br> <br>
+                Expansion and Growth (2024-Present)
+                As the world began to adapt to the new normal, so too did AVS Fitness. The gym emerged from the pandemic stronger, with a broader vision and a more extensive community. In 2021, AVS Fitness expanded its facilities in Montana Park, adding state-of-the-art equipment, new fitness programs, and wellness services like nutritional counseling and mental health workshops. The focus was no longer just on physical fitness but on holistic well-being.
+                Under Audrin's guidance, AVS Fitness became a cornerstone of the Montana Park community, hosting events, fitness challenges, and charity drives, all aimed at fostering a sense of belonging and mutual support. The gym’s commitment to its members and the broader community has made it a beloved institution in Pretoria.
+                <br> <br> <br>
+                Looking Ahead
+                Today, AVS Fitness Gym is more than just a place to work out; it's a community where people come together to improve their lives, support one another, and celebrate their achievements. With a membership base that continues to grow, AVS Fitness remains dedicated to providing exceptional fitness services and fostering a strong, supportive community of fitness enthusiasts.
+                As Audrin Van Schoor looks to the future, his vision for AVS Fitness continues to evolve. Plans are underway for further expansion, including additional locations and innovative fitness programs designed to meet the needs of an ever-changing world. Through it all, the core values of AVS Fitness—dedication, community, and resilience—remain unchanged, guiding every decision and ensuring that the gym will continue to thrive for years to come.
+        </p>
+    </div>
+</div>
+
+<!-- Our Community Modal -->
+<div *ngIf="isCommunityModalVisible" class="modal" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+        <span class="close" (click)="closeModal()">&times;</span>
+        <h2>Our Community</h2>
+        <p>Join our community of like-minded individuals who are passionate about fitness and wellness.
+            Join the ranks of our AV-Army—a community of driven individuals united by their passion for fitness, wellness, and growth. Here at AVS Fitness, we believe in more than just working out; we believe in building each other up, pushing beyond our limits, and achieving goals that once seemed impossible. Together, as AVisionaries, we hold each other accountable, ensuring that no one walks this journey alone. With AV Motion guiding our steps, we move forward at one pace, one heartbeat, driven by the shared vision of a healthier, stronger future.
+Whether you’re a seasoned athlete or just starting your fitness journey, as an AVisionary, you’re part of a tribe that celebrates every victory, supports you through every challenge, and never lets you fall behind. At AVS Fitness, we walk together, move together, and grow together, united in our motion towards greatness. Welcome to a community where every step counts, and every member is a vital part of our collective success.
+<br><br><br>
+Our vision extends beyond individual fitness goals. We are dedicated to fostering a culture of continuous improvement and growth, both for our members and within our community. We regularly update our programs, introduce new fitness trends, and host workshops and events that enrich our members’ experiences and knowledge. Our goal is to provide a space where you can explore new fitness interests, develop new skills, and connect with others who share your passion for health and wellness.
+
+At AVS Fitness, you are not just a member; you are a vital part of a thriving community that values and supports you. Our collective strength and commitment to each other’s success make us more than just a fitness center—we are a movement dedicated to achieving greatness together. Join us, and experience the transformative power of community and personal growth.
+<br><br><br>
+Our community events, group challenges, and team-based activities are designed to strengthen these bonds, creating an environment where everyone feels valued and supported. We celebrate each other’s milestones, big and small, because we know that every achievement is a step forward for all of us. Whether it’s the thrill of completing your first 5K, the pride of lifting heavier weights, or the satisfaction of mastering a new yoga pose, these moments are shared, and they inspire others to push beyond their own perceived limits.
+
+In the end, AVS Fitness is more than just a gym—it’s a movement. A movement where each member is encouraged to reach for their dreams, knowing they have a community behind them every step of the way. Together, we create an environment where dreams are realized, goals are achieved, and lives are transformed. We move as one, we grow as one, and we achieve as one—because at AVS Fitness, greatness is a collective journey, and no one is left behind.
+        </p>
+    </div>
+</div>
+
+<section class="about-us" style="background-color: #111; color: white;">
+    <h2 style="float:right">About Us <i class="bi bi-info-circle info-icon" (click)="openModal('about')"></i></h2>
+    <br><br>
+    <div class="content">
+        <div class="about-text">
+            <h3>Who we are</h3>
+            <p>At AVS Fitness, we are driven by the belief that no goal is too big when we stand united. Our philosophy is built on the idea that individual success is magnified when achieved within a supportive and encouraging community. From the moment you step through our doors, you become part of a family that is committed not only to personal growth but to the collective progress of every member.</p>
+            <div *ngIf="showMoreAboutUs">
+                <p>Our team of certified trainers is here to guide you every step of the way, ensuring that you stay motivated and achieve the results you desire. We believe in creating a supportive and inclusive environment where everyone feels welcome.
+                    Our team of certified trainers is the cornerstone of our commitment to your fitness journey. Each trainer brings a wealth of experience, expertise, and passion to their role, ensuring that you receive personalized guidance tailored to your specific needs and goals. Our trainers are not just fitness experts; they are mentors and motivators who take the time to understand your aspirations and craft a plan that aligns with them. Their dedication goes beyond the gym floor—they are here to inspire, educate, and support you, helping you stay motivated and on track to achieve the results you desire.
+At AVS Fitness, inclusivity is at the heart of everything we do. We believe that fitness is for everyone, regardless of age, background, or fitness level. Our facility is designed to be welcoming and accessible, with state-of-the-art equipment and a variety of programs that cater to diverse needs. We celebrate diversity and encourage members from all walks of life to join us on their fitness journey. Our staff is trained to create a supportive atmosphere where everyone feels comfortable and confident, and where every achievement is recognized and celebrated.
+                </p>
+            </div>
+            <button id="load-more" (click)="toggleShowMoreAboutUs()">{{ showMoreAboutUs ? 'Show Less' : 'Read More' }}</button>
+        </div>
+        <img src="assets/images/aud.jpg" alt="About Us" style="float:right;margin-right:-170px">
+    </div>
+</section>
+
+<section class="about-us" style="background-color: #111; color: white;">
+    <h2>Our Community <i class="bi bi-info-circle info-icon" (click)="openModal('community')"></i></h2>
+    <div class="content" style="display: flex; align-items: center;">
+        <img src="assets/images/boxer.jpg" alt="About Us" style="flex: 1; max-width: 50%; height: auto;">
+        <div class="about-text" style="flex: 1; padding-left: 20px;">
+            <h3>Connected by Purpose</h3>
+            <p>Join our community of like-minded individuals who are passionate about fitness and wellness.At AVS Fitness, we believe that no goal is too big when we work together. Our community thrives on building each other up, holding one another accountable, and pushing beyond limits to reach new heights. With AV Motion, we move as one, ensuring no one gets left behind on their journey to greatness.</p>
+            <div *ngIf="showMoreCommunity">
+                <p>At AVS Fitness, we are driven by the belief that no goal is too big when we stand united. Our philosophy is built on the idea that individual success is magnified when achieved within a supportive and encouraging community. From the moment you step through our doors, you become part of a family that is committed not only to personal growth but to the collective progress of every member.
+
+                    We understand that the journey to fitness and wellness is not always easy. It’s a path filled with challenges, setbacks, and moments of doubt. But at AVS Fitness, you never walk that path alone. Our community thrives on mutual support, with each member playing an integral role in lifting others up. Whether you’re taking your first steps towards a healthier lifestyle or you’re a seasoned athlete pushing towards new personal records, there’s always someone by your side, cheering you on and celebrating your victories.
+                    
+                    Accountability is one of the pillars of our community. We believe that holding one another accountable is not just about pushing each other harder, but about fostering a deep sense of responsibility and commitment to one another. When you join AVS Fitness, you’re making a promise—not just to yourself, but to everyone around you—that you will show up, give your best, and encourage others to do the same. This shared commitment creates a powerful bond, transforming individual efforts into collective strength.</p>
+            </div>
+            <button id="load-more" (click)="toggleShowMoreCommunity()">{{ showMoreCommunity ? 'Show Less' : 'Read More' }}</button>
+        </div>
+    </div>
+</section>
+
+
+    <section class="workout-videos" style="background-color: #111; color: white;">
+        <h2>You Don't Stop When You're Tired, You Stop When You're Done</h2><br>
+        <div class="video">
+            <video src="assets/videos/FinalGymVideoLS.mp4" controls></video>
+        </div>
+    </section>
+
+    <section class="join-us">
+        <h2>Join Us Online <i class="bi bi-person-plus join-icon"></i></h2>
+        <div class="carousel">
+          <button class="prev" (click)="prevSlide()">❮</button>
+          <div class="carousel-images">
+            <img *ngFor="let image of images" [src]="image" alt="Carousel Image">
+          </div>
+          <button class="next" (click)="nextSlide()">❯</button>
+        </div>
+      </section>
+</main>
+<hr>
+<footer class="footer" style="background-color: #111; color: white;">
+    <div class="footer-section">
+        <h3>Contact Us<i class="bi bi-telephone"></i></h3>
+        <p>Email: audrin.vanschoor&#64;gmail.com</p>
+        <p>Phone: +078 397 5971</p>
+    </div>
+    <div class="footer-section">
+        <h3>Address<i class="bi bi-geo-alt"></i></h3>
+        <p>5 Calliiandra St,<br> Montana Park, Pretoria, 0182</p>
+    </div>
+
+    <div class="footer-section">
+        <p class="assistant-text">Click here to open Virtual Assistant</p>
+        <h3 (click)="toggleChat()" class="virtual-assistant">
+          Virtual Assistant <i class="bi bi-chat-right-dots"></i>
+        </h3>
+        <p>Need help?<br> Ask Wathemba for anything</p>
+      
+        <!-- Chatbot mobile frame (hidden initially) -->
+        <div class="chat-frame" *ngIf="showChat" >
+          <div class="iphone-frame"style="border-radius:8px">
+            <div class="chat-header">
+              <p>Virtual Assistant</p>
+              
+                <i class="bi bi-dash" (click)="toggleChat()"></i>
+              
+            </div>
+      
+            <!-- Time and Top Icons -->
+            <div class="top-bar">
+                <div class="time">{{ currentTime }}</div>
+              <div class="search-bar">
+                <i class="bi bi-bell-fill"></i>
+                <input type="text" placeholder="Search..." />
+                <i class="bi bi-three-dots-vertical"></i>
+              </div>
+              <div class="top-icons" style="color: black">
+                <i class="bi bi-bluetooth"></i>
+                <i class="bi bi-wifi"></i>
+                <i class="bi bi-battery-full"></i>
+              </div>
+            </div>
+      
+            <!-- Dark/Light Mode Toggle -->
+            <div class="mode-toggle">
+              <input type="checkbox" id="toggle-dark-mode" (click)="toggleDarkMode()" />
+              <label for="toggle-dark-mode" class="toggle-label">
+                <span class="slider"></span>
+              </label>
+            </div>
+      
+            <!-- Chat Container -->
+            <div class="chat-container">
+              <app-chat></app-chat>
+            </div>
+      
+            <!-- Simulated iPhone Footer with icons -->
+            <hr class="footer-divider" />
+            <div class="chat-footer" style="color: black">
+              <i class="bi bi-list"></i>
+              <i class="bi bi-app"></i>
+              <i class="bi bi-chevron-left"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+    
+    <!-- <div class="footer-section">
+        <h3>Virtual Assistant  <i class="bi bi-chat-right-dots"></i></h3>
+        <p>Need help?,<br> Ask Wathemba for anything</p>
+    </div> -->
+    <div class="footer-section">
+        <h3>Start Free Trial Today</h3>
+        <form [formGroup]="emailForm" (ngSubmit)="onSubmitEmail()">
+          <div class="form-group">
+            <input type="email" formControlName="email" placeholder="Enter Your Email">
+            <div *ngIf="emailForm.controls['email'].invalid && (emailForm.controls['email'].dirty || emailForm.controls['email'].touched)" class="text-danger">
+              <div *ngIf="emailForm.controls['email'].errors?.['required']">Email is required.</div>
+              <div *ngIf="emailForm.controls['email'].errors?.['email']">Invalid email address.</div>
+              <div *ngIf="emailForm.controls['email'].errors?.['invalidDomain']">Email domain is not valid.</div>
+            </div>
+          </div>
+          <button type="submit">Send Code</button>
+        </form>
+      </div>
+    <hr>
+    <div class="legal">
+        <p>&copy; 2024 AV Motion. All rights reserved.</p>
+    </div>
+    <hr>
+</footer>
+</html>

@@ -1,0 +1,122 @@
+<nav class="navbar navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+      <a class="navbar-brand text-white" href="#">
+        AVS FITNESS <i class="bi bi-tv ms-2"></i>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+          <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">AV Motion</h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+              <ul class="navbar-nav">
+                  <li class="nav-item">
+                      <a class="nav-link"  routerLink="/'Home/:id'" routerLinkActive="active">
+                          <i class="bi bi-house"></i> Home
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" routerLink="/available-bookings" routerLinkActive="active">
+                          <i class="bi bi-calendar3"></i> Bookings
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" routerLink="/product-list" routerLinkActive="active">
+                          <i class="bi bi-cart"></i> AV Merch
+                      </a>
+                  </li>
+                  <!-- <li class="nav-item">
+                      <a class="nav-link" routerLink="/CommunityMemberPage" routerLinkActive="active">
+                          <i class="bi bi-chat-left-dots"></i> Wellness Community
+                      </a>
+                  </li> -->
+              </ul>
+          </div>
+          <hr class="custom-hr">
+          <div class="nav-footer">
+              <ul class="navbar-nav mt-auto">
+                  <li class="nav-item">
+                      <a class="nav-link special-nav-link" (click)="navToProfile()" routerLink="/ProfilePage" routerLinkActive="active">
+                          <i class="bi bi-person-circle"></i> Profile
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                       <a class="nav-link" routerLink="/member-help-page" routerLinkActive="active">
+                          <i class="bi bi-question-circle"></i> Help
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link special-nav-link" routerLink="/login" (click)="logout()">
+                          <i class="bi bi-box-arrow-right"></i> Log out
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </div>
+</nav>
+<!-- Modal Structure
+<div class="modal" id="modalHelp" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="helpModalLabel">AVS Fitness Gym System Help Guide</h5>
+        </div>
+        <div class="modal-body">
+          <div class="search-bar">
+          </div>
+          <div class="help-content">
+          <h2>Information and User System Facilities</h2>
+          Home Section
+          <h3 id="home"><strong>Home</strong></h3>
+          <p>Welcome to AVS Fitness Home. This is the landing page for all Members. It provides general information focused on 
+            promotion of community wellness, health and promotional material that cateres towards informing and helping members feel at home on the platform
+          </p>
+          <ul>
+            <li>Click the "Read More" buttons to expand the paragraph text information.</li>
+          </ul>
+
+          Booking Manager Section
+          <h3 id="#"><strong>Bookings</strong></h3>
+          <p>Bookings tab: Navigate through this interface and find availible lesson plans to choose from, subsrcribed members  have the ability to place booking to attend classes at the Gym Studio  
+          </p>
+          <ul>
+            <li><strong>Workouts:</strong>Use the create buttons and subsequent forms to create new workouts or lesson plans. use control buttons and click on them to start creating, updating, viewing, and deleting booking information</li>
+            <li><strong>Lesson Plans:</strong>Lesson plans are comprised of workouts, so always create new workouts first.</li>
+            <li><strong>Bookings:</strong>Bookings are where lesson plans will need created booking slots for members to book. Attendance lists can be generated in PDF format.</li>
+          </ul>
+
+          Av Merch Section
+          <h3 id="#"><strong>AV Merch</strong></h3>
+          <p>This interface is primarily concerned with browsing AVS Fitness Merchandise  and purchasing products</p>
+          <ul>
+            <li><strong>What Can I Do?</strong>Click into the "AV Merch" tab and browse all availibe merchadise. Add items to your cart or wishlist and use the intergated paygate to complete your orders</li>
+            <li><strong>Recieving Orders</strong>Once ordered successfully make sure to check your profile. Go to orders to view orders and make sure to collect in person  at the gym in person there are no deliveries.</li>
+            <li><strong>Late Collections</strong>Make sure to collect within a 7 day period.</li>
+          </ul>
+
+         Av Merch Section
+          <h3 id="#"><strong>Profile</strong></h3>
+          <p>This interface is primarily concerned with managing yourself and your details</p>
+          <ul>
+            <li><strong>Updating Personal Details</strong>If any of your basic user deatils require a change naviagte to your profile and click the edit button , change your details and save them.</li>
+            <li><strong>Late Collections</strong>Make sure to collect within a 7 day period.</li>
+            <li><strong>Contract Management</strong>Navigate to membership management and click the download button to get a copy of your signed contract</li>
+            <li><strong>Terminating Your Subscription</strong>If you are unhappy or any issues necessitates you terminate your contract navigate to membership management and follow the step by step process to complete this action </li>
+          </ul>
+
+              FAQs Section
+              <h3 id="faq"><strong>Frequently Asked Questions (FAQs)</strong></h3>
+              <ul>
+                <li><strong>How do I navigate the AVS Fitness system?</strong> Use the main menu to access different sections such as Home, Bookings, AV Merch, etc.</li>
+                <li><strong>What if I encounter an issue?</strong> Contact system support or refer to this help guide for assistance.</li>
+                <li><strong>How do I get in Contact With An Assistant?</strong> Call: 012 122 2456 Email: AVSFitness&#64;com</li>
+              </ul>
+            </div>
+      </div>
+    </div>
+  </div>
+</div> -->

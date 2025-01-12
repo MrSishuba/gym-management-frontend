@@ -1,0 +1,40 @@
+<div class="page-container">
+<app-side-nav-bar></app-side-nav-bar>
+<div style="margin-top: 40px"></div> <!-- Adjusted margin for spacing -->
+  
+  <section class="hero-section">
+    <img src="assets/images/yessir.jpg" alt="Work Ethics" class="hero-image">
+    <div class="hero-content" style="color: #B08F26">
+      <h1>Work Ethics Programme</h1>
+      <p>Learn how we uphold the highest standards in the workplace.</p>
+    </div>
+  </section>
+
+  <section class="ethics-content" style="margin-left:10px">
+    <h2>
+        <i class="bi bi-arrow-left-circle" (click)="goBackToEmployeeHome()"></i>    
+        Commitment to Ethical Practices</h2>
+    <p>
+      At AVS Fitness, our work ethics program ensures that our employees are trained to provide the best service while adhering to ethical standards.
+    </p>
+    <ul>
+      <li>Transparency and honesty in all interactions</li>
+      <li>Professional behavior and attitude at all times</li>
+      <li>Commitment to continuous improvement</li>
+      <li>Respect for colleagues and clients</li>
+    </ul>
+    <button class="open-modal-btn" (click)="openModal()">Learn More</button>
+  </section>
+
+  <div *ngIf="showModal" class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <h2>Additional Work Ethics Resources</h2>
+      <p>See our work ethics guidelines and more details by reading the information below.</p>
+      <p>At AVS Fitness, our work ethics program is designed to cultivate a workplace culture that values integrity, professionalism, and respect. We believe that maintaining high ethical standards is essential to delivering the best service to our clients and creating a supportive and productive environment for our employees. Our guidelines emphasize transparency and honesty in all interactions, ensuring that every member of our team approaches their responsibilities with integrity and openness.</p>
+      <p>We also prioritize professional behavior and attitude, expecting employees to uphold a level of conduct that reflects positively on the company, whether they are dealing with clients, colleagues, or partners. This commitment to professionalism is coupled with a strong dedication to continuous improvement. We encourage our staff to engage in ongoing learning and development, staying current with industry trends and continuously refining their skills.</p>
+      <p>Additionally, respect for colleagues and clients is a cornerstone of our ethical framework. Every individual at AVS Fitness is expected to foster a respectful and inclusive environment, treating others with dignity and fairness. Our work ethics resources provide detailed guidelines and scenarios that help employees navigate challenges while maintaining these core values.</p>
+      <p>Additionally, respect for colleagues and clients is a cornerstone of our ethical framework. Every individual at AVS Fitness is expected to foster a respectful and inclusive environment, treating others with dignity and fairness. Our work ethics resources provide detailed guidelines and scenarios that help employees navigate challenges while maintaining these core values.</p>
+    </div>
+  </div>
+</div>

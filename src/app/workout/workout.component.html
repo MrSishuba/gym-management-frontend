@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+  <app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+  <div class="gap-container"></div>
+  <div class="header-search-container">
+    <i class="bi bi-arrow-left-circle header-icon" routerLink="/booking-manager"></i>
+    <h1 class="header-title">Workouts</h1>
+     <div class="help-buttons"></div>
+    <a class="navbar-brand" href="#" data-bs-toggle="modal" data-bs-target="#helpModal">
+      <i class="bi bi-info-circle-fill"> Help</i>
+    </a>
+  </div>
+  
+  <div class="workout-container">
+    <div class="content">
+      <input type="text" class="form-control mb-3" placeholder="Search Workout" [(ngModel)]="searchTerm" (input)="filterWorkout()">
+  
+      <a routerLink="/workout-category" class="btn btn-secondary mb-3">Workout Categories</a>
+      <button class="btn btn-primary mb-3" routerLink="/add-workout">Create Workout</button>
+     
+  
+      <table class="table table-hover table-centered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Sets</th>
+            <th>Reps</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let workout of filteredWorkouts">
+            <td>{{ workout.workout_Name }}</td>
+            <td>{{ workout.workoutCategory }}</td>
+            <td>{{ workout.workout_Description }}</td>
+            <td>{{ workout.sets }}</td>
+            <td>{{ workout.reps }}</td>
+            <td class="actions">
+              <button class="btn btn-info btn-sm" style="margin: 5px;" (click)="viewWorkout(workout.workout_ID)">
+                <i class="bi bi-eye-fill"></i> View
+              </button>
+              <button class="btn btn-warning btn-sm" style="margin: 5px;" [routerLink]="['/edit-workout', workout.workout_ID]">
+                <i class="bi bi-pencil-square"></i> Edit
+              </button>
+              <button class="btn btn-danger btn-sm" style="margin: 5px;" (click)="deleteWorkout(workout.workout_ID)">
+                <i class="bi bi-trash-fill"></i> Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+
+
+<div class="blur-background" *ngIf="showModal"></div>
+<div class="work-modal-container" *ngIf="showModal">
+  <h2>{{ workout.workout_Name }}</h2> <br>
+  <h3>Workout Description:</h3> 
+  <p>{{ workout.workout_Description }}</p>
+  <h4>Category:</h4>
+    <p>{{ workout.workoutCategory }}</p>
+  <div class="work-modal-buttons">
+    <button (click)="close()">Close</button>
+  </div>
+</div>
+
+
+  
+<!-- help-modal.component.html -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title mx-auto" id="helpModalLabel">Help Guide</h5>
+        <div class="search-bar-container">
+          <input type="text" class="form-control search-bar" placeholder="Search help" [(ngModel)]="searchTerm" (input)="filterHelpContent()">
+        </div>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let item of filteredContent">
+          <h5>{{ item.title }}</h5>
+          <p [innerHTML]="item.content"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</html>

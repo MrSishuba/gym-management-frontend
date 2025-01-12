@@ -1,0 +1,80 @@
+.report-container {
+  font-family: Arial, sans-serif;
+
+}
+
+.report-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.logo img{
+  float: left;
+}
+
+.report-details {
+  flex: 1;
+  text-align: center;
+}
+
+.report-title {
+  margin: 0;
+  font-size: 40px;
+  text-align: center; /* Centers the title */
+}
+.company-name {
+  margin: 0;
+  font-size: 30px;
+  text-align: center; /* Centers the title */
+}
+.total-summary {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.summary-card {
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 0 10px;
+  flex: 1;
+  text-align: center;
+}
+
+.category-section h4 {
+  font-size: 18px;
+  margin-top: 20px; /* Increase margin above category names */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 5px;
+  font-size: 14px;/* Adjusted font size for smaller column sizes */
+}
+
+.category-section th{
+  background-color: #f4f4f4;
+  text-align: left;
+}
+
+.subtotal-row {
+  text-align: left;
+  font-weight: bold;
+  margin-top: 10px;
+}

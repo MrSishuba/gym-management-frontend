@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<a class="navbar-brand" href="#" data-bs-toggle="modal" data-bs-target="#helpModal">
+    <i class="bi bi-info-circle-fill"> Help</i>
+  </a>
+<h2>Write-Off Inventory Item</h2>
+<div class="form-container">
+    <form #formCtrl="ngForm" [formGroup]="registerFormGroup">
+        <div class="form-group">
+            <label for="name">Item Name:</label>
+            <input type="text" id="name" name="name" value="{{inventory.itemName}}" size="36" class="form-input" disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Write-off Reason:</label>
+            <textarea id="description" name="description" [(ngModel)]="Write_Off_Reason" class="form-input " placeholder="e.g Items damaged, holes found in pants."  maxlength="250" required formControlName="reason"></textarea>
+
+            <div *ngIf="registerFormGroup.controls['reason'].invalid && (registerFormGroup.controls['reason'].dirty || registerFormGroup.controls['reason'].touched)" class="text-danger">
+                <div *ngIf="registerFormGroup.controls['reason'].errors?.['required']">Write-off reason is required.</div>
+                <div *ngIf="registerFormGroup.controls['reason'].errors?.['minlength']">Write-off reason must be at least 10 characters long.</div>
+                <div *ngIf="registerFormGroup.controls['reason'].errors?.['maxlength']">Write-off reason Name must be at most 250 characters long.</div>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label for="quantity">Write-off Quantity:</label>
+            <input type="number" id="quantity" name="quantity" [(ngModel)]="Write_Off_Quantity" class="form-input" min="1" max="{{inventory.quantity}}" required formControlName="quantity">
+
+            <div *ngIf="registerFormGroup.controls['quantity'].invalid && (registerFormGroup.controls['quantity'].dirty || registerFormGroup.controls['quantity'].touched)" class="text-danger">
+                <div *ngIf="registerFormGroup.controls['quantity'].errors?.['required']">Quantity is required.</div>
+                <div *ngIf="registerFormGroup.controls['quantity'].errors?.['minlength']">Quantity cannot be less than 1</div>
+                <div *ngIf="registerFormGroup.controls['quantity'].errors?.['maxlength']">Quantity cannot be greater than {{inventory.quantity}}</div>
+                </div>
+
+        </div>
+
+        <div class="buttons">
+            <button type="submit" [disabled]="!formCtrl.form.valid" (click)="addWriteOff(Write_Off_Reason, Write_Off_Quantity)" class="btn btn-primary">Add</button>
+            <button type="button" class="btn btn-cancel" routerLink="/inventory">Cancel</button>
+        </div> 
+    </form>
+
+    <!-- help-modal.component.html -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title mx-auto" id="helpModalLabel">Help Guide</h5>
+        <div class="search-bar-container">
+          <input type="text" class="form-control search-bar" placeholder="Search help" [(ngModel)]="searchTerm" (input)="filterHelpContent()">
+        </div>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let item of filteredContent">
+          <h5>{{ item.title }}</h5>
+          <p [innerHTML]="item.content"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</html>
+
+
+  

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Affiliations & Outreach - AV Motion</title>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="logo-container">
+            <i class="bi bi-dumbbell dumbbell-icon"></i>
+            <h1 class="title">AV Motion</h1>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a class="nav-link" routerLink="/landing-page">Home</a></li>
+                <li><a class="nav-link" routerLink="/login">Login</a></li>
+                <li><a class="nav-link active" routerLink="/affiliations">Affiliations & Outreach</a></li>
+                <li><a class="nav-link" routerLink="/product-list">AV Merch</a></li>
+                <li><a class="nav-link" routerLink="/available-bookings">Book Online</a></li>
+                <li><a class="nav-link" routerLink="/survey">Community Feedback</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h2>Our Affiliations & Outreach</h2>
+            <p>Building Stronger Communities Together</p>
+            <img src="assets/images/outreach-hero.jpg" alt="Outreach">
+        </section>
+
+        <!-- Affiliations Section -->
+        <section class="affiliations">
+            <h3>Our Trusted Affiliates</h3>
+            <p>Partnering with industry leaders to bring you the best.</p>
+            <div class="affiliations-container">
+                <img src="assets/images/affiliate1.png" alt="Affiliate 1">
+                <img src="assets/images/affiliate2.png" alt="Affiliate 2">
+                <img src="assets/images/affiliate3.jpg" alt="Affiliate 3">
+                <img src="assets/images/affiliate4.jpg" alt="Affiliate 4">
+            </div>
+        </section>
+
+        <!-- Outreach Section -->
+        <section class="outreach">
+            <h3>Outreach Programs</h3>
+            <p>Empowering communities through fitness and education.</p>
+            <div class="outreach-programs">
+                <div class="program-card" (click)="toggleModal('youthFitnessModal')">
+                    <h4>Youth Fitness Initiative</h4>
+                    <p>Engaging local youth in fitness activities to promote healthy lifestyles.</p>
+                </div>
+                <div class="program-card" (click)="toggleModal('communityHealthModal')">
+                    <h4>Community Health Workshops</h4>
+                    <p>Providing education on nutrition, mental health, and physical wellness.</p>
+                </div>
+                <div class="program-card" (click)="toggleModal('seniorFitnessModal')">
+                    <h4>Senior Fitness Support</h4>
+                    <p>Helping seniors stay active and healthy with tailored fitness programs.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modals -->
+        <div id="youthFitnessModal" class="modal">
+            <div class="modal-content">
+                <span class="close" (click)="toggleModal('youthFitnessModal')">&times;</span>
+                <h2>Youth Fitness Initiative</h2>
+                <p>Detailed information about the Youth Fitness Initiative program.</p>
+            </div>
+        </div>
+
+        <div id="communityHealthModal" class="modal">
+            <div class="modal-content">
+                <span class="close" (click)="toggleModal('communityHealthModal')">&times;</span>
+                <h2>Community Health Workshops</h2>
+                <p>Detailed information about the Community Health Workshops program.</p>
+            </div>
+        </div>
+
+        <div id="seniorFitnessModal" class="modal">
+            <div class="modal-content">
+                <span class="close" (click)="toggleModal('seniorFitnessModal')">&times;</span>
+                <h2>Senior Fitness Support</h2>
+                <p>Detailed information about the Senior Fitness Support program.</p>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <!-- <section class="cta">
+            <h3>Get Involved</h3>
+            <p style="color:Black">Join us in making a difference. Participate in our outreach programs or become an affiliate.</p>
+            <button (click)="toggleModal('learnMoreModal')">Learn More</button>
+        </section> -->
+
+        <!-- Call to Action -->
+        <section class="cta">
+            <h3>Get Involved</h3>
+            <p style="color:Black">
+                Join us in making a difference. Participate in our outreach programs or become an affiliate.
+            </p>
+            <button (click)="toggleModal('learnMoreModal')">Learn More</button>
+
+            <!-- New Survey Section -->
+            <h3 style="margin-top: 30px;">AVS Fitness Feedback</h3>
+            <p style="color:Black">
+                Scan the QR code and complete our survey. Help us improve as a gym and community!
+            </p>
+            <img src="assets/images/QR-Code.jpg" alt="QR Code for Survey" style="width: 300px; height: 400px;">
+        </section>
+
+        <!-- Learn More Modal -->
+        <div id="learnMoreModal" class="modal">
+            <div class="modal-content">
+                <span class="close" (click)="toggleModal('learnMoreModal')">&times;</span>
+                <h2>Get Involved</h2>
+                <p>Thank you for your interest in our outreach programs! At AV Motion, we believe in the power of community and the positive impact of fitness. By getting involved, you can help us:</p>
+                <ul>
+                    <li>Support local youth through our fitness initiatives.</li>
+                    <li>Provide educational workshops on health and wellness.</li>
+                    <li>Offer tailored fitness programs for seniors.</li>
+                    <li>Collaborate with industry leaders to expand our outreach.</li>
+                </ul>
+                <p>To learn more about how you can participate or become an affiliate, please contact us or visit our facility.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 AV Motion. All rights reserved.</p>
+        <nav>
+            <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+        </nav>
+    </footer>
+
+</body>
+</html>

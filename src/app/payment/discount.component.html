@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+<app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+  
+<div class="gap-container"></div>
+
+<div class="header-search-container">
+  <i class="bi bi-arrow-left-circle header-icon" (click)="goBack()"></i>
+  <h1 class="header-title">Manage Discount</h1>
+  <span class="help-icon-container">
+      <a class="navbar-brand help-icon" href="#" data-bs-toggle="modal" data-bs-target="#helpModal">
+          <i class="bi bi-info-circle-fill">Help</i>
+      </a>
+  </span>
+</div>
+
+<div class="discount-container">
+    <p><strong>Current Discount Code: </strong> {{discount?.discount_Code}}</p>
+    <p><strong>Current Discount Percentage: </strong> {{discount?.discount_Percentage}}%</p>
+    <p><strong>Start Date: </strong> {{discount?.discount_Date | date }}</p>
+    <p><strong>End Date: </strong> {{discount?.end_Date | date }}</p>
+    <button mat-raised-button color="primary" (click)="openEditModal()">Update Discount</button>
+</div>
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">Update Discount</h5>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="discountForm">
+                <div class="form-group">
+                  <label for="discount_Percentage">Discount Percentage</label>
+                  <input type="number" id="discount_Percentage" formControlName="discount_Percentage" class="form-control" name="discount_Percentage">
+                  <div *ngIf="discountForm.get('discount_Percentage')?.invalid && (discountForm.get('discount_Percentage')?.dirty || discountForm.get('discount_Percentage')?.touched)" class="text-danger">
+                    <div *ngIf="discountForm.get('discount_Percentage')?.errors?.['required']">Discount Percentage is required.</div>
+                    <div *ngIf="discountForm.get('discount_Percentage')?.errors?.['min']">Discount Percentage cannot be less than 0.</div>
+                    <div *ngIf="discountForm.get('discount_Percentage')?.errors?.['max']">Discount Percentage cannot be more than 100.</div>
+                  </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" (click)="updateDiscount()">Update</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- help-modal.component.html -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title mx-auto" id="helpModalLabel">Help Guide</h5>
+        <div class="search-bar-container">
+          <input type="text" class="form-control search-bar" placeholder="Search help" [(ngModel)]="searchTerm" (input)="filterHelpContent()">
+        </div>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let item of filteredContent">
+          <h5>{{ item.title }}</h5>
+          <p [innerHTML]="item.content"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</html>

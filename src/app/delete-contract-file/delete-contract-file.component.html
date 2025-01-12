@@ -1,0 +1,54 @@
+<div class="container">
+  <app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+  <app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+  <div style="margin-top: 20px"></div> <!-- Adjusted margin for spacing -->
+  <app-contract-dropdown-nav></app-contract-dropdown-nav>
+
+  <i class="bi bi-arrow-left-circle back-icon" (click)="goBack()"></i>
+  
+  <h2>Remove Contract File 
+    <i class="bi bi-info-circle" (click)="openHelpModal()" style="cursor: pointer;"></i>
+  </h2>
+  
+  <form [formGroup]="removeContractForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="Member_Name">Member Name</label>
+      <input type="text" id="Member_Name" formControlName="Member_Name" class="form-control" placeholder="Enter Member Name (e.g., John Doe)" />
+      <div *ngIf="removeContractForm.get('Member_Name')?.invalid && (removeContractForm.get('Member_Name')?.dirty || removeContractForm.get('Member_Name')?.touched)" class="text-danger">
+        Member Name is required
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="Password">Password</label>
+      <input type="password" id="Password" formControlName="Password" class="form-control" placeholder="Enter your password" />
+      <div *ngIf="removeContractForm.get('Password')?.invalid && (removeContractForm.get('Password')?.dirty || removeContractForm.get('Password')?.touched)" class="text-danger">
+        Password is required and must be at least 6 characters long
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Remove File</button>
+  </form>
+  
+  <p *ngIf="message">{{ message }}</p>
+
+<!-- Modal for help information -->
+<div class="modal" *ngIf="showHelpModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Help Information</h5>
+      </div>
+      <div class="modal-body">
+        <p>What to do if you uploaded an incorrect PDF document?</p>
+        <p><strong>Corrective Measure:</strong></p>
+        <ul>
+          <li>Enter the member's name and surname as (e.g., John Doe). If you do not do so in this required format this process will fail.</li>
+          <li>Enter the password given to you by the owner. If you do not know the password, ask the owner or a co-worker for this.</li>
+          <li>Once this is done, click "Remove Contract". The uploaded PDF will be removed, and you may then navigate to "Upload Contract" and upload the correct PDF.</li>
+        </ul>
+        <button  class="btn btn-secondary" (click)="closeHelpModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>

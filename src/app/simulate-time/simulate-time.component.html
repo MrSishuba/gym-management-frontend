@@ -1,0 +1,13 @@
+<div class="header-search-container">
+    <div style="margin-top: 40px"></div> <!-- Adjusted margin for spacing -->
+<app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+<app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+    <i class="bi bi-arrow-left-circle header-icon" (click)="goBack()"></i>
+</div>
+
+<div class="simulate-time-container">
+    <h2>Simulate Time</h2>
+    <label for="months">Months to Advance:</label>
+    <input id="months" type="number" [(ngModel)]="monthsToAdvance" min="1" />
+    <button (click)="simulateTime()">Simulate</button>
+</div>

@@ -1,0 +1,45 @@
+
+<div class="page-container">
+<app-side-nav-bar></app-side-nav-bar>
+<div style="margin-top: 40px"></div> <!-- Adjusted margin for spacing -->
+  <div class="back-button">
+   
+
+  </div>
+  <section class="hero-section">
+    <img src="assets/images/bdayGym.jpg" alt="Values System" class="hero-image">
+    <div class="hero-content" style="color: #B08F26">
+      <h1>Our Values System</h1>
+      <p>Explore the core values that guide AVS Fitness in delivering the best service and results.</p>
+    </div>
+  </section>
+
+  <section class="values-content" style="margin-left:10px">
+    <h2>
+        <i class="bi bi-arrow-left-circle" (click)="goBackToEmployeeHome()"></i>
+        Our Core Values</h2>
+    <p>
+      We believe in integrity, commitment, and growth. These values guide how we interact with our members and operate as a business.
+    </p>
+    <ul>
+      <li>Integrity in all business practices</li>
+      <li>Commitment to member satisfaction</li>
+      <li>Continuous personal and professional growth</li>
+      <li>Fostering a supportive community</li>
+    </ul>
+    <button class="open-modal-btn" (click)="openModal()">Learn More</button>
+  </section>
+
+  <div *ngIf="showModal" class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <h2>Additional Values System Information</h2>
+      <p>See our values system document for more in-depth information about our guiding principles.</p>
+      <p>At AVS Fitness, our core values are the foundation of everything we do. We believe that by adhering to these principles, we can create a positive impact not just within our team, but for every member who walks through our doors. Our commitment to these values is reflected in our daily operations, shaping our approach to business, client relationships, and internal culture.</p>
+      <p>We take pride in the value of integrity, ensuring that all business practices are conducted with transparency and honesty. Whether it's in our communication with clients, handling member inquiries, or making operational decisions, we strive to maintain a high level of ethical conduct. Integrity is at the heart of building trust with our members and our team.</p>
+      <p>In addition to integrity, commitment to member satisfaction drives us to go above and beyond. Our team is dedicated to ensuring that every member has a fulfilling experience at AVS Fitness, from personalized fitness plans to supportive customer service. This commitment means that we continuously evaluate our services to meet the evolving needs of our members.</p>
+      <p>Growth is another pillar of our values system. We are not only committed to the personal and professional development of our team members but also encourage our clients to embrace growth in their fitness journey. By fostering a culture of continuous improvement, we ensure that everyone involved with AVS Fitness has the tools and opportunities to thrive.</p>
+      <p>Finally, we emphasize the importance of fostering a supportive community. AVS Fitness is more than just a gym — it is a place where individuals come together, support one another, and work toward shared goals. We believe that a strong, positive community is key to creating lasting change and helping each person reach their full potential.</p>
+    </div>
+  </div>  
+</div>

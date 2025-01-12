@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="container-fluid">
+  <app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+  <app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+  <div style="margin-top: 80px"></div>
+  <div class="booking-manager-container">
+    <div class="header-search-container">
+
+      <div class="top-buttons">
+        <i class="bi bi-arrow-left-circle header-icon" (click)="goBack()"></i>
+      </div>
+      <h1 class="header-title">Booking Manager</h1>
+      <div class="help-button">
+        <a class="navbar-brand" href="#" data-bs-toggle="modal" data-bs-target="#helpModal">
+          <i class="bi bi-info-circle-fill"> Help</i>
+        </a>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="menu-container">
+        <div class="row">
+          <div class="col-6">
+            <label>
+              <span class="menu-item" routerLink="/workout">
+                <i class="bi bi-bicycle"></i>
+                <a>Workouts</a>
+              </span>
+            </label>
+          </div>
+          <div class="col-6">
+            <label>
+              <span class="menu-item" routerLink="/lesson-plan">
+                <i class="bi bi-journal-bookmark"></i>
+                <a>Lesson Plans</a>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <label>
+              <span class="menu-item" routerLink="/booking-slot">
+                <i class="bi bi-calendar-check"></i>
+                <a>Bookings</a>
+              </span>
+            </label>
+          </div>
+          <!-- Add more items as needed -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+  
+<!-- help-modal.component.html -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title mx-auto" id="helpModalLabel">Help Guide</h5>
+        <div class="search-bar-container">
+          <input type="text" class="form-control search-bar" placeholder="Search help" [(ngModel)]="searchTerm" (input)="filterHelpContent()">
+        </div>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let item of filteredContent">
+          <h5>{{ item.title }}</h5>
+          <p [innerHTML]="item.content"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+</html>

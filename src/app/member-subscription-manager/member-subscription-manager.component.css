@@ -1,0 +1,82 @@
+.styled-container {
+    margin-top: 80px;
+}
+
+.help-icon {
+    font-size: 2rem;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    color: #000000; /* Match the color to your theme */
+}
+
+.back-icon {
+    font-size: 3rem;
+    margin-left: 1rem;
+}
+
+.custom-hr {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.small-text {
+    display: block;
+    text-align: center;
+    margin-top: 0.5rem;
+    font-size: 0.875rem; /* or adjust size as needed */
+}
+
+.row {
+    justify-content: center; /* Centers the row content */
+}
+
+.col-md-5 {
+    margin-left: 2rem; /* Shift the cards a bit to the right */
+    margin-right: 2rem; /* Add some space between the cards */
+}
+
+
+.modal-content {
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.modal-header {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-title {
+    font-weight: 600;
+}
+
+.modal-footer {
+    border-top: 1px solid #dee2e6;
+}
+
+.modal-footer .btn {
+    border-radius: 5px;
+}
+
+.modal-footer .btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.modal-footer .btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+.btn-close {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    color: #000;
+    opacity: 0.6;
+}
+
+.btn-close:hover {
+    opacity: 1;
+    color: #000;
+}

@@ -1,0 +1,29 @@
+<app-help-modal></app-help-modal>
+<app-member-side-nav-bar></app-member-side-nav-bar>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <!-- Toggle button for MemberSideNavBar -->
+    <a class="navbar-brand" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle member menu">
+      <i class="bi bi-list"></i>
+    </a>  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Right aligned icons -->
+      <div class="d-flex ms-auto">
+        <a class="navbar-brand" routerLink="/wishlist">
+          <span class="itemCount">{{ wishlistCount }}</span>
+          <i class="bi bi-heart-fill"></i>
+        </a>
+        <a class="navbar-brand" (click)="goToCart()" routerLink="/cart">
+          <span class="itemCount">{{ totalCartItems }}</span> 
+          <i class="bi bi-cart-fill"></i>
+        </a>
+        <a class="navbar-brand" href="#" data-bs-toggle="modal" data-bs-target="#helpModal">
+          <i class="bi bi-info-circle-fill">Help</i>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+  
+
+ 

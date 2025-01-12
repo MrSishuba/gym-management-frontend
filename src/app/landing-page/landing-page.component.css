@@ -1,0 +1,681 @@
+/* Basic reset for margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Body and main styles */
+  body {
+    font-family: Arial Black, sans-serif;
+    background-color: black;
+    color: white;
+  }
+  
+  /* Header styles */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #000;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .dumbbell-icon {
+    font-size: 1.5rem;
+    color: white;
+    margin-right: 10px;
+  }
+  
+  .title {
+    font-size: 2rem;
+    color: white;
+  }
+  
+  /* Navigation styles */
+  .nav ul {
+    display: flex;
+    list-style-type: none;
+  }
+  
+  .nav li {
+    margin-left: 20px;
+  }
+  
+  .nav a {
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+  }
+  
+  .nav a:hover {
+    color: #B08F26;
+  }
+  
+  .nav a.active {
+    font-weight: bold;
+  }
+  
+  /* Main section styles */
+  main {
+    padding: 20px;
+    background-color: white; /* White background for main section */
+    color: black; /* Black text color for main section */
+  }
+  
+  /* Hero section styles */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+  }
+  
+  .hero-content {
+    position: relative;
+  }
+  
+  .title-large {
+    font-size: 48px; /* Large font size for AVS Fitness title */
+    font-weight: bold;
+    color: black; /* Black text color */
+    margin-bottom: 10px;
+  }
+  
+  .slogan {
+    font-size: 18px; /* Font size for slogan */
+    color: black; /* Black text color */
+  }
+  
+  .promo-img {
+    width: 170px;
+    height: 170px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+  }
+  
+  .aman-img {
+    width: 170px; /* Matching size to promo1 image */
+    height: 170px;
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .gif-left {
+    width: 150px;
+    height: auto;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+  }
+  
+  /* Showcase section styles */
+  .showcase {
+    margin: 40px 0;
+    text-align: center;
+  }
+  
+  .showcase-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .showcase-images .row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .showcase-images img {
+    width: 200px;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  #show-more {
+    background-color: #B08F26;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  #show-more:hover {
+    background-color: #a07b2f;
+  }
+  
+  /* About Us section styles */
+  .about-us {
+    margin: 40px 0;
+  }
+  
+  .about-us h2 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .info-icon {
+    font-size: 1.5rem;
+    margin-left: 10px;
+  }
+  
+  .about-us .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .about-text {
+    max-width: 50%;
+  }
+  
+  .about-us img {
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  #load-more {
+    background-color: #B08F26;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  #load-more:hover {
+    background-color: #a07b2f;
+  }
+  
+  /* Workout Videos section styles */
+  .workout-videos {
+    margin: 40px 0;
+    text-align: center;
+  }
+  
+  .video {
+    margin: 0 auto;
+    width: 80%;
+  }
+  
+  video {
+    width: 100%;
+    height: auto;
+  }
+  
+  /* Join Us section styles */
+  .join-us {
+    margin: 40px 0;
+  }
+  
+  .join-us h2 {
+    display: flex;
+    align-items: center;
+  }
+  
+  .join-icon {
+    font-size: 1.5rem;
+    margin-left: 10px;
+  }
+  
+  .carousel {
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  .carousel-images {
+    display: flex;
+    gap: 10px;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .carousel-images img {
+    width: 200px;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  button.prev, button.next {
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+  }
+  
+  button.prev {
+    left: 0;
+  }
+  
+  button.next {
+    right: 0;
+  }
+  
+  /* Footer styles */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    background-color: #000;
+    color: white;
+    flex-wrap: wrap;
+  }
+  
+  .footer-section {
+    flex: 1;
+    margin: 10px;
+  }
+  
+  .footer-section h3 {
+    margin-bottom: 10px;
+  }
+  
+  .footer form {
+    display: flex;
+  }
+  
+  .footer input[type="email"] {
+    padding: 5px;
+    border-radius: 5px 0 0 5px;
+    border: none;
+  }
+  
+  .footer button[type="submit"] {
+    background-color: #B08F26;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    height: 34px; /* Match the height of the input field */
+    display: inline-flex; /* Prevent resizing */
+  }
+  
+  .footer button[type="submit"]:hover {
+    background-color: #a07b2f;
+  }
+  
+  .legal {
+    text-align: center;
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  html {
+    overflow-y: scroll; /* Ensures the scrollbar is always visible */
+  }
+  
+  body {
+    min-height: 100vh; /* Ensures the content always has a height */
+  }
+  
+  ::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color of the scrollbar thumb */
+    border-radius: 6px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Color on hover */
+  }
+
+  /* Modal Styles */
+.modal {
+  display: block; /* Hidden by default */
+  position: fixed;
+  z-index: 1000; /* Sits on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.7); /* Black with opacity */
+}
+
+.modal-content {
+  background-color: #111;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  color: white;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Carousel styles */
+.carousel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.carousel-images {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+  width: calc(200px * 10); /* Adjust based on image count and size */
+}
+
+.carousel-images img {
+  width: 200px; /* Set the width to fit 8 images within the carousel */
+  height: auto;
+  object-fit: cover;
+}
+
+button.prev, button.next {
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+button.prev {
+  left: 0;
+}
+
+button.next {
+  right: 0;
+}
+/* Virtual Assistant Hover */
+.virtual-assistant {
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+  color: #ffffff;
+}
+
+.virtual-assistant:hover {
+  transform: scale(1.1);
+  color: #B08F26;
+}
+
+.assistant-text {
+  font-size: 10px;
+  color: lightblue;
+  display: none;
+}
+
+.footer-section:hover .assistant-text {
+  display: block;
+}
+
+.chat-frame {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 100%; /* Ensure no scrolling horizontally */
+  max-width: 400px; /* Cap the width for reasonable size */
+  height: 720px;
+  background-color: #f1f1f1;
+  border-radius: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Prevent overflow */
+  max-height: calc(100vh - 40px); /* Phone adjusts to fit the screen */
+
+  
+}
+
+.iphone-frame {
+  border: 16px solid #181818;
+  border-radius: 30px;
+  height: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #fff;
+  /* border-top-left-radius: 30px;
+  border-top-right-radius: 30px; */
+  gap: 15px; /* Add space between the icons and elements */
+}
+
+.time {
+  font-size: 14px;
+  color: #333;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: #e0e0e0;
+  border-radius: 20px;
+  padding: 5px 10px;
+  flex-grow: 1;
+}
+
+.search-bar input {
+  border: none;
+  background: transparent;
+  margin-left: 5px;
+  flex-grow: 1;
+}
+
+.search-bar i {
+  font-size: 16px;
+}
+
+.top-icons {
+  display: flex;
+  gap: 8px;
+}
+
+.top-icons i {
+  font-size: 11px;
+}
+
+/* Chat Header */
+.chat-header {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Chat Container */
+.chat-container {
+  flex-grow: 1;
+  padding: 10px;
+  overflow-y: auto;
+  background-color: white;
+}
+
+/* Simulated iPhone Footer with icons */
+.footer-divider {
+  margin: 0;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+.chat-footer {
+  padding: 10px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-around; /* Ensure icons are evenly spaced */
+  gap: 30px; /* Adjust space between icons */
+}
+
+/* Toggle Slider Styling */
+.mode-toggle input[type="checkbox"] {
+  display: none;
+}
+
+.mode-toggle .toggle-label {
+  width: 60px;
+  height: 30px;
+  background-color: #ccc;
+  border-radius: 30px;
+  position: relative;
+  display: inline-block;
+}
+
+.mode-toggle .toggle-label .slider {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+#toggle-dark-mode:checked + .toggle-label .slider {
+  transform: translateX(30px);
+  background-color: #333;
+}
+
+/* Dark Mode */
+.dark-mode {
+  background-color: #333;
+  color: #fff;
+}
+
+.dark-mode .virtual-assistant {
+  color: #B08F26;
+}
+
+.dark-mode .virtual-assistant:hover {
+  color: #ffffff;
+}
+
+.dark-mode .chat-header {
+  background-color: #000;
+  color: #B08F26;
+}
+
+.dark-mode .chat-footer {
+  background-color: #000;
+}
+
+.dark-mode .iphone-btn {
+  background-color: #333;
+  color: white;
+}
+
+.dark-mode .iphone-btn:hover {
+  background-color: #444;
+}
+
+.dark-mode .top-bar {
+  background-color: #000;
+}
+
+.dark-mode .time {
+  color: #fff;
+}
+
+.dark-mode .search-bar {
+  background-color: #000;
+}
+
+.dark-mode .search-bar input {
+  background-color: #000;
+  color: #fff;
+}
+
+.dark-mode .search-bar i {
+  color: #B08F26;
+}
+
+.dark-mode .top-icons i {
+  color: #fff;
+}
+
+.dark-mode .footer-divider {
+  background-color: #B08F26;
+}
+
+.dark-mode .chat-container {
+  background-color: #000;
+}
+
+.dark-mode .input-section {
+  background-color: #000;
+  border-top: 1px solid #B08F26;
+}
+
+.dark-mode .input-section input {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #B08F26;
+}
+
+.dark-mode .user-message {
+  background-color: #0056b3;
+  color: white;
+}
+
+.dark-mode .bot-message {
+  background-color: #333;
+  color: white;
+}
+
+button.dark-mode {
+  background-color: #444;
+  color: #fff;
+}
+
+button.dark-mode:hover {
+  background-color: #555;
+}
+
+/* Dark Mode Styles for Chat Footer Icons */
+.dark-mode .chat-footer i {
+  color: #B08F26; /* Footer icons color in dark mode */
+}
+

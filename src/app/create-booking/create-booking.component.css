@@ -1,0 +1,300 @@
+h3{
+  text-align: center;
+  justify-content: center;
+  margin-top:-30px;
+ 
+}
+
+.header-icon {
+  font-size: 3rem; /* Adjust the size as needed */
+  margin-left:20px;
+  margin-top:10px;
+  cursor: pointer;
+}
+
+p{
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.date-picker {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.selected-date {
+  margin-top: 20px;
+  padding: 10px;
+  background: #e9ecef;
+  border-radius: 4px;
+  font-size: 18px;
+}
+
+
+.slot-modal-container{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.9); /* White background with some opacity */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow effect */
+}
+
+.blur-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px); /* Apply blur effect */
+  z-index: 999;
+}
+
+.slot-modal-buttons {
+  text-align: center;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.slot-modal-buttons button {
+  padding: 10px 20px;
+  background-color: #007bff; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.slot-modal-buttons button:hover {
+  background-color: #0056b3; /* Button background color on hover */
+}
+
+/* help-modal.component.css */
+.modal-dialog {
+  max-width: 75%; /* Adjust the percentage as needed */
+}
+
+.modal-dialog-scrollable {
+  max-height: calc(100vh - 100px);
+}
+
+
+.modal-content {
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: left;
+}
+
+.modal-title {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.btn-close {
+  margin-right: auto;
+}
+
+.search-bar-container {
+  margin-left: auto;
+}
+
+.modal-body hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.modal-body h5 {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.modal-body ul, .modal-body ol {
+  margin-bottom: 20px;
+  padding-left: 20px;
+  text-align: left;
+}
+
+
+.time-slots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+}
+
+.top-buttons {
+  display: flex;
+  justify-content: space-between; /* Aligns the items to the ends of the flex container */
+  align-items: center; /* Vertically centers the items */
+  padding: 10px; /* Optional: adds some padding around the buttons */
+}
+
+.navbar-brand {
+  margin-left: auto; /* Pushes the help button to the right */
+}
+
+.time-slots button {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 5px 5px;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  color: #333;
+  cursor: pointer;
+}
+
+.time-slots button.booked {
+  background-color: #ffdddd;
+  color: #ff0000;
+  cursor: not-allowed;
+}
+
+.time-slots button.booked:hover {
+
+  cursor: not-allowed;
+}
+
+.time-slots button.available {
+  background-color: #ddffdd;
+  color: #008000;
+}
+
+.time-slots button:disabled {
+  
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.backbutton {
+  padding: 10px 20px;
+  background-color: #007bff; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+
+
+/* General Label Style */
+.time-slot-label {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* Container for time slots */
+.time-slots {
+  display: flex;
+  flex-direction: row;
+  gap: 20px; /* Space between items */
+
+}
+
+/* Individual time slot item */
+.time-slot-item {
+  display: grid;
+  align-items: center;
+  gap: 10px; /* Space between button and available slots text */
+}
+
+/* Style for time slot buttons */
+.time-slot-button{
+  padding: 15px 10px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #ffcc00; /* Default button color */
+  color: white;
+  /* transition: background-color 0.3s ease; */
+}
+
+.time-slot-button:disabled {
+  background-color: #6c757d; /* Disabled button color */
+  cursor: not-allowed;
+}
+
+.time-slot-button.booked {
+  background-color: #dc3545; /* Color for booked slots */
+}
+
+/* Style for available slots text */
+.slots-available {
+  margin-top: -15px;
+  font-size: 0.9em;
+  
+}
+
+::ng-deep.special-date {
+  background-color: #ffcc00 !important;
+  border-radius: 50px;
+  padding: -1px -1px;
+}
+
+html {
+  overflow-y: scroll; /* Ensures the scrollbar is always visible */
+}
+
+body {
+  min-height: 100vh; /* Ensures the content always has a height */
+}
+
+::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the scrollbar thumb */
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Color on hover */
+}

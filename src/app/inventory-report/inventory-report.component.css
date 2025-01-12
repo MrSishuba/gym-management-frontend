@@ -1,0 +1,61 @@
+.report-container {
+    font-family: Arial, sans-serif;
+  /* Centers text content inside the container */
+  }
+  
+  .report-header {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centers the entire header content */
+    margin-bottom: 20px;
+  }
+  
+  .logo {
+    width: 120px;
+    height: auto;
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+  
+  .logo img{
+    float: left;
+  }
+  
+  .report-details {
+    flex: 1;
+    text-align: center; /* Centers text within the report-details section */
+  }
+  
+  .report-title {
+    margin: 0;
+    font-size: 40px;
+    text-align: center; /* Centers the title */
+  }
+  
+  .company-name {
+    margin: 0;
+    font-size: 30px;
+    text-align: center; /* Centers the title */
+  }
+  
+
+  /* Styles for the totals row */
+.totals-row {
+    border-top: 1px solid black;  /* Solid line above the totals row */
+    border-bottom: 2px solid black; /* Solid line below the totals row */
+}
+
+/* To ensure the last cell in the totals row takes full width */
+.totals-row td {
+    padding: 8px; /* Add padding for better spacing */
+}
+
+/* Style for the totals row header cell */
+.totals-row th {
+    font-weight: bold; /* Make the header cell bold */
+}
+
+
+.report-container table td{
+    align-items: center;
+}

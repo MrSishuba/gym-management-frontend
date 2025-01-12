@@ -1,0 +1,128 @@
+<div class="container">
+  <app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+  <app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+  <div style="margin-top: 40px"></div> <!-- Adjusted margin for spacing -->
+  
+  <!-- Navigation -->
+  <div class="navigation">
+    <i class="bi bi-arrow-left-circle back-icon" (click)="goBack()"></i>
+    <div class="page-title">
+      <h1>Contract Administrator 
+        <i class="bi bi-info-circle info-icon" (click)="ShowContractModal = true"></i>
+      </h1>
+    </div>
+    <app-contract-dropdown-nav></app-contract-dropdown-nav>
+  </div>
+
+  <!-- Contract Table -->
+  <table class="category-table">
+    <thead>
+      <tr>
+        <th>Contract ID</th>
+        <th>Member ID</th>
+        <th>Subscription Date</th>
+        <th>Expiry Date</th>
+        <th>Approval Date</th>
+        <th>Terms of Agreement</th>
+        <th>Approval Status</th>
+        <th>Approved By</th>
+        <th>Contract Type</th>
+        <th>Payment Type</th>
+        <th>Employee ID</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contract of filteredContracts">
+        <td>{{ contract.contract_ID }}</td>
+        <td>{{ contract.member_ID }}</td>
+        <td>{{ formatDate(contract.subscription_Date) }}</td>
+        <td>{{ formatDate(contract.expiry_Date) }}</td>
+        <td>{{ formatDate(contract.approval_Date) }}</td>
+        <td>{{ contract.terms_Of_Agreement ? 'Agreed' : 'Not Agreed' }}</td>
+        <td>{{ contract.approval_Status ? 'Approved' : 'Pending' }}</td>
+        <td>{{ contract.approval_By }}</td>
+        <td>{{ getContractTypeName(contract.contract_Type_ID) }}</td>
+        <td>{{ getPaymentTypeName(contract.payment_Type_ID) }}</td>
+        <td>{{ contract.employee_ID }}</td>
+        <td>
+          <button class="btn btn-info" (click)="downloadContract(contract.contract_ID)">
+            <i class="bi bi-download"></i>Download
+          </button>
+          <button class="btn btn-danger" (click)="initiateTerminateContract(contract)">
+            <i class="bi bi-trash"></i>Terminate
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Termination Confirmation Modal -->
+  <div class="modal" *ngIf="showModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirm Termination</h5>
+          <button type="button" class="btn-close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body">
+          <p>You are about to terminate the contract for Member ID: {{selectedContract?.member_ID}}. Are you sure you wish to continue with this action? All terminations are final and cannot be reversed. Furthermore, in the event of improper or inadequate reason for terminating this contract, you are therefore held liable and responsible for the repercussions thereof.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+          <button type="button" class="btn btn-danger" (click)="confirmTerminationPrompt()">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reason Selection Modal -->
+  <div class="modal" *ngIf="showReasonModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Terminate Contract for Member: {{selectedContract?.member_ID}}</h5>
+          <button type="button" class="btn-close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="terminationReasonType">Reason Type:</label>
+            <select id="terminationReasonType" [(ngModel)]="terminationReasonType" class="form-control">
+              <option value="ContractExpired">Banned</option>
+              <option value="Banned">Upgraded</option>
+              <option value="Upgraded">Special Case</option>        
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="terminationReason">Termination Reason:</label>
+            <textarea id="terminationReason" [(ngModel)]="terminationReason" class="form-control"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+          <button type="button" class="btn btn-danger" (click)="confirmTermination()">Terminate Contract</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contract Info Modal -->
+  <div class="modal" *ngIf="ShowContractModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Contract Manager Information</h5>
+          <button type="button" class="btn-close" (click)="ShowContractModal = false"></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Contract Manager:</strong> This interface is to view the list of all members with an ongoing activated and approved contract. Their details are all validated as seen below:</p>
+          <p><strong>Download:</strong> To retrieve a member's contract, download it by clicking the download button.</p>
+          <p><strong>Terminate:</strong> To terminate a member's contract, click the terminate button, select a termination reason type, and provide context. Confirm to ensure they are terminated for a violation or valid reason as per AVS Fitness Rules, Regulations, and Guidelines Policy for member conduct.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="ShowContractModal = false">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

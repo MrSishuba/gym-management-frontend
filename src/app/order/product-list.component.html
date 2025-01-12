@@ -1,0 +1,45 @@
+<app-navbar></app-navbar>
+<div class="main-container">
+    <div class="header-search-container">
+        <i class="bi bi-arrow-left-circle header-icon" (click)="goBack()"></i>
+        <h2 class="header-title" routerLink="/product-list">AV MERCH</h2>
+        <div class="search-bar-container">
+            <input type="text" class="form-control search-bar" placeholder="Search products" [(ngModel)]="searchTerm" (input)="filteredProductsBySearch()">
+        </div>
+    </div>
+    
+    <!-- Side Navbar -->
+    <div class="side-navbar" [ngClass]="{'open': !isSidebarOpen}">
+      <ul>
+        <li (click)="filterProductsByCategory(0)">All</li>
+        <li (click)="filterProductsByCategory(1)">Tops</li>
+        <li (click)="filterProductsByCategory(2)">Bottoms</li>
+        <li (click)="filterProductsByCategory(3)">Gear</li>
+      </ul>
+    </div>
+    
+    <div class="product-list-container">
+        <div *ngIf="filteredProducts.length === 0">
+            <br>
+            <br>
+            <h1>"No Products Found"</h1>
+        </div>
+        <div *ngIf="filteredProducts.length > 0" class="row">
+            <div class="col-6" *ngFor="let product of filteredProducts">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <div class="card-img-container">
+                            <a routerLink="/product-item/{{product.product_ID}}">
+                                <img [src]="getImageSrc(product.product_Img)" alt= "Product Image" class="card-img-top">
+                            </a>
+                        </div>
+                        <p class="card-text" style="text-align: center;">{{product.product_Name}}</p>
+                    </div>
+                </div>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+    <br>
+</div>

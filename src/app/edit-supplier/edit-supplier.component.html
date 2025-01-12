@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <a class="navbar-brand" href="#" data-bs-toggle="modal" data-bs-target="#helpModal">
+    <i class="bi bi-info-circle-fill"> Help</i>
+  </a>
+<h2>Edit Supplier</h2>
+<div class="form-container">
+    <form #formCtrl="ngForm" [formGroup]="registerFormGroup">
+      
+      <div class="form-group">
+        <label for="categoryName">Supplier Name:</label>
+        <input type="text" id="name" name="name" required [(ngModel)]="supplier.name" size="36" class="form-input" maxlength="20" formControlName="name">
+
+        <div *ngIf="registerFormGroup.controls['name'].invalid && (registerFormGroup.controls['name'].dirty || registerFormGroup.controls['name'].touched)" class="text-danger">
+          <div *ngIf="registerFormGroup.controls['name'].errors?.['required']">Name is required.</div>
+          <div *ngIf="registerFormGroup.controls['name'].errors?.['minlength']">Name must be at least 2 characters long.</div>
+          <div *ngIf="registerFormGroup.controls['name'].errors?.['maxlength']">Name must be at most 20 characters long.</div>
+        </div>
+
+      </div>
+
+
+
+      <div class="form-group">
+        <label for="PhoneNumber">Supplier Contact Number:</label>
+        <input type="text" id="PhoneNumber" name="PhoneNumber" required [(ngModel)]="phoneNumberDisplay" size="36" maxlength="10" class="form-input" formControlName="number">
+
+          
+        <div *ngIf="registerFormGroup.controls['number'].invalid && (registerFormGroup.controls['number'].dirty || registerFormGroup.controls['number'].touched)" class="text-danger">
+          <div *ngIf="registerFormGroup.controls['number'].errors?.['required']">Phone Number is required.</div>
+          <div *ngIf="registerFormGroup.controls['number'].errors?.['minlength']">Phone Number must be 10 digits.</div>
+          <div *ngIf="registerFormGroup.controls['number'].errors?.['maxlength']">Phone Number must be 10 digits.</div>
+        </div>
+
+      </div>
+
+
+      <div class="form-group">
+        <label for="emailAddress">Supplier Email Address:</label>
+        <input type="text" id="emailAddress" name="emailAddress" required [(ngModel)]="supplier.email_Address" size="36" maxlength="30" class="form-input" formControlName="email">
+
+        <div *ngIf="registerFormGroup.controls['email'].invalid && (registerFormGroup.controls['email'].dirty || registerFormGroup.controls['email'].touched)" class="text-danger">
+          <div *ngIf="registerFormGroup.controls['email'].errors?.['required']">Email is required.</div>
+          <div *ngIf="registerFormGroup.controls['email'].errors?.['email']">Email is invalid.</div>
+        </div>
+    
+
+      </div>
+
+      <div class="form-group">
+        <p>Country:</p>
+        <select id="country" class="form-input" name="country" required [(ngModel)]="country" formControlName="country">
+          <option value="" disabled>Select Country</option>
+          <option *ngFor="let country of countries" [value]="country">{{country}}</option>
+        </select>
+        
+        <!-- Error message for Country -->
+        <div *ngIf="registerFormGroup.controls['country']?.invalid && (registerFormGroup.controls['country']?.dirty || registerFormGroup.controls['country']?.touched)"class="form-input" class="text-danger">
+          <div *ngIf="registerFormGroup.controls['country']?.errors?.['required']">Country is required.</div>
+        </div>
+
+
+        <p *ngIf="country == 'South Africa'">Province:</p>
+        <select *ngIf="country == 'South Africa'" class="form-input" id="province" name="province"  formControlName="province">
+          <option value="" disabled>Select Province</option>
+          <option *ngFor="let provinces of southAfricaProvinces" [value]="provinces">{{provinces}}</option>
+        </select>
+
+        <div *ngIf="registerFormGroup.controls['province']?.invalid && (registerFormGroup.controls['province']?.dirty || registerFormGroup.controls['province']?.touched)" maxlength="100" class="text-danger">
+          <div *ngIf="registerFormGroup.controls['province']?.errors?.['required']">Province is required.</div>
+          
+        </div>
+
+
+        <p *ngIf="country == 'Botswana'">District:</p>
+        <select *ngIf="country == 'Botswana'" class="form-input" id="district" name="distict"  [(ngModel)]="district"   formControlName="district">
+          <option value="" disabled>Select District</option> <!-- Placeholder option -->
+          <option *ngFor="let districts of botswanaDistricts" [value]="districts">{{districts}}</option>
+        </select>
+
+        <div *ngIf="registerFormGroup.controls['district']?.invalid && (registerFormGroup.controls['district']?.dirty || registerFormGroup.controls['district']?.touched)" maxlength="100" class="text-danger">
+          <div *ngIf="registerFormGroup.controls['district']?.errors?.['required'] && country === 'Botswana'">District is required.</div>
+        </div>
+
+
+
+        <p >City:</p>
+      <select class="form-input" id="city" name="city" required formControlName="city">
+        <option value="" disabled selected>Select City</option>
+        <option *ngFor="let city of cities" [value]="city">{{city}}</option>
+      </select>
+      <div *ngIf="registerFormGroup.controls['city'].invalid && (registerFormGroup.controls['city'].dirty || registerFormGroup.controls['city'].touched)" class="text-danger">
+        <div *ngIf="registerFormGroup.controls['city'].errors?.['required']">City is required.</div>
+      </div>
+
+
+
+
+          
+            <!-- Suburb/Town Input (shown only if city is filled) -->
+        <div *ngIf="city">
+          <p for="suburb">Suburb/Town:</p>
+          <input type="text" id="suburb" class="form-input" name="suburb" required [(ngModel)]="suburb" formControlName="suburb" placeholder="e.g Sandton"  maxlength="20" />
+        </div>
+        <div *ngIf="registerFormGroup.get('suburb')?.invalid && (registerFormGroup.get('suburb')?.dirty || registerFormGroup.get('suburb')?.touched)" class="text-danger">
+          <div *ngIf="registerFormGroup.get('suburb')?.errors?.['required']">Suburb/Town is required.</div>
+          <div *ngIf="registerFormGroup.controls['suburb'].errors?.['minlength']">Suburb/Town must be at least 2 characters.</div>
+          <div *ngIf="registerFormGroup.controls['suburb'].errors?.['maxlength']">Suburb/Town must be at most 20 charcters.</div>
+      </div>
+
+
+
+
+        <!-- Street Address Input (shown only if city is filled) -->
+        <div *ngIf="city">
+          <p for="streetAddress">Street Address:</p>
+          <input type="text" id="streetAddress"  class="form-input" name="streetAddress" required [(ngModel)]="street" formControlName="streetName" placeholder="e.g 123 Silver Lane"  maxlength="20"/>
+        </div>
+
+        <div *ngIf="registerFormGroup.get('streetName')?.invalid && (registerFormGroup.get('streetName')?.dirty || registerFormGroup.get('streetName')?.touched)" class="text-danger">
+          <div *ngIf="registerFormGroup.get('streetName')?.errors?.['required']">Street Address is required.</div>
+          <div *ngIf="registerFormGroup.controls['streetName'].errors?.['minlength']">Street Address must be at least 6 characters.</div>
+          <div *ngIf="registerFormGroup.controls['streetName'].errors?.['maxlength']">Street Address must be at most 50 charcters.</div>
+      </div>
+
+        <!-- Postal Code Input (shown only if city is filled) -->
+        <div *ngIf="city">
+          <p for="postalCode">Postal Code:</p>
+          <input type="tel" id="postalCode" class="form-input" name="postalCode" required [(ngModel)]="postalCode" formControlName="postalCode" placeholder="e.g. 2196" (input)="validateNumber($event)" minlength="4" maxlength="8"/>
+        </div>
+
+          
+          <div *ngIf="registerFormGroup.get('postalCode')?.invalid && (registerFormGroup.get('postalCode')?.dirty || registerFormGroup.get('postalCode')?.touched)" class="text-danger">
+              <div *ngIf="registerFormGroup.get('postalCode')?.errors?.['required']">Postal Code is required.</div>
+              <div *ngIf="registerFormGroup.controls['postalCode'].errors?.['minlength']">Postal Code must be at least 4 digits.</div>
+          </div>
+  
+      </div>
+  
+
+      <div class="buttons">
+        <button type="button" [disabled]="!formCtrl.form.valid" (click)="updateSupplier(supplier.supplier_ID)" class="btn btn-primary">Save</button>
+        <button class="btn btn-cancel" routerLink="/supplier" type="button">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  
+<!-- help-modal.component.html -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title mx-auto" id="helpModalLabel">Help Guide</h5>
+        <div class="search-bar-container">
+          <input type="text" class="form-control search-bar" placeholder="Search help" [(ngModel)]="searchTerm" (input)="filterHelpContent()">
+        </div>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let item of filteredContent">
+          <h5>{{ item.title }}</h5>
+          <p [innerHTML]="item.content"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</html>

@@ -1,0 +1,81 @@
+.container {
+  margin: 20px;
+  margin-top: 80px;
+  margin-left:120px;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centering the entire navigation content */
+  position: relative; /* Positioning to allow the back icon to be positioned freely */
+}
+
+.back-icon {
+  font-size: 3rem; /* Increase the icon size */
+  position: absolute; /* Absolute positioning for the icon */
+  left: 0; /* Position it to the left */
+  cursor: pointer; /* Change cursor to pointer when hovering over the icon */
+}
+
+.page-title h1 {
+  margin: 0;
+  text-align: center; /* Ensure the title is centered */
+}
+
+.category-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.category-table th, .category-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.category-table th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.btn-container {
+  display: flex;
+  gap: 10px;
+}
+
+/* Modal Overlay */
+.modal {
+  display: none; /* Hide by default */
+  align-items: center; /* Center content vertically */
+  justify-content: center; /* Center content horizontally */
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  position: fixed; /* Fixed positioning */
+  top: 0; /* Align to the top of the viewport */
+  left: 0; /* Align to the left of the viewport */
+  z-index: 1050; /* Ensure modal is above other content */
+}
+
+/* Show the modal */
+.modal.show {
+  display: flex; /* Use flexbox to center the modal */
+}
+
+/* Modal Dialog */
+.modal-dialog {
+  max-width: 500px;
+  width: 100%; /* Full width up to max-width */
+  margin: 0 auto; /* Center the dialog */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fff;
+  border-radius: 0.3rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 1.75rem rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,202 @@
+/* Container */
+.container {
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+  margin-top:80px;
+}
+
+.gap-container {
+  margin-top: calc(60px - 102vh); /* Adjusts based on viewport height */
+}
+
+/* Navigation Styling */
+.navigation {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0 5%;
+  position: relative;
+}
+
+.back-icon {
+  font-size: 3rem;
+  color: black;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.vertical-divider-left {
+  height: 100%;
+  width: 2px;
+  background-color: #ddd;
+  margin-right: 20px;
+}
+
+.page-title {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.page-title h1,
+.page-title h1 .bi-info-circle {
+  color: black;
+}
+
+/* Card Styling */
+.card {
+  background-color: rgba(211, 211, 211, 0.5); /* Light grey with transparency */
+  color: white;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: underline;
+  color: black;
+}
+
+.section-title .bi-info-circle {
+  color: black;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.btn-info {
+  background-color: #17a2b8;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+
+.btn-info:hover {
+  background-color: #138496;
+}
+
+.contract-details {
+  background-color: #fff;
+  color: #000;
+  padding: 15px;
+  border-radius: 4px;
+  margin-top: 20px; /* Margin to ensure space when expanded */
+}
+
+.contract-info {
+  display: grid;
+  gap: 10px;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.back-icon {
+  cursor: pointer;
+  font-size: 3rem;
+  
+}
+
+.page-title h1 {
+  margin: 0;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-select {
+  background-color: #6c757d; /* Button background color */
+  color: white; /* Text color */
+  border: none; /* No border */
+  cursor: pointer; /* Pointer cursor on hover */
+  padding: 10px 20px; /* Padding */
+  font-size: 16px; /* Font size */
+  border-radius: 5px; /* Rounded corners */
+  text-align: center; /* Center text */
+  width: 100%; /* Full width */
+  appearance: none; /* Remove default styling */
+  -webkit-appearance: none; /* Remove default styling in WebKit browsers */
+  -moz-appearance: none; /* Remove default styling in Mozilla browsers */
+}
+
+.dropdown-select:focus {
+  outline: none; /* Remove default outline on focus */
+  box-shadow: 0 0 0 2px rgba(38, 143, 255, 0.5); /* Add focus shadow */
+}
+
+.dropdown-select option {
+  padding: 10px 15px; /* Padding for options */
+  font-size: 16px; /* Font size for options */
+  color: #333; /* Text color for options */
+}
+
+.dropdown-select option:hover {
+  background-color: #f2f2f2; /* Hover background color for options */
+  color: #000; /* Hover text color for options */
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal.show {
+  display: block;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  position: relative;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+

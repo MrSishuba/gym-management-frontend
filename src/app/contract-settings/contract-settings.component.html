@@ -1,0 +1,49 @@
+<div class="header-search-container">
+  <app-master-side-nav-bar></app-master-side-nav-bar>
+  <div style="margin-top: 95px"></div> <!-- Adjusted margin for spacing -->
+  <i class="bi bi-arrow-left-circle header-icon" (click)="goBack()"></i>
+  <h1 class="header-title" style="padding-right: 30px;">Contract Settings
+  
+  </h1>
+  <button mat-raised-button color="info" class="subscription-demo-btn" [routerLink]="['/simulate-time']">Subscription Demo</button>
+</div>
+
+<div class="view-contract-settings-container">
+  <p><strong>Contract Deletion Time:</strong> {{contractSettings?.deletionTimeValue}} {{contractSettings?.deletionTimeUnit}}</p>
+  <button mat-raised-button color="primary" (click)="openEditModal()">Update Settings</button>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Update Contract Deletion Time</h5>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="contractSettingsForm">
+          <div class="form-group">
+            <label for="deletionTime">Deletion Time:</label>
+            <input type="number" id="deletionTime" formControlName="value" class="form-control" name="deletionTime" min="1">
+          </div>
+          <div class="form-group">
+            <label for="timeUnit">Time Unit:</label>
+            <select id="timeUnit" formControlName="unit" class="form-control" name="timeUnit">
+              <option value="Minutes">Minutes</option>
+              <option value="Hours">Hours</option>
+              <option value="Days">Days</option>
+              <option value="Weeks">Weeks</option>
+              <option value="Months">Months</option>
+              <option value="Years">Years</option>
+            </select>
+          </div>
+        </form>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="saveContractDeletionTime()">Update</button>
+      </div>
+    </div>
+  </div>
+</div>

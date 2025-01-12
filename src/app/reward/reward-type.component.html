@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+<app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+
+<div class="gap-container"></div>
+
+<div class="header-search-container">
+  <i class="bi bi-arrow-left-circle header-icon" (click)="goBack()"></i>
+  <h1 class="header-title">Manage Reward Types</h1>
+  <span class="help-icon-container">
+      <a class="navbar-brand help-icon" href="#" data-bs-toggle="modal" data-bs-target="#helpModal">
+          <i class="bi bi-info-circle-fill">Help</i>
+      </a>
+  </span>
+</div>
+
+<div class="reward-type-container">
+
+    <div class="content">
+        <input type="text" class="form-control mb-3" placeholder="Search Reward Types" [(ngModel)]="searchTerm" (input)="filterRewardTypes()">
+    
+        <button class="btn btn-primary mb-3" (click)="openAddModal()">Create Reward Type</button>
+    
+        <table class="table table-hover table-centered">
+            <thead>
+            <tr>
+                <th>Reward Type ID</th>
+                <th>Reward Type Name</th>
+                <th>Reward Criteria</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let rewardType of filteredRewardTypes">
+                <td>{{ rewardType.reward_Type_ID }}</td>
+                <td>{{ rewardType.reward_Type_Name }}</td>
+                <td>{{ rewardType.reward_Criteria }}</td>
+                <td>
+                <button class="btn btn-info btn-sm" style="margin: 5px;" (click)="openViewModal(rewardType)">
+                    <i class="bi bi-eye-fill"></i> View
+                </button>
+                <button class="btn btn-warning btn-sm" style="margin: 5px;" (click)="openEditModal(rewardType)">
+                    <i class="bi bi-pencil-square"></i> Edit
+                </button>
+                <button class="btn btn-danger btn-sm" style="margin: 5px;" (click)="openDeleteModal(rewardType)">
+                    <i class="bi bi-trash-fill"></i> Delete
+                </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>    
+</div>
+
+<!-- Add Modal -->
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addModalLabel">Create Reward Type</h5>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="rewardTypeForm">
+            <div class="form-group">
+              <label for="reward_Type_Name">Reward Type Name</label>
+              <input type="text" id="reward_Type_Name" formControlName="reward_Type_Name" class="form-control"
+              [ngClass]="{'is-invalid': rewardTypeForm.get('reward_Type_Name')?.invalid && rewardTypeForm.get('reward_Type_Name')?.touched}">
+              <div *ngIf="rewardTypeForm.get('reward_Type_Name')?.invalid && rewardTypeForm.get('reward_Type_Name')?.touched" class="invalid-feedback">
+                  Reward Type Name is required.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="reward_Criteria">Reward Criteria</label>
+              <select id="reward_Criteria" formControlName="reward_Criteria" class="form-control"
+              [ngClass]="{'is-invalid': rewardTypeForm.get('reward_Criteria')?.invalid && rewardTypeForm.get('reward_Criteria')?.touched}">
+                <option *ngFor="let criteria of rewardCriteriaList" [value]="criteria">{{criteria}}</option>
+              </select>
+              <div *ngIf="rewardTypeForm.get('reward_Criteria')?.invalid && rewardTypeForm.get('reward_Criteria')?.touched" class="invalid-feedback">
+                  Reward Criteria is required.
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="createRewardType()">Create</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- View Modal -->
+<div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="viewModalLabel">View Reward Type</h5>
+      </div>
+      <div class="modal-body">
+        <p><strong>Reward Type ID:</strong> {{ selectedRewardType?.reward_Type_ID }}</p>
+        <p><strong>Reward Type Name:</strong> {{ selectedRewardType?.reward_Type_Name }}</p>
+        <p><strong>Reward Criteria:</strong> {{ selectedRewardType?.reward_Criteria }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Update Reward Type</h5>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="rewardTypeForm">
+          <div class="form-group">
+            <label for="reward_Type_Name">Reward Type Name</label>
+            <input type="text" id="reward_Type_Name" formControlName="reward_Type_Name" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="reward_Criteria">Reward Criteria</label>
+            <select id="reward_Criteria" formControlName="reward_Criteria" class="form-control">
+              <option *ngFor="let criteria of rewardCriteriaList" [value]="criteria">{{criteria}}</option>
+          </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="updateRewardType()">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Delete Reward Type</h5>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete the reward type <strong>{{ selectedRewardType?.reward_Type_Name }}</strong>?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" (click)="deleteRewardType()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- help-modal.component.html -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title mx-auto" id="helpModalLabel">Help Guide</h5>
+        <div class="search-bar-container">
+          <input type="text" class="form-control search-bar" placeholder="Search help" [(ngModel)]="searchTerm" (input)="filterHelpContent()">
+        </div>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let item of filteredContent">
+          <h5>{{ item.title }}</h5>
+          <p [innerHTML]="item.content"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</html>

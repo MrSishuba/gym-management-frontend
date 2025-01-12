@@ -1,0 +1,131 @@
+/* Move the modal closer to the left and slightly towards the top */
+.modal-right {
+  display: flex;
+  align-items: center; /* Vertical centering */
+  justify-content: center; /* Horizontal centering */
+  position: fixed;
+  right: 230px; /* Move modal closer to the left */
+  top: -15px; /* Move modal slightly towards the top */
+  height: 100vh; /* Ensure full height for vertical centering */
+  width: 100%;
+  max-width: 500px;
+  z-index: 1050; /* Ensure it appears above other content */
+}
+
+.modal .modal-dialog {
+  margin: 0; /* Reset margin */
+  width: 100%;
+  max-width: 500px;
+}
+
+.modal .modal-content {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto; /* Center horizontally within modal dialog */
+}
+
+/* Header with Back Icon and Title */
+.header {
+  position: relative;
+  padding: 1rem 3rem;
+}
+
+.header-icon {
+  position: absolute;
+  left: 3rem; /* Adjust left margin */
+  top: 0;
+  margin-top: 0.5rem;
+  font-size: 3rem; /* Increase icon size */
+}
+
+.page-title {
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+/* Layout for Container and Columns */
+.container {
+  margin-top: 80px; /* Move container more to the center */
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.col-md-6 {
+  flex: 1;
+  padding: 2rem;
+}
+
+/* Step Instructions Styling */
+.step-instructions {
+  border-right: 1px solid #dee2e6;
+  padding-right: 2rem;
+}
+
+.step-instructions h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.step-instructions p {
+  font-size: 1rem;
+  color: #6c757d;
+}
+
+/* Centering the ID Number Form */
+#idNumberForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 2rem;
+  border: 1px solid #dee2e6;
+  border-radius: 0.3rem;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+}
+
+/* ID Number Form Input Styles */
+#idNumberForm input[type="text"] {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.3rem;
+}
+
+/* Error Message Styling */
+.error-message {
+  color: #dc3545; /* Bootstrap danger color */
+  margin-top: 0.5rem;
+}
+
+/* Center the form button */
+#idNumberForm button {
+  margin-top: 1rem;
+}
+
+/* Modal Styles */
+.modal .modal-dialog {
+  margin-top: 2rem;
+}
+
+.modal .modal-footer {
+  justify-content: flex-end;
+}
+
+.modal .modal-body textarea {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+
+
+
+

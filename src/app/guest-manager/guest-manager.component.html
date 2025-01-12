@@ -1,0 +1,36 @@
+<div class="guest-manager-container">
+    <app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+    <app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+    <div style="margin-top: 10px"></div> <!-- Adjusted margin for spacing -->
+      <!-- Navigation -->
+      <div class="header-search-container">
+        <i class="bi bi-arrow-left-circle header-icon" (click)="goBack()"></i>
+        <h1 class="header-title">Guest Manager</h1>
+      </div>
+    
+      <div class="content">
+        <div class="menu-container">
+          <div class="row">
+            <div class="col-6">
+              <label>
+                <span class="menu-item">
+                    <i class="bi bi-ticket-detailed"></i>
+                  <a routerLink="/activate-free-trial">Activate Free Trial</a>
+                </span>
+              </label>
+            </div>
+            <div class="col-6">
+              <label>
+                <span class="menu-item" routerLink="/issued-free-trials" routerLinkActive="active">
+                    <i class="bi bi-card-checklist"></i>
+                  <a class="nav-link">Issued Free Trials</a>
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      
+      
+    

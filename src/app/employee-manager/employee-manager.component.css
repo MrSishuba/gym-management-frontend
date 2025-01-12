@@ -1,0 +1,94 @@
+.member-manager-container {
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+  }
+  
+  .content {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .header-search-container {
+    margin-top: 70px;
+    display: flex;
+    align-items: center;
+    padding: 0px 0px 0px 0px; /* Adjust the padding as needed */
+    padding-left: 10px;
+  }
+  
+  .header-icon {
+    font-size: 3rem; /* Adjust the size as needed */
+  }
+  
+  .header-title {
+    flex-grow: 1;
+    text-align: center;
+    padding-left: 0px;
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 70px); 
+    margin-top: 20px; 
+  }
+  .menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 420px; 
+    margin-top: 0px;
+  }
+  
+  .row {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .col-6 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px; 
+  }
+  
+  label {
+    cursor: pointer;
+  }
+  
+  .menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bs-primary);
+    color: white;
+    width: 200px; /* Enlarge the tiles */
+    height: 200px;
+    transition: transform 0.3s ease;
+    border-radius: 10px; /* Add rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+  }
+  
+  .menu-item:hover {
+    transform: scale(1.1);
+    z-index: 1; /* Ensure the hovered item is on top */
+  }
+  
+  .menu-item i {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .menu-item a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+  }
+  

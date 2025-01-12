@@ -1,0 +1,49 @@
+<div class="login-container">
+  <div class="left-side">
+    <i class="bi bi-arrow-left-circle back-icon" (click)="goBack()" style="position: absolute; top: 10px; left: 10px; font-size: 40px; color: black; cursor: pointer;"></i>
+    <div class="content">
+      <h1 class="title">AVS Fitness</h1>
+      <p class="slogan">Your journey awaits</p>
+      <img src="assets/images/reward.jpg" alt="Placeholder Image" class="placeholder-image">
+    </div>
+  </div>
+  <div class="right-side">
+    <mat-card class="login-card" *ngIf="!isLoading">
+      <mat-card-header>
+        <mat-card-title>Log in</mat-card-title>
+      </mat-card-header>
+      <form class="form" [formGroup]="loginFormGroup">
+        <mat-card-content>
+          <!-- Email Field -->
+          <mat-form-field class="full-width">
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="Enter the User's Email address" formControlName="email">
+            <mat-error *ngIf="loginFormGroup.get('email')?.invalid && (loginFormGroup.get('email')?.dirty || loginFormGroup.get('email')?.touched)">
+              <div *ngIf="loginFormGroup.get('email')?.errors?.['required']">Email is required.</div>
+              <div *ngIf="loginFormGroup.get('email')?.errors?.['email']">Email is invalid.</div>
+              <div *ngIf="loginFormGroup.get('email')?.errors?.['invalidDomain']">Email domain is not valid.</div>
+            </mat-error>
+          </mat-form-field>
+        
+          <!-- Password Field -->
+          <mat-form-field class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" placeholder="Enter the User's Password (8 to 15 characters)" formControlName="password">
+            <mat-error *ngIf="loginFormGroup.get('password')?.invalid && (loginFormGroup.get('password')?.dirty || loginFormGroup.get('password')?.touched)">
+              <div *ngIf="loginFormGroup.get('password')?.errors?.['required']">Password is required.</div>
+              <div *ngIf="loginFormGroup.get('password')?.errors?.['minlength']">Password must be at least 8 characters.</div>
+              <div *ngIf="loginFormGroup.get('password')?.errors?.['maxlength']">Password cannot be more than 15 characters.</div>
+            </mat-error>
+          </mat-form-field>
+        </mat-card-content>
+        
+        
+        <div class="forgot-password"><a [routerLink]="['../ForgotPasswordPage']">Forgot password?</a></div>
+        <button mat-stroked-button color="primary" class="login-button" (click)="LoginUser()">Log in</button><p></p>
+        <div class="sign-up">Don't have a profile? <a [routerLink]="['../register']">Sign-up</a></div>
+      </form>
+    </mat-card>
+    <mat-progress-spinner mode="indeterminate" value="50" *ngIf="isLoading"></mat-progress-spinner>
+  </div>
+</div>
+<hr style="border: 0; border-top: 1px solid white; margin: 20px 0;">

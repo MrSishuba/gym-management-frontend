@@ -1,0 +1,97 @@
+.gap-container {
+  margin-top: calc(60px - 102vh); /* Adjusts based on viewport height */
+}
+
+.header-search-container {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    padding: 50px 50px 0px 100px; /* Adjust the padding as needed */
+}
+
+.header-icon {
+    font-size: 3rem; /* Adjust the size as needed */
+}
+
+.help-icon {
+  font-size: 1.5rem; /* Reduced font size */
+  align-self: center;
+}
+
+.help-icon-container {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  padding-left: 100px;
+}
+
+.header-title {
+    flex-grow: 1;
+    text-align: center;
+    padding-left: 70px;
+}
+
+.audit-trail-container {
+    margin: 20px;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  .mat-elevation-z8 {
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  }
+  
+  mat-paginator {
+    margin-top: 10px;
+  }  
+  
+  /* help-modal.component.css  */
+  .modal-dialog {
+    max-width: 75%; /* Adjust the percentage as needed */
+  }
+  
+  .modal-dialog-scrollable {
+    max-height: calc(100vh - 100px);
+  }
+  
+  
+  .modal-content {
+    overflow-y: auto;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .modal-title {
+    flex-grow: 1;
+    text-align: center;
+  }
+  
+  .btn-close {
+    margin-right: auto;
+  }
+  
+  .search-bar-container {
+    margin-left: auto;
+  }
+  
+  .modal-body hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .modal-body h5 {
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  
+  .modal-body ul, .modal-body ol {
+    margin-bottom: 20px;
+    padding-left: 20px;
+  }
+  

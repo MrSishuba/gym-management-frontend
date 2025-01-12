@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+<app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+
+<div class="gap-container"></div>
+
+<div class="header-search-container">
+  <i *ngIf="filter == 'Equipment'" class="bi bi-arrow-left-circle header-icon" routerLink="/equipment-manager"></i>
+
+  <i *ngIf="filter == 'Inventory'" class="bi bi-arrow-left-circle header-icon" routerLink="/inventory-manager"></i>
+
+  <h1 *ngIf="filter == 'Equipment'" class="header-title">Inspections</h1>
+  <h1 *ngIf="filter == 'Inventory'"  class="header-title">Inventory Takes</h1>
+
+  <a class="navbar-brand" href="#" data-bs-toggle="modal" data-bs-target="#helpModal">
+    <i class="bi bi-info-circle-fill"> Help</i>
+  </a>
+</div>
+
+<div class="workout-container">
+  <div class="content">
+    <input type="text" class="form-control mb-3" placeholder="Search Inspection" [(ngModel)]="searchTerm" (input)="filterInspection()">
+
+    
+    <table class="table table-hover table-centered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Date</th>
+          <th *ngIf="filter == 'Equipment'">Equipment Name</th>
+          <th *ngIf="filter == 'Inventory'">Item Name</th>
+          <th *ngIf="filter == 'Equipment'">Inspection Type</th>
+          <th *ngIf="filter == 'Equipment'">Inspection Status</th>
+          <th *ngIf="filter == 'Inventory'">Invenotry Take Type</th>
+          <th *ngIf="filter == 'Inventory'">Invenotry Take Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let inspection of filteredInspections">
+          <tr *ngIf="filter == 'Equipment' && inspection.equipment_name">
+            <td>{{ inspection.inspection_ID }}</td>
+            <td>{{ inspection.inspection_Date | date }}</td>
+            <td>{{ inspection.equipment_name }}</td>
+            <td>{{ inspection.inspection_type_name }}</td>
+            <td>{{ inspection.inspection_status }}</td>
+            <td class="actions">
+              <button class="btn btn-info btn-sm" (click)="viewInspection(inspection.inspection_ID)">
+                <i class="bi bi-eye-fill"></i> View
+              </button>
+            </td>
+          </tr>
+
+          <tr *ngIf="filter == 'Inventory' && inspection.inventory_name">
+            <td>{{ inspection.inspection_ID }}</td>
+            <td>{{ inspection.inspection_Date | date }}</td>
+            <td>{{ inspection.inventory_name }}</td>
+            <td>{{ inspection.inspection_type_name }}</td>
+            <td>{{ inspection.inspection_status }}</td>
+            <td class="actions">
+              <button class="btn btn-info btn-sm" (click)="viewInspection(inspection.inspection_ID)">
+                <i class="bi bi-eye-fill"></i> View
+              </button>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+  <div class="blur-background" *ngIf="showModal"></div>
+  <div class="insp-modal-container" *ngIf="showModal">
+    <div *ngIf="filter === 'Equipment'">
+    <h2>{{ inspection.inspection_Date | date}}</h2> <br>
+    <h3>Inspection Notes:</h3> 
+    <p>{{ inspection.inspection_notes }}</p>
+    <h4>Inspection Type:</h4>
+      <p>{{ inspection.inspection_type_name }}</p>
+      <h4>Inspection Status:</h4>
+      <p>{{ inspection.inspection_status }}</p>
+
+      
+        <h4>Equipment Piece:</h4>
+        <p>{{inspection.equipment_name}}</p>
+      </div>
+
+      <div *ngIf="filter === 'Inventory'">
+
+        <h2>{{ inspection.inspection_Date | date}}</h2> <br>
+      <h3>Inventory Take Notes:</h3> 
+      <p>{{ inspection.inspection_notes }}</p>
+      <h4>Inventory Take  Type:</h4>
+      <p>{{ inspection.inspection_type_name }}</p>
+      <h4>Inventory Take  Status:</h4>
+      <p>{{ inspection.inspection_status }}</p>
+
+      
+        <h4>Inventory Item:</h4>
+        <p>{{inspection.inventory_name}}</p>
+      </div>
+  
+
+    <div class="insp-modal-buttons">
+      <button (click)="close()">Close</button>
+    </div>
+  </div>
+
+  
+  
+  
+<!-- help-modal.component.html -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title mx-auto" id="helpModalLabel">Help Guide</h5>
+        <div class="search-bar-container">
+          <input type="text" class="form-control search-bar" placeholder="Search help" [(ngModel)]="searchTerm" (input)="filterHelpContent()">
+        </div>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let item of filteredContent">
+          <h5>{{ item.title }}</h5>
+          <p [innerHTML]="item.content"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</html>

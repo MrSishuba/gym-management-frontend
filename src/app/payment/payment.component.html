@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+<app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+  
+<div class="gap-container"></div>
+
+<br>
+<div class="header-search-container">
+    <i class="bi bi-arrow-left-circle header-icon" (click)="goBack()"></i>
+    <h2 class="header-title">Payment Manager</h2>
+    <div class="search-bar-container">
+        <input type="text" class="form-control search-bar" placeholder="Search payments" [(ngModel)]="searchTerm" (input)="filteredPayments()">
+    </div>
+    <span class="help-icon-container">
+        <a class="navbar-brand help-icon" href="#" data-bs-toggle="modal" data-bs-target="#helpModal">
+            <i class="bi bi-info-circle-fill">Help</i>
+        </a>
+    </span>
+</div>
+<br>
+<br>
+<div class="container">
+    <div *ngIf="payments.length === 0">
+        <p>No payments have been made.</p>
+    </div>
+    <div *ngIf="payments.length > 0" class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                <th>Payment ID</th>
+                <th>Member Name</th>
+                <th>Amount</th>
+                <th>Payment Date</th>
+                <th>Payment Type</th>
+                <th>Action</th>
+                </tr>
+            </thead>
+            <tbody class>
+                <tr *ngFor="let payment of filterPayment">
+                <td>{{ payment.payment_ID }}</td>
+                <td>{{ payment.memberName }}</td>
+                <td>{{ payment.amount | currency: 'R ' }}</td>
+                <td>{{ payment.payment_Date | date: 'short' }}</td>
+                <td>{{ payment.paymentTypeName }}</td>
+                <td>
+                    <button class="btn btn-primary" (click)="openModal(payment)">View</button>
+                </td>
+                </tr>
+            </tbody>
+    </table>
+    
+    <button class="btn btn-success" (click)="exportToExcel()">Export to Excel</button>
+    
+    <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content" style="text-align: center;">
+            <div class="modal-header">
+              <h5 class="modal-title" id="userModalLabel"><strong>Payment Details</strong></h5>
+            </div>
+            <div class="modal-body">
+              <p><strong>Payment ID:</strong> {{ selectedPayment?.payment_ID }}</p>
+              <p><strong>Member Name:</strong> {{ selectedPayment?.memberName }}</p>
+              <p><strong>Amount:</strong> {{ selectedPayment?.amount | currency: 'R ' }}</p>
+              <p><strong>Payment Date:</strong> {{ selectedPayment?.payment_Date | date: 'short' }}</p>
+              <p><strong>Payment Type:</strong> {{ selectedPayment?.paymentTypeName }}</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</div> 
+</div>
+
+<!-- help-modal.component.html -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title mx-auto" id="helpModalLabel">Help Guide</h5>
+        <div class="search-bar-container">
+          <input type="text" class="form-control search-bar" placeholder="Search help" [(ngModel)]="searchTerm" (input)="filterHelpContent()">
+        </div>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let item of filteredContent">
+          <h5>{{ item.title }}</h5>
+          <p [innerHTML]="item.content"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</html>

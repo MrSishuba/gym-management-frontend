@@ -1,0 +1,100 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+<app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+
+<div class="gap-container"></div>
+<div class="header-search-container">
+  <i class="bi bi-arrow-left-circle header-icon" routerLink="/inventory-manager"></i>
+  <h1 class="header-title">Inventory</h1>
+  <span class="help-icon-container">
+      <a class="navbar-brand help-icon" href="#" data-bs-toggle="modal" data-bs-target="#helpModal">
+          <i class="bi bi-info-circle-fill">Help</i>
+      </a>
+  </span>
+</div>
+
+<div class="workout-container">
+  <div class="content">
+    <input type="text" class="form-control mb-3" placeholder="Search Inventory" [(ngModel)]="searchTerm" (input)="filterInventory()">
+
+    <!-- <a routerLink="/add-inventory" class="btn btn-primary mb-3">Create Inventory</a> -->
+    <a [routerLink]="['/create-inspection', 'Inventory']" class="btn btn-primary mb-3">Create Inventory Take</a>
+
+    <table class="table table-hover table-centered">
+      <thead>
+        <tr>
+          <th>Photo</th>
+          <th>Item Name</th>
+          <th>Category</th>
+          <th>Quantity On Hand</th>
+          <th>Supplier</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of filteredInventory">
+          <td><img [src]="'data:image/png;base64,' + item.photo" alt="image of {{item.itemName}}"></td>
+          <td>{{item.itemName}}</td>
+          <td>{{item.category}}</td>
+          <td>{{item.quantity}}</td>
+          <td>{{item.supplierName}}</td>
+          <td class="actions">
+            <button class="btn btn-info btn-sm" (click)="viewInventory(item.inventoryID)">
+              <i class="bi bi-eye-fill"></i> View
+            </button>
+            <button class="btn btn-warning btn-sm" [routerLink]="['/edit-inventory',item.inventoryID]">
+              <i class="bi bi-pencil-square"></i> Edit
+            </button>
+            <button class="btn btn-danger btn-sm" (click)="deleteInventory(item.inventoryID)">
+              <i class="bi bi-trash-fill"></i> Delete
+            </button>
+            <button *ngIf="item.quantity != 0" class="btn btn-danger btn-sm" [routerLink]="['/write-off',item.inventoryID]">
+              <i class="bi bi-file-earmark-excel"></i> Write-Off
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+  <div class="blur-background" *ngIf="showModal"></div>
+  <div class="inv-modal-container" *ngIf="showModal">
+    <h2> Item Number: {{ inventory.inventoryID }}</h2> <br>
+    <h3>Inventory Name:</h3> 
+    <p>{{inventory.itemName}}</p>
+    <h4>Quantity:</h4>
+      <p>{{inventory.quantity}}</p>
+      <h4>Supplier Details:</h4>
+      <p>Supplier Number: {{inventory.supplierID}} </p>
+      <p>Supplier Name:  {{inventory.supplierName}}</p>
+    <div class="inv-modal-buttons">
+      <button (click)="close()">Close</button>
+    </div>
+  </div>
+
+  
+  <!-- help-modal.component.html -->
+  <div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h5 class="modal-title mx-auto" id="helpModalLabel">Help Guide</h5>
+          <div class="search-bar-container">
+            <input type="text" class="form-control search-bar" placeholder="Search help" [(ngModel)]="searchTerm" (input)="filterHelpContent()">
+          </div>
+        </div>
+        <div class="modal-body">
+          <div *ngFor="let item of filteredContent">
+            <h5>{{ item.title }}</h5>
+            <p [innerHTML]="item.content"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</html>

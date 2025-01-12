@@ -1,0 +1,136 @@
+<div class="register-wrapper d-flex justify-content-center align-items-center">
+  <div class="logo-container">
+    
+    <h1 class="title" style="color:#a07b2f">
+      <i class="bi bi-arrow-left-circle" (click)="navigateToLogin()"></i>
+      AV Motion</h1>
+    
+  </div>
+    <div class="card box">
+      <div class="card-header text-center">
+        <h4 class="card-title">Sign-up
+          <i class="bi bi-info-circle info-icon" (click)="showModal = true"></i>
+        </h4>
+       
+      </div>
+      <form class="form" [formGroup]="registerFormGroup" (ngSubmit)="RegisterMember()">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter your Name" formControlName="name">
+                <div *ngIf="registerFormGroup.controls['name'].invalid && (registerFormGroup.controls['name'].dirty || registerFormGroup.controls['name'].touched)" class="text-danger">
+                  <div *ngIf="registerFormGroup.controls['name'].errors?.['required']">Name is required.</div>
+                  <div *ngIf="registerFormGroup.controls['name'].errors?.['minlength']">Name must be at least 2 characters long.</div>
+                  <div *ngIf="registerFormGroup.controls['name'].errors?.['maxlength']">Name must be at most 20 characters long.</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="surname" class="form-label">Surname</label>
+                <input type="text" class="form-control" id="surname" placeholder="Enter your Surname" formControlName="surname">
+                <div *ngIf="registerFormGroup.controls['surname'].invalid && (registerFormGroup.controls['surname'].dirty || registerFormGroup.controls['surname'].touched)" class="text-danger">
+                  <div *ngIf="registerFormGroup.controls['surname'].errors?.['required']">Surname is required.</div>
+                  <div *ngIf="registerFormGroup.controls['surname'].errors?.['minlength']">Surname must be at least 2 characters long.</div>
+                  <div *ngIf="registerFormGroup.controls['surname'].errors?.['maxlength']">Surname must be at most 20 characters long.</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter a valid Email address" formControlName="email">
+                <div *ngIf="registerFormGroup.controls['email'].invalid && (registerFormGroup.controls['email'].dirty || registerFormGroup.controls['email'].touched)" class="text-danger">
+                  <div *ngIf="registerFormGroup.controls['email'].errors?.['required']">Email is required.</div>
+                  <div *ngIf="registerFormGroup.controls['email'].errors?.['email']">Email is invalid.</div>
+                  <div *ngIf="registerFormGroup.controls['email'].errors?.['invalidDomain']">Email domain is not valid.</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter between 8 to 15 characters" formControlName="password">
+                <div *ngIf="registerFormGroup.controls['password'].invalid && (registerFormGroup.controls['password'].dirty || registerFormGroup.controls['password'].touched)" class="text-danger">
+                  <div *ngIf="registerFormGroup.controls['password'].errors?.['required']">Password is required.</div>
+                  <div *ngIf="registerFormGroup.controls['password'].errors?.['minlength']">Password must be at least 8 characters.</div>
+                  <div *ngIf="registerFormGroup.controls['password'].errors?.['maxlength']">Password cannot be more than 15 characters.</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="PhoneNumber" class="form-label">Phone Number</label>
+                <input type="text" class="form-control" id="PhoneNumber" placeholder="Enter your Phone Number" formControlName="PhoneNumber">
+                <div *ngIf="registerFormGroup.controls['PhoneNumber'].invalid && (registerFormGroup.controls['PhoneNumber'].dirty || registerFormGroup.controls['PhoneNumber'].touched)" class="text-danger">
+                  <div *ngIf="registerFormGroup.controls['PhoneNumber'].errors?.['required']">Phone Number is required.</div>
+                  <div *ngIf="registerFormGroup.controls['PhoneNumber'].errors?.['pattern']">Phone Number must be a valid South African number and start with 07, 08, or 06 and be 10 digits long.</div>
+                  <div *ngIf="registerFormGroup.controls['PhoneNumber'].errors?.['minlength']">Phone Number must be 10 digits.</div>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="Date_of_Birth" class="form-label">Date of Birth</label>
+                <input type="date" class="form-control" id="Date_of_Birth" placeholder="Enter your Date of Birth" formControlName="Date_of_Birth">
+                <div *ngIf="registerFormGroup.controls['Date_of_Birth'].invalid && (registerFormGroup.controls['Date_of_Birth'].dirty || registerFormGroup.controls['Date_of_Birth'].touched)" class="text-danger">
+                  <div *ngIf="registerFormGroup.controls['Date_of_Birth'].errors?.['required']">Date of Birth is required.</div>
+                  <div *ngIf="registerFormGroup.controls['Date_of_Birth'].errors?.['futureDate']">Date of birth cannot be a future date.</div>
+                  <div *ngIf="registerFormGroup.controls['Date_of_Birth'].errors?.['olderThan100']">Date of birth cannot be more than 100 years ago.</div>
+                  <div *ngIf="registerFormGroup.controls['Date_of_Birth'].errors?.['futureYear']">User cannot be younger than 16.</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="Id_Number" class="form-label">ID Number</label>
+                <input type="text" class="form-control" id="Id_Number" placeholder="Enter your ID Number" formControlName="Id_Number">
+                <div *ngIf="registerFormGroup.controls['Id_Number'].invalid && (registerFormGroup.controls['Id_Number'].dirty || registerFormGroup.controls['Id_Number'].touched)" class="text-danger">
+                  <div *ngIf="registerFormGroup.controls['Id_Number'].errors?.['required']">ID Number is required.</div>
+                  <div *ngIf="registerFormGroup.controls['Id_Number'].errors?.['minlength']">ID Number must be 13 digits.</div>
+                  <div *ngIf="registerFormGroup.controls['Id_Number'].errors?.['maxlength']">ID Number must be 13 digits.</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="Physical_Address" class="form-label">Physical Address</label>
+                <input type="text" class="form-control" id="Physical_Address" placeholder="Enter your Physical Address" formControlName="Physical_Address">
+                <div *ngIf="registerFormGroup.controls['Physical_Address'].invalid && (registerFormGroup.controls['Physical_Address'].dirty || registerFormGroup.controls['Physical_Address'].touched)" class="text-danger">
+                  <div *ngIf="registerFormGroup.controls['Physical_Address'].errors?.['required']">Physical Address is required.</div>
+                  <div *ngIf="registerFormGroup.controls['Physical_Address'].errors?.['minlength']">Physical Address must be at least 7 characters long.</div>
+                  <div *ngIf="registerFormGroup.controls['Physical_Address'].errors?.['maxlength']">Physical Address must be at most 100 characters long.</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="Photo" class="form-label">Photo</label>
+                <input type="file" class="form-control" id="Photo" (change)="onFileSelected($event)">
+                <div *ngIf="registerFormGroup.controls['Photo'].invalid && (registerFormGroup.controls['Photo'].dirty || registerFormGroup.controls['Photo'].touched)" class="text-danger">
+                  <div *ngIf="registerFormGroup.controls['Photo'].errors?.['required']">Photo is required.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+          <button type="submit" class="btn btn-primary" style="background-color:#a07b2f;border-color: #a07b2f;" >Sign-up</button>
+          <button type="button" class="btn btn-secondary" (click)="resetForm()">Cancel</button>
+        </div>
+      </form>
+    </div>
+
+<!-- Info Modal -->
+<div class="modal fade" [ngClass]="{'show d-block': showModal}" tabindex="-1" aria-labelledby="infoModalLabel" [attr.aria-hidden]="!showModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="infoModalLabel">Sign-up Instructions</h5>
+        <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- General instructions on how to complete the sign-up form -->
+        <p>Fill in all the required fields with accurate information.</p>
+        <p>Ensure that your email address is valid as it will be used for verification.</p>
+        <p>Your password must be between 8 to 15 characters long.</p>
+        <p>If you encounter any issues, please contact our support team.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  </div>

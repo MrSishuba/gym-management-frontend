@@ -1,0 +1,34 @@
+<div class="container-fluid">
+  <app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+  <app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+  <div style="margin-top: 90px"></div>
+  <div class="rewards-container">
+    <div class="header-search-container">
+      <i class="bi bi-arrow-left-circle header-icon" (click)="goBack()"></i>
+      <h1 class="header-title">Rewards</h1>
+    </div>
+
+    <div class="content">
+      <div class="menu-container">
+        <div class="row">
+          <div class="col-6">
+            <label>
+              <span class="menu-item" routerLink="/reward-type">
+                <i class="bi bi-award"></i>
+                <a>Reward Types</a>
+              </span>
+            </label>
+          </div>
+          <div class="col-6">
+            <label>
+              <span class="menu-item" routerLink="/reward">
+                <i class="bi bi-gear"></i>
+                <a>Configure Rewards</a>
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

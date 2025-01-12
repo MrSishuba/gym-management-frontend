@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <a class="navbar-brand" href="#" data-bs-toggle="modal" data-bs-target="#helpModal">
+    <i class="bi bi-info-circle-fill"> Help</i>
+  </a>
+<h2 *ngIf="filter == 'Equipment'" >Create Inspection</h2>
+<h2 *ngIf="filter == 'Inventory'" >Create Inventory Take</h2>
+<div class="form-container">
+    <form #formCtrl="ngForm" [formGroup]="registerFormGroup">
+         <div>
+             <label *ngIf="filter == 'Equipment'" for="name">Inspection Date:</label>
+             <label *ngIf="filter == 'Inventory'" for="name">Inventory Take Date:</label>
+             <input type="date" id="name" name="name" required [(ngModel)]="inspection_Date" size="35" placeholder="e.g 2024/05/24" formControlName="date" [min]="minDate">
+
+             <div *ngIf="registerFormGroup.controls['date'].invalid && (registerFormGroup.controls['date'].dirty || registerFormGroup.controls['date'].touched)" class="text-danger">
+              <div *ngIf="registerFormGroup.controls['date'].errors?.['required']">Date is required.</div>
+
+      </div>
+
+         </div>
+         <div>
+             <label for="duration">Notes:</label>
+             <textarea type="text" id="description" name="description" required [(ngModel)]="inspection_Notes" size="50" maxlength="150" placeholder="e.g Dumbell grip no longer safe for use" formControlName="notes"></textarea>
+
+             <div *ngIf="registerFormGroup.controls['notes'].invalid && (registerFormGroup.controls['notes'].dirty || registerFormGroup.controls['notes'].touched)" class="text-danger">
+              <div *ngIf="registerFormGroup.controls['notes'].errors?.['required']">Notes are required.</div>
+              <div *ngIf="registerFormGroup.controls['notes'].errors?.['minlength']">Notes must be at least 2 characters long.</div>
+              <div *ngIf="registerFormGroup.controls['notes'].errors?.['maxlength']">Notes must be at most 20 characters long.</div>
+            </div>
+
+
+         </div>
+         <div>
+             <label *ngIf="filter == 'Equipment'" for="name">Inspection Type:</label>
+             <label *ngIf="filter == 'Inventory'" for="name">Inventory Take Type:</label>
+             <select id="category" name="category" [(ngModel)]="inspection_Type_ID" required formControlName="type">
+               <option *ngFor="let type of types" [value]="type.inspection_Type_ID" required>{{ type.inspection_Type_Name}}</option>
+             </select>
+             <div *ngIf="registerFormGroup.controls['type'].invalid && (registerFormGroup.controls['type'].dirty || registerFormGroup.controls['type'].touched)" class="text-danger">
+             <div *ngIf="registerFormGroup.controls['type'].errors?.['required']">Type is required.</div>
+             </div>
+
+           </div>
+        
+        
+         <div>
+          <label *ngIf="filter == 'Equipment'" for="name">Inspection Status:</label>
+          <label *ngIf="filter == 'Inventory'" for="name">Inventory Take Status:</label>
+             <select id="category" name="category" required [(ngModel)]="inspection_Status_ID" formControlName="status">
+               <option *ngFor="let status of statuses" [value]="status.inspection_Status_ID" required>{{ status.inspection_Status_Description }}</option>
+             </select>
+
+             <div *ngIf="registerFormGroup.controls['status'].invalid && (registerFormGroup.controls['status'].dirty || registerFormGroup.controls['status'].touched)" class="text-danger">
+             <div *ngIf="registerFormGroup.controls['status'].errors?.['required']">Status is required.</div>
+             </div>
+           </div>
+
+           <div *ngIf="filter == 'Equipment'">
+            <div>
+              <label for="category">Equipment:</label>
+              <select id="category" name="category" [(ngModel)]="equipment_ID" required formControlName="category">
+                <option *ngFor="let equipment of equipments" [value]="equipment.equipment_ID" required>{{ equipment.equipment_Name }}</option>
+              </select>
+              <div *ngIf="registerFormGroup.controls['category'].invalid && (registerFormGroup.controls['category'].dirty || registerFormGroup.controls['category'].touched)" class="text-danger">
+              <div *ngIf="registerFormGroup.controls['category'].errors?.['required']">Equipment is required.</div>
+              </div>
+            </div>
+  
+           </div>
+ 
+           <div *ngIf="filter == 'Inventory'">
+            <div>
+              <label for="category">Inventory Item:</label>
+              <select id="category" name="category" [(ngModel)]="inventory_ID" required formControlName="category">
+                <option *ngFor="let inventory of inventories" [value]="inventory.inventoryID" required>{{ inventory.itemName }}</option>
+              </select>
+              <div *ngIf="registerFormGroup.controls['category'].invalid && (registerFormGroup.controls['category'].dirty || registerFormGroup.controls['category'].touched)" class="text-danger">
+              <div *ngIf="registerFormGroup.controls['category'].errors?.['required']">Inventory is required.</div>
+              </div>
+            </div>
+  
+           </div>
+ 
+         <div class="buttons">
+             <a class="add" >
+                <button type="submit"
+                        [disabled]="!formCtrl.form.valid || !inspection_Status_ID || (!equipment_ID && !inventory_ID)"
+                        (click)="addInspection(inspection_Date, inspection_Notes, equipment_ID, inspection_Type_ID, inspection_Status_ID, inventory_ID)">
+                    Add
+                </button>
+             </a>
+             <div *ngIf="filter == 'Inventory'">
+                <a class="cancel" routerLink="/inventory">
+                    <button type="button">Cancel</button>
+                </a>
+             </div>
+             <div *ngIf="filter == 'Equipment'">
+                <a class="cancel" routerLink="/equipment">
+                    <button type="button">Cancel</button>
+                </a>
+             </div>
+         </div>
+        
+     </form> 
+ </div>
+
+
+ 
+  
+<!-- help-modal.component.html -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title mx-auto" id="helpModalLabel">Help Guide</h5>
+        <div class="search-bar-container">
+          <input type="text" class="form-control search-bar" placeholder="Search help" [(ngModel)]="searchTerm" (input)="filterHelpContent()">
+        </div>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let item of filteredContent">
+          <h5>{{ item.title }}</h5>
+          <p [innerHTML]="item.content"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</html>

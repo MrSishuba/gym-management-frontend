@@ -1,0 +1,39 @@
+<div class="container">
+    <a *ngIf="!pdfGenerating" routerLink="/booking-slot" class="back-link">Back</a>
+    <button *ngIf="!pdfGenerating" (click)="generateAttendacePDF()" class="generate-button">Generate List</button>
+    
+    <div #content class="attendance-content">
+      <h1>{{ programName }} Program</h1>
+      <p>Date: {{ slotDate | date}}</p>
+      <p>Time: {{ formatSlotTime(slotTime) | date:'shortTime' }}</p>
+      <p>Number of Bookings: {{ numberOfBookings }}</p>
+    
+      <div class="attendance-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Member Number</th>
+              <th>Member Name</th>
+              <th>Members Present</th>
+              <th>Members Absent</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of list">
+              <td>{{item.member_ID}}</td>
+              <td>{{item.member_Name}}</td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <div class="attendance-summary">
+        <p>Total Present:</p>
+        <p>Total Absent:</p>
+        <p>Date Generated: {{dateGenerated | date}}</p>
+      </div>
+    </div>
+  </div>
+  

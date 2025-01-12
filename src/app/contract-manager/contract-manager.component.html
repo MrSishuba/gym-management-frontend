@@ -1,0 +1,50 @@
+<app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+<app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+<div class="container">
+  <app-contract-dropdown-nav></app-contract-dropdown-nav>
+  <div class="navigation">
+    <i class="bi bi-arrow-left-circle back-icon" (click)="goBack()"></i>
+    <div class="page-title">
+      <h1>Contract Manager</h1>
+    </div>
+  </div>
+
+  <!-- Modal for help information -->
+  <div class="modal" id="helpModal" style="display: none;">
+    <div class="modal-content">
+      <span class="close" (click)="closeHelpModal()">&times;</span>
+      <h2>Help Information</h2>
+      <p>Here are some instructions to help you fill out the forms:</p>
+      <ul>
+        <li><strong>Upload Signed Contract:</strong> Enter the member's name (e.g., John Doe) and select the signed contract file to upload.</li>
+        <li><strong>Create Contract:</strong> Provide subscription date, expiry date, approval date, and other contract details. Ensure you upload a file and select the contract type.</li>
+        <li><strong>Approve Contract:</strong> Enter the member ID and contract ID to approve the contract.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="forms-container">
+   
+    <!-- Approve Contract Form -->
+    <div class="form-section">
+      <h2>Approve Contract <i class="bi bi-info-circle" (mouseover)="openHelpModal('approve')" (mouseleave)="closeHelpModal()"></i></h2>
+      <form [formGroup]="approveForm" (ngSubmit)="approveContract()">
+        <div class="form-group">
+          <label>Member ID</label>
+          <input type="text" class="form-control" placeholder="Enter Member ID" formControlName="memberId" />
+          <div *ngIf="approveForm.get('memberId')?.invalid && (approveForm.get('memberId')?.dirty || approveForm.get('memberId')?.touched)" class="text-danger">
+            Member ID is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Contract ID</label>
+          <input type="text" class="form-control" placeholder="Enter Contract ID" formControlName="contractId" />
+          <div *ngIf="approveForm.get('contractId')?.invalid && (approveForm.get('contractId')?.dirty || approveForm.get('contractId')?.touched)" class="text-danger">
+            Contract ID is required
+          </div>
+        </div>
+        <button type="submit" class="btn btn-secondary">Approve Contract</button>
+      </form>
+    </div>
+  </div>
+</div>

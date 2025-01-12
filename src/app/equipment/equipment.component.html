@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+<app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+
+<div class="gap-container"></div>
+<div class="header-search-container">
+  <i class="bi bi-arrow-left-circle header-icon" routerLink="/equipment-manager"></i>
+  <h1 class="header-title">Equipment</h1>
+  <a class="navbar-brand" href="#" data-bs-toggle="modal" data-bs-target="#helpModal">
+      <i class="bi bi-info-circle-fill"> Help</i>
+    </a>
+</div>
+
+<div class="equipment-container">
+  <input type="text" class="form-control mb-3" placeholder="Search Equipment" [(ngModel)]="searchTerm" (input)="filterEquipment()">
+
+  <div class="button-container">
+
+    <button routerLink="/add-equipment" class="btn btn-primary mb-3">Create Equipment</button>
+    <button [routerLink]='["/create-inspection", "Equipment"]' class="btn btn-primary mb-3">Create Inspection</button>
+  </div>
+
+  <table class="table table-hover table-centered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Size</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of filteredequipment">
+        <td>{{ item.equipment_Name }}</td>
+        <td>{{ item.equipment_Description }}</td>
+        <td>{{ item.size }}</td>
+        <td class="actions">
+          <button (click)="viewEquipment(item.equipment_ID)" class="btn btn-info btn-sm"><i class="bi bi-eye-fill"></i> View</button>
+          <button class="btn btn-warning btn-sm" [routerLink]="['/edit-equipment', item.equipment_ID]"><i class="bi bi-pencil-square"></i> Edit</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteEquipment(item.equipment_ID)"><i class="bi bi-trash-fill"></i> Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+  
+
+  
+  <div class="blur-background" *ngIf="showModal"></div>
+  <div class="equi-modal-container" *ngIf="showModal">
+    <h2>{{ equipment.equipment_Name }}</h2> <br>
+    <h3>Equipment Description:</h3> 
+    <p>{{equipment.equipment_Description}}</p>
+    <h4>Size:</h4>
+      <p>{{equipment.size}}</p>
+    <div class="equi-modal-buttons">
+      <button (click)="close()">Close</button>
+    </div>
+  </div>
+
+  
+  
+<!-- help-modal.component.html -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title mx-auto" id="helpModalLabel">Help Guide</h5>
+        <div class="search-bar-container">
+          <input type="text" class="form-control search-bar" placeholder="Search help" [(ngModel)]="searchTerm" (input)="filterHelpContent()">
+        </div>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let item of filteredContent">
+          <h5>{{ item.title }}</h5>
+          <p [innerHTML]="item.content"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</html>

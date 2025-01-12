@@ -1,0 +1,64 @@
+<a class="navbar-brand" href="#" data-bs-toggle="modal" data-bs-target="#helpModal">
+    <i class="bi bi-info-circle-fill"> Help</i>
+  </a>
+<h2>Create Equipment</h2>
+<div class="form-container">
+    <form #formCtrl="ngForm" [formGroup]="equipmentFormGroup">
+        <div>
+            <label for="name">Equpiment Name:</label>
+            <input type="text" id="name" name="name" required [(ngModel)]="equipmentName" size="35" placeholder="e.g Dumbell" maxlength="20" formControlName="name">
+            <div *ngIf="equipmentFormGroup.controls['name'].invalid && (equipmentFormGroup.controls['name'].dirty || equipmentFormGroup.controls['name'].touched)" class="text-danger">
+                <div *ngIf="equipmentFormGroup.controls['name'].errors?.['required']">Equipment Name is required.</div>
+                <div *ngIf="equipmentFormGroup.controls['name'].errors?.['minlength']">Equipment Name must be at least 2 characters long.</div>
+                <div *ngIf="equipmentFormGroup.controls['name'].errors?.['maxlength']">Equipment Name must be at most 20 characters long.</div>
+              </div>
+        </div>
+        <div>
+            <label for="duration">Equpiment Description:</label>
+            <input type="text" id="description" name="description" required [(ngModel)]="equipmentDescription" size="35" maxlength="100" placeholder="e.g Used to add weight and resistance during upper body and lower body workouts" formControlName="description">
+            
+            <div *ngIf="equipmentFormGroup.controls['description'].invalid && (equipmentFormGroup.controls['description'].dirty || equipmentFormGroup.controls['description'].touched)" class="text-danger">
+                <div *ngIf="equipmentFormGroup.controls['description'].errors?.['required']">Description is required.</div>
+                <div *ngIf="equipmentFormGroup.controls['description'].errors?.['minlength']">Description must be at least 10 characters long.</div>
+                <div *ngIf="equipmentFormGroup.controls['description'].errors?.['maxlength']">Description must be at most 100 characters long.</div>
+        
+            </div>
+        </div>
+
+        <div>
+            <label for="duration">Equpiment Size:</label>
+            <input type="text" id="size" name="size"  [(ngModel)]="equipmentSize" size="35" placeholder="e.g 10KG" maxlength="10" formControlName="size">            
+        </div>
+
+        <div class="buttons">
+         <button type="submit" class="add" [disabled]="!formCtrl.form.valid" (click)="addEquipment(equipmentName, equipmentDescription, equipmentSize)" >Add</button>
+    
+            <button type="button" class="cancel" routerLink="/equipment">Cancel</button>
+        </div>
+    </form>
+    </div>
+
+
+    
+  
+  
+<!-- help-modal.component.html -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h5 class="modal-title mx-auto" id="helpModalLabel">Help Guide</h5>
+          <div class="search-bar-container">
+            <input type="text" class="form-control search-bar" placeholder="Search help" [(ngModel)]="searchTerm" (input)="filterHelpContent()">
+          </div>
+        </div>
+        <div class="modal-body">
+          <div *ngFor="let item of filteredContent">
+            <h5>{{ item.title }}</h5>
+            <p [innerHTML]="item.content"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

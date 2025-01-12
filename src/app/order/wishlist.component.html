@@ -1,0 +1,52 @@
+<app-navbar></app-navbar>
+<br>
+<br>
+<br>
+<div class="header-search-container">
+    <i class="bi bi-arrow-left-circle header-icon" routerLink="/product-list"></i>
+    <h2 class="header-title" routerLink="/product-list">AV MERCH</h2>
+</div>
+<br>
+<br>
+<div class="wishlist-container">
+    <div class="container mt-4">
+        <h2>Your Wishlist</h2>
+        <div *ngIf="wishlistItems.length === 0">
+            <p>Your wishlist is empty.</p>
+        </div>
+        <div *ngIf="wishlistItems.length > 0" class="row">
+            <table class="table">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Product Image</th>
+                    <th>Product Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Size</th>
+                    <th>Actions</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody class="table-body">
+                  <tr *ngFor="let item of wishlistItems">
+                    <td>
+                      <img [src]="getImageSrc(item.product_Img)" style="width: 100px; height: 100px;">
+                    </td>
+                    <td>{{ item.product_Name }}</td>
+                    <td>{{ item.product_Description }}</td>
+                    <td>{{ item.unit_Price | currency: 'R ' }}</td>
+                    <td>{{ item.size }}</td>
+                    <td> 
+                      <button class="btn btn-primary" (click)="moveToCart(item.product_ID)">Move to Cart</button>
+                    </td>
+                    <td>
+                        <a (click)="removeFromWishlist(item.product_ID)">
+                          <i class="bi bi-x-circle-fill"></i> 
+                        </a>
+                    </td>
+                  </tr>
+                </tbody>
+            </table>              
+        </div>
+    </div>
+</div>

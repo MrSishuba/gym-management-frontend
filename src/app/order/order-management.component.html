@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="gap-container"></div>
+<app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+<app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+
+<div class="header-search-container">
+    <i class="bi bi-arrow-left-circle header-icon" (click)="goBack()"></i>
+    <h2 class="header-title">Order Manager</h2>
+    <div class="search-bar-container">
+        <input type="text" class="form-control search-bar" placeholder="Search orders" [(ngModel)]="searchTerm" (input)="applyFilter()">
+    </div>    
+    <a class="navbar-brand" href="#" data-bs-toggle="modal" data-bs-target="#helpModal">
+        <i class="bi bi-info-circle-fill">Help</i>
+      </a>
+</div>
+<br>
+<br>
+<div class="container">
+    <div *ngIf="orders.length === 0">
+        <p>There are no orders.</p>
+    </div>
+    
+    <div *ngIf="orders.length > 0">
+        <div class="text-center mb-3">
+            <button class="btn btn-primary" routerLink="/overdue-settings">Update Overdue Order Settings</button>
+        </div>
+        <div class="row">
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Member ID</th>
+                        <th>Order Details</th>
+                        <th>Order Date</th>
+                        <th>Total Price</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="table-body">
+                    <tr *ngFor="let order of pagedOrders">
+                        <td>{{ order.order_ID }}</td>
+                        <td>{{ order.member_ID }}</td>
+                        <td>
+                            <div *ngFor="let line of order.orderLines">
+                                <p>{{ line.product_Name }} ({{ line.quantity }} x {{ line.unit_Price | currency: 'R ' }})</p>
+                            </div>
+                        </td>
+                        <td>{{ order.order_Date | date:'short' }}</td>
+                        <td>{{ order.total_Price | currency: 'R ' }}</td>
+                        <td>
+                            <ng-container [ngSwitch]="order.order_Status_ID">
+                                <span *ngSwitchCase="1">Ready for Collection</span>
+                                <span *ngSwitchCase="2">Overdue for Collection</span>
+                                <span *ngSwitchCase="3">Collected</span>
+                                <span *ngSwitchCase="4">Late Collection</span>
+                                <span *ngSwitchDefault>Unknown</span>
+                            </ng-container>
+                        </td>
+                        <td>
+                            <button *ngIf="!order.isCollected" (click)="collectOrder(order.order_ID)" class="btn btn-success">
+                                Collect
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Bootstrap Pagination -->
+            <nav aria-label="Order pagination">
+                <ul class="pagination">
+                <li class="page-item" [class.disabled]="page === 1">
+                    <a class="page-link" href="#" (click)="onPageChange($event, page - 1)">Previous</a>
+                </li>
+                <li *ngFor="let p of pages" class="page-item" [class.active]="page === p">
+                    <a class="page-link" href="#" (click)="onPageChange($event, p)">{{ p }}</a>
+                </li>
+                <li class="page-item" [class.disabled]="page === totalPages">
+                    <a class="page-link" href="#" (click)="onPageChange($event, page + 1)">Next</a>
+                </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</div>
+
+
+
+<!-- help-modal.component.html -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h5 class="modal-title mx-auto" id="helpModalLabel">Help Guide</h5>
+          <div class="search-bar-container">
+            <input type="text" class="form-control search-bar" placeholder="Search help" [(ngModel)]="searchTerm" (input)="filterHelpContent()">
+          </div>
+        </div>
+        <div class="modal-body">
+          <div *ngFor="let item of filteredContent">
+            <h5>{{ item.title }}</h5>
+            <p [innerHTML]="item.content"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</html>

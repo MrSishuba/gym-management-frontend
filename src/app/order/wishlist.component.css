@@ -1,0 +1,29 @@
+.header-search-container {
+    display: flex;
+    align-items: center;
+    padding: 0px 0px 0px 180px; /* Adjust the padding as needed */
+}
+
+.header-icon {
+    font-size: 3rem; /* Adjust the size as needed */
+}
+
+.header-title {
+    flex-grow: 1;
+    text-align: center;
+    padding-right: 200px;
+}
+
+.wishlist-container {
+    height: 100%;
+    overflow-y: auto; /* Enable vertical scrolling */
+    display: flex;
+    justify-content: center;
+    padding: 0px 0px 0px 80px; 
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    overflow: hidden; /* Prevent body from scrolling */
+  }

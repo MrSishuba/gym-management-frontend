@@ -1,0 +1,61 @@
+<app-master-side-nav-bar *ngIf="userTypeID == 1"></app-master-side-nav-bar>
+<app-side-nav-bar *ngIf="userTypeID == 2"></app-side-nav-bar>
+<div class="gap-container"></div>
+<div class="container">
+  <div class="navigation">
+    <i class="bi bi-arrow-left-circle back-icon" (click)="goBack()"></i>
+    <div class="vertical-divider-left"></div>
+    <div class="page-title">
+      <h1>Contract Finder <i class="bi bi-search"></i></h1>
+    </div>
+    <app-contract-dropdown-nav></app-contract-dropdown-nav>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h2 class="section-title">Signed Contracts <i class="bi bi-info-circle" (click)="openHelpModal()"></i></h2>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Member ID"
+          [(ngModel)]="memberId"
+          (ngModelChange)="onMemberIdChange()"
+        />
+      </div>
+      <button class="btn btn-info" (click)="getSignedContract()">Get Signed Contract</button>
+
+      <div *ngIf="contract" class="contract-details">
+        <h3>Contract Details</h3>
+        <div class="contract-info">
+          <div><strong>Member ID:</strong> {{ contract.memberID }}</div>
+          <div><strong>Member Name:</strong> {{ contract.memberName }} {{ contract.memberSurname }}</div>
+          <div><strong>Phone Number:</strong> {{ contract.memberPhone }}</div>
+          <div><strong>ID Number:</strong> {{ contract.memberIDNumber }}</div>
+          <div><strong>Contract Type:</strong> {{ contract.contractTypeName }}</div>
+          <div><strong>Subscription Date:</strong> {{ contract.subscriptionDate }}</div>
+          <div><strong>Expiry Date:</strong> {{ contract.expiryDate }}</div>
+          <div><strong>Employee ID:</strong> {{ contract.employeeID }}</div>
+          <div><strong>Employee Name:</strong> {{ contract.employeeName }} {{ contract.employeeSurname }}</div>
+          <div><strong>Approval Date:</strong> {{ contract.approvalDate }}</div>
+          <div><strong>Expected Payment Date:</strong> {{ contract.expectedPaymentDate }}</div>
+          <div><strong>Final Due Payment Date:</strong> {{ contract.finalDuePaymentDate }}
+            <button class="btn btn-info" style="float:right" (click)="downloadConsentForm()">
+              <i class="bi bi-download"></i> Download Consent Form
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Help Modal -->
+<div class="modal" [ngClass]="{'show': isHelpModalOpen}" (click)="closeHelpModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <h2>Help Information</h2>
+    <p>Search Member: To search a member's contract, enter the member's ID. A display of the member and contract information will be shown. Any terminated, unactivated, or unapproved contracts will not be displayed if the member ID is entered.</p>
+    <button class="btn btn-secondary" (click)="closeHelpModal()">Close</button>
+  </div>
+  
+</div>
